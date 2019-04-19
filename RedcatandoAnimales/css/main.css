@@ -7,3 +7,8 @@
     --light-color:#fcf9f2;
     --dark-color:#232d2d;
 }
+
+.btn-primary
+{
+    background-color: var(--primary-color);
+}
