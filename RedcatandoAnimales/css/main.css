@@ -12,10 +12,6 @@
 {
     color:var(--dark-color);
 }
-body
-{
-    background-color: var(--primary-color);
-}
 
 .login-box
 {
@@ -45,4 +41,28 @@ body
 {
     background-color: var(--danger-color);
     border-color: var(--danger-color);
+}
+
+.navbar
+{
+    box-shadow: #232d2d 0px 1px 5px;
+    margin-bottom: 10vh;
+}
+.nav-link
+{
+    color: #fff;
+}
+.active
+{
+    color: var(--dark-color);
+    font-weight: 600;
+}
+
+.primary-color
+{
+    background-color: var(--primary-color);
+}
+.light-color
+{
+    background-color: var(--light-color);
 }
