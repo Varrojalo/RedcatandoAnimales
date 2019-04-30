@@ -12,7 +12,11 @@
 {
     color:var(--dark-color);
 }
-
+.brand-title
+{
+    font-family: 'Poller One', cursive;
+    color: #fff;
+}
 .login-box
 {
     margin-top: 5vh;
