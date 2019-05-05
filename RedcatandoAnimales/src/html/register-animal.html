@@ -4,9 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Registrar Animal | Redcatando Animales</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/RedcatandoAnimales/src/css/main.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="shortcut icon" href="/RedcatandoAnimales/res/imgs/favicon.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Poller+One" rel="stylesheet">
 </head>
-<body>
-    
+<body class="bg-primary">
+    <div class="container container-fluid">
+        <div class="login-box">
+            <h2>Registrar Animal</h2>
+            <form action="">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label>Nombre:</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Foto:</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+                            <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                            <div class="invalid-feedback">Example invalid custom file feedback</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label for="">Raza: </label>
+                        <select name="" id="" class="custom-select">
+                            <option value="">RAZA</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="">Edad: </label>
+                        <input type="number" class="form-control" min="1" max="30" value="10">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="">Sexo: </label>
+                        <div class="">
+                            <input type="radio" class="" name="radioSexo">
+                            <label>Macho</label>
+                        </div>
+                        <div class="">
+                            <input type="radio" class="c-radio" name="radioSexo">
+                            <label>Hembra</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="">Observacion: </label>
+                    <textarea name="" id="" cols="30" rows="6" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary">REGISTRAR</button>
+                    <a href="/RedcatandoAnimales/src/html/history-animal.html" class="btn btn-link">CANCELAR</a>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

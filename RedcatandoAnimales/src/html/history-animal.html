@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Historial de Animales | Redcatando Animales</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/RedcatandoAnimales/src/css/main.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="shortcut icon" href="/RedcatandoAnimales/res/imgs/favicon.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Poller+One" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-light bg-primary">
+        <div class="container container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="/RedcatandoAnimales/res/imgs/icon_512px.png" width="32" height="32" alt="">
+                <span class="brand-title">REDCATANDOANIMALES</span>
+            </a>
+            <ul class="nav">
+                <!-- Tab NOTICIAS
+                <li class="nav-item">
+                        <a href="" class="nav-link">Noticias</a>
+                </li>
+                -->
+                <li class="nav-item">
+                    <span class="nav-link active">Historial de Animales</span>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link">Campañas</a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link">Adoptantes</a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link">Voluntarios</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/RedcatandoAnimales/src/html/downloads.html" class="nav-link">Documentos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <main>
+        <div class="container container-fluid">
+            <h2>Historial de Animales</h2>
+        </div>
+        <section class="container container-fluid">
+            <form action="#">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label>Nombre: </label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group col-md-1">
+                        <label for="">Edad:</label>
+                        <input type="number" min=1 max=30 value=10 class="form-control">
+                    </div>
+                    <div class="form-group col-md-1">
+                        <label for="">Sexo</label>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input">
+                            <label for="" class="custom-control-label">Macho</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input">
+                            <label for="" class="custom-control-label">Hembra</label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-1">
+                        <label for="">Raza: </label>
+                        <select name="" id="" class="custom-select">
+                            <option value="">TEST</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="">Fecha de Ingreso: </label>
+                        <select name="" id="" class="custom-select">
+                            <option value="">TEST</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3 align-self-center">
+                        <button class="btn btn-success">BUSCAR</button>
+                        <a href="/RedcatandoAnimales/src/html/register-animal.html" class="btn btn-link">REGISTRAR ANIMAL</a>
+                    </div>
+                </div>
+                
+                <table class="table table-bordered bg-white text-center">
+                    <thead class="bg-primary">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Edad</th>
+                            <th scope="col">Raza</th>
+                            <th scope="col">Sexo</th>
+                            <th scope="col">Fecha de Ingreso</th>
+                            <th scope="col">N° Chip</th>
+                            <th scope="col">Observacion</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-body">
+                        <tr>
+                            <th scope="row">TEST</th>
+                            <td>TEST</td>
+                            <td>TEST</td>
+                            <td>TEST</td>
+                            <td>TEST</td>
+                            <td>TEST</td>
+                            <td>TEST</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+
+        </section>
+    </main>
+</body>
+</html>
