@@ -1,0 +1,17 @@
+{
+  "name": "res",
+  "version": "1.0.0",
+  "description": "Animal rescue organization web service",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sql": "^0.78.0"
+  }
+}
