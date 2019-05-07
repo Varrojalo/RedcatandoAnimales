@@ -24,6 +24,20 @@
     font-family: 'Poller One', cursive;
     color: #fff;
 }
+.error-title
+{
+    font-family: 'Poller One', cursive;
+    color: var(--danger-color);
+}
+.error-box
+{
+    margin: 3vh 0vh;
+}
+.error-box>h2
+{
+    padding-top: 20px;
+}
+
 .login-box
 {
     margin-top: 5vh;
