@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Campañas Activas | Redcatando Animales</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/RedcatandoAnimales/src/css/main.css">
+    <link rel="stylesheet" href="/RedcatandoAnimales/src/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="shortcut icon" href="/RedcatandoAnimales/res/imgs/favicon.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Poller+One" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <nav class="mb-3 navbar navbar-dark navbar-expand-lg bg-primary">
+        <div class="container container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="/RedcatandoAnimales/res/imgs/icon_512px.png" width="32" height="32" alt="">
+                <span class="brand-title">REDCATANDOANIMALES</span>
+            </a>
+            <ul class="navbar-nav">
+                <!-- Tab NOTICIAS
+                <li class="nav-item">
+                        <a href="" class="nav-link">Noticias</a>
+                </li>
+                -->
+                <li class="navbar-text">
+                    <a href="/RedcatandoAnimales/src/html/history-animal.html" class="nav-link">Historial de animales</a>
+                </li>
+                <li class="navbar-text">
+                    <span class="nav-link active">Campañas</span>
+                </li>
+                <li class="navbar-text">
+                    <a href="" class="nav-link">Adoptantes</a>
+                </li>
+                <li class="navbar-text nav">
+                    <a href="" class="nav-link">Voluntarios</a>
+                </li>
+                <li class="navbar-text">
+                    <a href="/RedcatandoAnimales/src/html/downloads.html" class="nav-link">Documentos</a>
+                </li>
+                <li class="navbar-text">
+                    <a href="" class="nav-link">
+                        <i class="nav-link fas fa-sign-out-alt"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav> 
+    <main class="container container-fluid">
+        <h2>Lista de campañas</h2>
+        <form action="">
+            <section>
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label>Titulo:</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="">Tipo:</label>
+                        <select name="" id="" class="custom-select">
+                            <option value="">DINERO</option>
+                            <option value="">CONCIENTIZACIÓN</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="">Año de Inicio:</label>
+                        <input type="number" min="2016" value="2019" class="form-control">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="">Estado:</label>
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                            <label class="custom-control-label" for="customSwitch1">ACTIVA/TERMINADA</label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3 align-self-center pl-5">
+                        <button class="btn btn-primary w-100">BUSCAR CAMPAÑA</button>
+                    </div>
+                </div>
+                <table class="mb-5 table table-striped table-borderless text-center">
+                    <thead class="thead-dark align-middle">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Titulo</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Resumen</th>
+                            <th scope="col">Fecha de Inicio</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">+ INFO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row"><input type="checkbox"></th>
+                            <td>Ayudemos a Sasha</td>
+                            <td>DINERO</td>
+                            <td>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, quisquam.</td>
+                            <td>14-05-19</td>
+                            <td>ACTIVO</td>
+                            <td>Ver Campaña</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><input type="checkbox"></th>
+                            <td>Ayudemos a Sasha</td>
+                            <td>DINERO</td>
+                            <td>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, quisquam.</td>
+                            <td>14-05-19</td>
+                            <td>ACTIVO</td>
+                            <td>Ver Campaña</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><input type="checkbox"></th>
+                            <td>Ayudemos a Sasha</td>
+                            <td>DINERO</td>
+                            <td>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, quisquam.</td>
+                            <td>14-05-19</td>
+                            <td>ACTIVO</td>
+                            <td>Ver Campaña</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><input type="checkbox"></th>
+                            <td>Ayudemos a Sasha</td>
+                            <td>DINERO</td>
+                            <td>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, quisquam.</td>
+                            <td>14-05-19</td>
+                            <td>ACTIVO</td>
+                            <td>Ver Campaña</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><input type="checkbox"></th>
+                            <td>Ayudemos a Sasha</td>
+                            <td>DINERO</td>
+                            <td>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, quisquam.</td>
+                            <td>14-05-19</td>
+                            <td>ACTIVO</td>
+                            <td>Ver Campaña</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><input type="checkbox"></th>
+                            <td>Ayudemos a Sasha</td>
+                            <td>DINERO</td>
+                            <td>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, quisquam.</td>
+                            <td>14-05-19</td>
+                            <td>ACTIVO</td>
+                            <td>Ver Campaña</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><input type="checkbox"></th>
+                            <td>Ayudemos a Sasha</td>
+                            <td>DINERO</td>
+                            <td>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, quisquam.</td>
+                            <td>14-05-19</td>
+                            <td>ACTIVO</td>
+                            <td>Ver Campaña</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><input type="checkbox"></th>
+                            <td>Ayudemos a Sasha</td>
+                            <td>DINERO</td>
+                            <td>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, quisquam.</td>
+                            <td>14-05-19</td>
+                            <td>ACTIVO</td>
+                            <td>Ver Campaña</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section class="py-3 footerbar bg-light fixed-bottom container container-fluid">
+                <button class="btn btn-primary">ELIMINAR SELECCIONADOS</button>
+                <a href="" class="btn btn-link">NUEVA CAMPAÑA</a>
+            </section>
+        </form>
+    </main>
+</body>
+</html>
