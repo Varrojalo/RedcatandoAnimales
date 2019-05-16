@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Campañas Activas | Redcatando Animales</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/RedcatandoAnimales/src/css/main.css">
+    <link rel="stylesheet" href="/RedcatandoAnimales/src/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="shortcut icon" href="/RedcatandoAnimales/res/imgs/favicon.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Poller+One" rel="stylesheet">
+</head>
+<body class="bg-primary">
+    <div class="container container-fluid ">
+        <div class="my-3 shadow p-3 bg-white rounded">
+            <h2>Crear Campaña</h2>
+            <form action="" class="container container-fluid">
+                <img src="/RedcatandoAnimales/res/imgs/drag_n_drop.png" class="img-fluid mb-4">
+                
+                <div class="form-group form-row">
+                    <label class="font-weight-bold col-md-2"><strong class="text-danger">*</strong> TITULO: </label>
+                    <input type="text" class="ml-3 form-control col">
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label class="font-weight-bold col-md-2"><strong class="text-danger">*</strong> TIPO:</label>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="customControlValidation2" name="radio-stacked">
+                                <label class="custom-control-label" for="customControlValidation2">Colecta monetaria</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="customControlValidation3" name="radio-stacked">
+                                <label class="custom-control-label" for="customControlValidation3">Concientizacion</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="font-weight-bold col-md-3"><strong class="text-danger">*</strong> META: $</label>
+                            <input type="number" class="form-control col-md-8">
+                        </div>
+                        <div class="form-group">
+                            <label class="font-weight-bold">Duracion (Dias):</label>
+                            <input type="number" min=1 value=30 class="form-control">                        
+                        </div>
+                    </div>
+                    <div class="form-group col">
+                        <label class="font-weight-bold"><strong class="text-danger">*</strong> CONTENIDO: </label>
+                        <textarea class="form-control" cols="30" rows="10"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <a href="/RedcatandoAnimales/src/html/history-campaign.html" class="btn btn-link btn-lg col">CANCELAR</a>
+                    <button class="btn btn-primary btn-lg col">PUBLICAR CAMPAÑA</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
