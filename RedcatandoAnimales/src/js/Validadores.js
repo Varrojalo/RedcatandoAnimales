@@ -44,5 +44,5 @@ function ValidarRut(rut) {
      { rut.setCustomValidity("RUT Inválido"); return false; }
     
     // Si todo sale bien, eliminar errores (decretar que es válido)
-    rut.setCustomValidity('valido');
+    rut.setCustomValidity('valido'); return true;
 }

@@ -8,7 +8,8 @@ var con = mysql.createConnection({
   database: "redcate"
 });
 
-function BuscarAnimal(organizacion) {
+function BuscarAnimales(organizacion) {
+    var animales = new Array();
     //coneccion a bd
     con.connect(function(err) {
         if (err) throw err;
@@ -18,9 +19,13 @@ function BuscarAnimal(organizacion) {
         var sql = "SELECT * FROM organizacion WHERE ORGANIZACIONCOD = "+organizacion
         con.query(sql, function (err, result) {
           if (err) throw err;
+          result.forEach(r => {
+            animales.push(r)
+          });
           console.log(result);
         });
       });
+    return animales;
 }
 
 function IngresarAnimal(animal){
