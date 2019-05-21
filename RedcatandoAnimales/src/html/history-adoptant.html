@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Historial de Animales | Redcatando Animales</title>
-
+    <title>Adoptantes | Redcatando Animales</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/RedcatandoAnimales/src/css/main.css">
@@ -28,13 +27,13 @@
                 </li>
                 -->
                 <li class="navbar-text">
-                    <span class="nav-link active">Historial de animales</span>
+                    <a href="/RedcatandoAnimales/src/html/history-animal.html" class="nav-link">Historial de animales</a>
                 </li>
                 <li class="navbar-text">
                     <a href="/RedcatandoAnimales/src/html/history-campaign.html" class="nav-link">Campañas</a>
                 </li>
                 <li class="navbar-text">
-                    <a href="/RedcatandoAnimales/src/html/history-adoptant.html" class="nav-link">Adoptantes</a>
+                    <span class="nav-link active">Adoptantes</span>
                 </li>
                 <li class="navbar-text">
                     <a href="" class="nav-link">Voluntarios</a>
@@ -52,7 +51,7 @@
     </nav> 
     <main>
         <div class="container container-fluid">
-            <h2>Historial de Animales</h2>
+            <h2>Lista de Adoptantes</h2>
         </div>
         <section class="container container-fluid">
             <form action="#">
@@ -61,35 +60,25 @@
                         <label>Nombre: </label>
                         <input type="text" class="form-control">
                     </div>
-                    <div class="form-group col-md-1">
-                        <label for="">Edad:</label>
-                        <input type="number" min=1 max=30 value=10 class="form-control">
-                    </div>
-                    <div class="form-group col-md-1">
-                        <label for="">Sexo:</label>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input">
-                            <label for="" class="custom-control-label">Macho</label>
+                    <div class="form-group col-md-2">
+                        <label for="">¿Mal Adoptante?</label>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" id="customCheck1" class="custom-control-input">
+                            <label for="customCheck1" class="custom-control-label">SI / NO</label>
                         </div>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input">
-                            <label for="" class="custom-control-label">Hembra</label>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-1">
-                        <label for="">Raza: </label>
-                        <select name="" id="" class="custom-select">
-                            <option value="">TEST</option>
-                        </select>
                     </div>
                     <div class="form-group col-md-2">
                         <label for="">Año de Ingreso: </label>
                         <select name="" id="" class="custom-select">
-                            <option value="">TEST</option>
+                            <option value="">2017</option>
+                            <option value="">2018</option>
+                            <option value="">2019</option>
+                            <option value="">2020</option>
+                            <option value="">2021</option>
                         </select>
                     </div>
-                    <div class="form-group col-md-3 align-self-center pl-5">
-                        <button class="btn btn-primary w-100">BUSCAR ANIMAL</button>
+                    <div class="form-group col-md-4 align-self-center pl-5">
+                        <button class="btn btn-primary w-100">BUSCAR ADOPTANTE</button>
                     </div>
                 </div>
                 
@@ -97,13 +86,11 @@
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col">#</th>
+                            <th scope="col">RUT</th>
                             <th scope="col">Nombre</th>
-                            <th scope="col">Edad</th>
-                            <th scope="col">Raza</th>
-                            <th scope="col">Sexo</th>
-                            <th scope="col">Fecha de Ingreso</th>
-                            <th scope="col">N° Chip</th>
-                            <th scope="col">Observacion</th>
+                            <th scope="col">Fono</th>
+                            <th scope="col">Fecha de Adopción</th>
+                            <th scope="col">INFO</th>
                         </tr>
                     </thead>
                     <tbody class="table-body">
@@ -116,14 +103,13 @@
                             <td>TEST</td>
                             <td>TEST</td>
                             <td>TEST</td>
-                            <td>TEST</td>
-                            <td>TEST</td>
                         </tr>
                     </tbody>
                 </table>
                 <section class="py-3  bg-light fixed-bottom container container-fluid">
                     <button class="btn btn-primary float-right">ELIMINAR SELECCIONADOS</button>
-                    <a href="/RedcatandoAnimales/src/html/register-animal.html" class="btn btn-link float-right">NUEVO ANIMAL</a>
+                    <a href="/RedcatandoAnimales/src/html/register-adoptant.html" class="btn btn-link float-right">NUEVO ADOPTANTE</a>
+                    <a href="/RedcatandoAnimales/src/html/verifier-adoptant.html" class="btn btn-outline-primary float-left">VERIFICADOR DE ADOPTANTES</a>
                 </section>
             </form>
 
