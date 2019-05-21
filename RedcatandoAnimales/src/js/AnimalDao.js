@@ -16,7 +16,7 @@ function BuscarAnimales(organizacion) {
         console.log("Connected!");
 
         //Query
-        var sql = "SELECT * FROM organizacion WHERE ORGANIZACIONCOD = "+organizacion
+        var sql = "SELECT * FROM animal WHERE CODORGANIZACION = "+organizacion
         con.query(sql, function (err, result) {
           if (err) throw err;
           result.forEach(r => {
