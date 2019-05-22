@@ -18,8 +18,10 @@
         <div class="my-3 shadow p-3 bg-white rounded">
             <h2>Crear Campaña</h2>
             <form action="" class="container container-fluid">
-                <img src="/RedcatandoAnimales/res/imgs/drag_n_drop.png" class="img-fluid mb-4">
-                <!-- MODIFICAR PARA AGREGAR LA FEATURE DE DRAG N DROP-->
+                <div class="file-dropzone mb-4 bg-dark">
+                    <label class="text-white text-uppercase font-weight-bold text-center">Suelta una imagen o haz click aqui para subirla</label>
+                    <input type="file" name="bannerImg" id="bannerImg" />
+                </div>
                 <div class="form-group form-row">
                     <label class="font-weight-bold col-md-2"><strong class="text-danger">*</strong> TITULO: </label>
                     <input type="text" class="ml-3 form-control col">
