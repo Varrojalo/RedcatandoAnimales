@@ -66,6 +66,7 @@
 {
     position: absolute;
     z-index: 0;
+    font-size: 1.25em;
     width: 80vw;
     padding-top: 23vh;
 }
