@@ -1,20 +1,25 @@
-import {VerificarSocio} from 'SocioDao.js';
+import {ObtenerSocio} from 'SocioDao.js';
+import {ValidarRut} from 'Validadores.js';
 
 //Recuperar elementos de index.html
-//Agrega nombres a las etiquetas
-var rut = Document.getElementByName("");
-var contraseña = Document.getElementByName("");
-var rol = Document.getElementByName("");
-var asociacion = Document.getElementByName("");
+var rut = Document.getElementByName("rut");
+var contraseña = Document.getElementByName("contraseña");
+var rol = Document.getElementByName("rol");
+var asociacion = Document.getElementByName("asociacion");
 
 function ValidarCredenciales(){
     //validacion de credenciales
-    if(VerificarSocio(rut, contraseña, asociacion, rol)){
-        // Almacena la información en sessionStorage
-        sessionStorage.setItem(rut, contraseña, asociacion, rol);
-        //Redirigir a Historal Animal
-        location.replace("/RedcatandoAnimales/src/html/history-animal.html");
+    if(ValidarRut(rut)){
+        var socio = ObtenerSocio(rut);
+        if(socio[CONTRASENA] == contraseña){
+            // Almacena la información en sessionStorage
+            sessionStorage.setItem("nombre", socio["NOMBRE"]);
+            sessionStorage.setItem("rol", socio["ROL"]);
+            sessionStorage.setItem("asocioacion", socio["ASOCIACION"]);
+            //Redirigir a Historal Animal
+            location.replace("/RedcatandoAnimales/src/html/history-animal.html");
+        }else{
+            location.replace("/RedcatandoAnimales/src/html/erro.html"); 
+        }
     }
-    
-
 }

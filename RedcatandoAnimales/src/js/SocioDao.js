@@ -8,19 +8,18 @@ var con = mysql.createConnection({
   database: "redcate"
 });
 
-function VerificarSocio(rut, contraseña, asociacion, rol) {
-    
+function ObtenerSocio(rut) {
     //coneccion a bd
     con.connect(function(err) {
         if (err) throw err;
         console.log("Connected!");
 
         //Query
-        var sql = "SELECT COUNT(COD) FROM socio WHERE COD = '"+rut+"'";
+        var sql = "SELECT * FROM socio WHERE COD = '"+rut+"'";
         con.query(sql, function (err, result) {
             if (err) throw err;
-            console.log(result);
         });
     });
+
     return result;
 }
