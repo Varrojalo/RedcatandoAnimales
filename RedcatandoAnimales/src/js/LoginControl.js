@@ -19,7 +19,7 @@ function ValidarCredenciales(){
             //Redirigir a Historal Animal
             location.replace("/RedcatandoAnimales/src/html/history-animal.html");
         }else{
-            location.replace("/RedcatandoAnimales/src/html/erro.html"); 
+            location.replace("/RedcatandoAnimales/src/html/error.html"); 
         }
     }
 }
