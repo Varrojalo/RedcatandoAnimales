@@ -9,6 +9,8 @@ var con = mysql.createConnection({
 });
 
 function ObtenerSocio(rut) {
+    var socio;
+    
     //coneccion a bd
     con.connect(function(err) {
         if (err) throw err;
@@ -18,8 +20,11 @@ function ObtenerSocio(rut) {
         var sql = "SELECT * FROM socio WHERE COD = '"+rut+"'";
         con.query(sql, function (err, result) {
             if (err) throw err;
+            console.log(result);
         });
     });
-
-    return result;
+    return socio;
 }
+
+var algo = ObtenerSocio("19463187-1");
+console.log(algo);
