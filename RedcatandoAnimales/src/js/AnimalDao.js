@@ -1,7 +1,7 @@
-var mysql = require('mysql');
+const mysql = require('mysql');
 
 //parametros de coneccion
-var con = mysql.createConnection({
+const con = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
@@ -9,18 +9,23 @@ var con = mysql.createConnection({
 });
 
 exports.BuscarAnimales = function BuscarAnimales(organizacion) {
-  var animales;
+  let animales;
 
   //coneccion a bd
   con.connect(function(err) {
-    if (err) throw err;
+    if (err){
+      throw err;
+    } 
     console.log("Connected!");
 
     //Query
-    var sql = "SELECT * FROM animal WHERE codOrganizacion = '"+organizacion+"'"
-    con.query(sql, function (err, result) {
-      if (err) throw err;
-      
+    //let sql = "SELECT * FROM animal WHERE codOrganizacion = '"+organizacion+"'";
+    let sql = "SELECT * FROM animal";
+    let query = con.query(sql, (err, result) => {
+      if (err) 
+      {
+        throw err;
+      }
       animales = result[0].nombre;
     });
   });

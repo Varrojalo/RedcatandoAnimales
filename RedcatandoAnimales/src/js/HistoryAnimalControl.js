@@ -18,6 +18,8 @@ var aDao = require('BuscarAnimales');
 //      });
 // }
 
+$(document).ready(LlenarTabla());
+
 function LlenarTabla()
 {
      var filas = $('.filasBody');
@@ -32,11 +34,11 @@ function LlenarTabla()
                "<td>"+a["EDAD"]+"</td>"+
                "<td>"+a["RAZA"]+"</td>"+
                "<td>"+a["SEXO"]+"</td>"+
-               "<td>"+a["FECHA_INGRESO"]+"</td>"+
+               "<td>"+a["EDAD"]+"</td>"+
                "<td>"+a["CHIP"]+"</td>"+
                "<td>"+a["OBSERVACION"]+"</td>"+
                "</tr>");
-          }):
+          });
 
      console.log("animales");
 }
