@@ -6,18 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Historial de Animales | Redcatando Animales</title>
 
-    <link rel="stylesheet" href="/RedcatandoAnimales/src/css/main.css">
+    <link rel="stylesheet" href="/src/css/main.css">
     <link rel="stylesheet" href="/src/css/bootstrap.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link rel="shortcut icon" href="/RedcatandoAnimales/res/imgs/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/res/imgs/favicon.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Poller+One" rel="stylesheet">
     
 </head>
-<body class="bg-light">
+<body class="bg-light" onload="$">
     <nav class="mb-3 navbar navbar-dark navbar-expand-lg bg-primary">
         <div class="container container-fluid">
             <a class="navbar-brand" href="#">
-                <img src="/RedcatandoAnimales/res/imgs/icon_512px.png" width="32" height="32" alt="">
+                <img src="/res/imgs/icon_512px.png" width="32" height="32" alt="">
                 <span class="brand-title">REDCATANDOANIMALES</span>
             </a>
             <ul class="navbar-nav">
@@ -30,16 +30,16 @@
                     <span class="nav-link active">Historial de animales</span>
                 </li>
                 <li class="navbar-text">
-                    <a href="/RedcatandoAnimales/src/html/history-campaign.html" class="nav-link">Campañas</a>
+                    <a href="/src/html/history-campaign.html" class="nav-link">Campañas</a>
                 </li>
                 <li class="navbar-text">
-                    <a href="/RedcatandoAnimales/src/html/history-adoptant.html" class="nav-link">Adoptantes</a>
+                    <a href="/src/html/history-adoptant.html" class="nav-link">Adoptantes</a>
                 </li>
                 <li class="navbar-text">
-                    <a href="" class="nav-link">Voluntarios</a>
+                    <a href="/src/html/history-volunteer" class="nav-link">Voluntarios</a>
                 </li>
                 <li class="navbar-text">
-                    <a href="/RedcatandoAnimales/src/html/downloads.html" class="nav-link">Documentos</a>
+                    <a href="/src/html/downloads.html" class="nav-link">Documentos</a>
                 </li>
                 <li class="navbar-text">
                     <a href="" class="nav-link">
@@ -76,14 +76,14 @@
                         </div>
                     </div>
                     <div class="form-group col-md-1">
-                        <label for="">Raza: </label>
-                        <select name="" id="" class="custom-select">
+                        <label for="selectRaza">Raza: </label>
+                        <select id="selectRaza" class="custom-select">
                             <option value="">TEST</option>
                         </select>
                     </div>
                     <div class="form-group col-md-2">
-                        <label for="">Año de Ingreso: </label>
-                        <select name="" id="" class="custom-select">
+                        <label for="selectFecha">Año de Ingreso: </label>
+                        <select id="selectFecha" class="custom-select">
                             <option value="">TEST</option>
                         </select>
                     </div>
@@ -151,5 +151,14 @@
       </div>
 </body>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="js/HistoryAnimalControl.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script type="module" src="../js/AnimalDao.js"></script>
+<script>
+function PoblarTabla()
+{
+    console.log("Hola");
+    
+}
+</script>
+<script type="module" src="../js/HistoryAnimalControl.js"></script>
 </html>

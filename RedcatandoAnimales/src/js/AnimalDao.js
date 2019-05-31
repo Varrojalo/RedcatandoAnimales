@@ -1,7 +1,7 @@
-var mysql = require('mysql');
+import { createConnection } from '/node_modules/mysql/index.js';
 
 //parametros de coneccion
-var con = mysql.createConnection({
+var con = createConnection({
   host: "localhost",
   user: "root",
   password: "",
