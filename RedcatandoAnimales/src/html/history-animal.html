@@ -11,42 +11,43 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="shortcut icon" href="/res/imgs/favicon.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Poller+One" rel="stylesheet">
-    
 </head>
-<body class="bg-light" onload="$">
+<body class="bg-light">
     <nav class="mb-3 navbar navbar-dark navbar-expand-lg bg-primary">
         <div class="container container-fluid">
             <a class="navbar-brand" href="#">
                 <img src="/res/imgs/icon_512px.png" width="32" height="32" alt="">
                 <span class="brand-title">REDCATANDOANIMALES</span>
             </a>
-            <ul class="navbar-nav">
-                <!-- Tab NOTICIAS
-                <li class="nav-item">
-                        <a href="" class="nav-link">Noticias</a>
-                </li>
-                -->
-                <li class="navbar-text">
-                    <span class="nav-link active">Historial de animales</span>
-                </li>
-                <li class="navbar-text">
-                    <a href="/src/html/history-campaign.html" class="nav-link">Campañas</a>
-                </li>
-                <li class="navbar-text">
-                    <a href="/src/html/history-adoptant.html" class="nav-link">Adoptantes</a>
-                </li>
-                <li class="navbar-text">
-                    <a href="/src/html/history-volunteer" class="nav-link">Voluntarios</a>
-                </li>
-                <li class="navbar-text">
-                    <a href="/src/html/downloads.html" class="nav-link">Documentos</a>
-                </li>
-                <li class="navbar-text">
-                    <a href="" class="nav-link">
-                        <i class="nav-link fas fa-sign-out-alt"></i>
-                    </a>
-                </li>
-            </ul>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav">
+                    <!-- Tab NOTICIAS
+                    <li class="nav-item">
+                            <a href="" class="nav-link">Noticias</a>
+                    </li>
+                    -->
+                    <li class="navbar-text">
+                        <span class="nav-link active">Historial de animales</span>
+                    </li>
+                    <li class="navbar-text">
+                        <a href="/src/html/history-campaign.html" class="nav-link">Campañas</a>
+                    </li>
+                    <li class="navbar-text">
+                        <a href="/src/html/history-adoptant.html" class="nav-link">Adoptantes</a>
+                    </li>
+                    <li class="navbar-text">
+                        <a href="/src/html/history-volunteer" class="nav-link">Voluntarios</a>
+                    </li>
+                    <li class="navbar-text">
+                        <a href="/src/html/downloads.html" class="nav-link">Documentos</a>
+                    </li>
+                    <li class="navbar-text">
+                        <a href="" class="nav-link">
+                            <i class="nav-link fas fa-sign-out-alt"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav> 
     <main>
@@ -105,8 +106,8 @@
                             <th scope="col">Observacion</th>
                         </tr>
                     </thead>
-                    <tbody class="table-body">
-                        <tr onload="LlenarTabla()">
+                    <tbody class="table-body filasBody">
+                        <tr>
                             <th scope="row">
                                 <input type="checkbox" name="" id="">
                             </th>
@@ -121,9 +122,11 @@
                         </tr>
                     </tbody>
                 </table>
-                <section class="py-3  bg-light fixed-bottom container container-fluid">
-                    <button class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal">ELIMINAR SELECCIONADOS</button>
-                    <a href="/RedcatandoAnimales/src/html/register-animal.html" class="btn btn-link float-right">NUEVO ANIMAL</a>
+                <section class="py-3  bg-light fixed-bottom">
+                    <div class="container container-fluid">                  
+                        <button class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal">ELIMINAR SELECCIONADOS</button>
+                        <a href="/RedcatandoAnimales/src/html/register-animal.html" class="btn btn-link float-right">NUEVO ANIMAL</a>
+                    </div>
                 </section>
             </form>
 
@@ -149,16 +152,12 @@
           </div>
         </div>
       </div>
+      
 </body>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 <script type="module" src="../js/AnimalDao.js"></script>
-<script>
-function PoblarTabla()
-{
-    console.log("Hola");
-    
-}
-</script>
 <script type="module" src="../js/HistoryAnimalControl.js"></script>
 </html>

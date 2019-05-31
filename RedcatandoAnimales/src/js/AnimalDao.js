@@ -1,14 +1,14 @@
-import { createConnection } from '/node_modules/mysql/index.js';
+var mysql = require('mysql');
 
 //parametros de coneccion
-var con = createConnection({
+var con = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
   database: "redcate"
 });
 
-function BuscarAnimales(organizacion) {
+exports.BuscarAnimales = function BuscarAnimales(organizacion) {
   var animales;
 
   //coneccion a bd
