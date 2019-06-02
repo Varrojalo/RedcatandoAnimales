@@ -1,26 +1,7 @@
 //import { BuscarAnimales } from "../js/AnimalDao.js";
-var aDao = require('BuscarAnimales');
+import BuscarAnimales from '../js/AnimalDao.js';
 
-// function LlenarTabla() {
-//      //recuperar animales relacionados a la asociacion
-//      var animales = BuscarAnimales(sessionStorage.getItem("asociacion"));
-
-//      //Ingresar datos en la tabla
-//      animales.forEach(a => {
-//           Document.write("<td>"+
-//           a["NOMBRE"]+"<td/><td>"+
-//           a["EDAD"]+"<td/><td>"+
-//           a["RAZA"]+"<td/><td>"+
-//           a["SEXO"]+"<td/><td>"+
-//           a["EDAD"]+"<td/><td>"+
-//           a["CHIP"]+"<td/><td>"+
-//           a["OBSERVACION"]+"<td/>");
-//      });
-// }
-
-$(document).ready(LlenarTabla());
-
-function LlenarTabla()
+$(document).ready(function()
 {
      var filas = $('.filasBody');
 
@@ -41,4 +22,4 @@ function LlenarTabla()
           });
 
      console.log("animales");
-}
+});
