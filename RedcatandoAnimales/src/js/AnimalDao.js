@@ -30,14 +30,14 @@ function BuscarAnimales(organizacion) {
 function IngresarAnimal(animal){
   //coneccion a bd
   con.connect(function(err) {
-      if (err) throw err;
-      console.log("Connected!");
+    if (err) throw err;
+    console.log("Connected!");
 
-      //query
-      var sql = 'INSERT INTO animal ('+animal.codigo+', NULL, 123456789, '+animal.nombre+','+animal.raza+', '+animal.chip+', NULL)'
-      con.query(sql, function (err, result) {
-        if (err) throw err;
-        console.log(result);
-      });
+    //query
+    var sql = 'INSERT INTO animal ('+animal.codigo+', NULL, 123456789, '+animal.nombre+','+animal.raza+', '+animal.chip+', NULL)'
+    con.query(sql, function (err, result) {
+      if (err) throw err;
+      console.log(result);
     });
+  });
 }
