@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-05-2019 a las 22:44:06
+-- Tiempo de generación: 03-06-2019 a las 00:34:43
 -- Versión del servidor: 10.1.31-MariaDB
 -- Versión de PHP: 7.2.4
 
@@ -29,16 +29,26 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `animal` (
-  `COD` varchar(10) NOT NULL,
-  `CODDUENO` varchar(10) DEFAULT NULL,
-  `CODORGANIZACION` varchar(10) NOT NULL,
-  `NOMBRE` varchar(50) NOT NULL,
-  `EDAD` int(11) DEFAULT NULL,
-  `SEXO` char(1) DEFAULT NULL,
-  `RAZA` varchar(100) NOT NULL,
-  `OBSERVACION` text NOT NULL,
-  `CHIP` int(15) DEFAULT NULL
+  `cod` varchar(10) NOT NULL,
+  `codDueno` varchar(10) DEFAULT NULL,
+  `codOrganizacion` varchar(10) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `edad` int(11) DEFAULT NULL,
+  `especie` varchar(30) NOT NULL,
+  `raza` varchar(100) NOT NULL,
+  `patron` varchar(30) NOT NULL,
+  `sexo` char(1) DEFAULT NULL,
+  `observacion` text NOT NULL,
+  `chip` int(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `animal`
+--
+
+INSERT INTO `animal` (`cod`, `codDueno`, `codOrganizacion`, `nombre`, `edad`, `especie`, `raza`, `patron`, `sexo`, `observacion`, `chip`) VALUES
+('anm-001', NULL, 'ORG-001', 'misha', 4, 'perro', 'quiltro', 'negro', 'm', 'muy bonita', NULL),
+('anm-002', NULL, 'ORG-001', 'Pepa', 7, 'perro', 'quiltro', 'negro', 'm', 'grande', NULL);
 
 -- --------------------------------------------------------
 
@@ -47,12 +57,12 @@ CREATE TABLE `animal` (
 --
 
 CREATE TABLE `campana` (
-  `COD` varchar(10) NOT NULL,
-  `CODORGANIZACION` varchar(10) DEFAULT NULL,
-  `FECHAINICIO` date NOT NULL,
-  `FECHATERMINO` date DEFAULT NULL,
-  `DESCRIPCION` text NOT NULL,
-  `TIPO` varchar(10) NOT NULL
+  `cod` varchar(10) NOT NULL,
+  `codOrganizacion` varchar(10) DEFAULT NULL,
+  `fechaInicio` date NOT NULL,
+  `fechaTermino` date DEFAULT NULL,
+  `descripcion` text NOT NULL,
+  `tipo` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -62,11 +72,11 @@ CREATE TABLE `campana` (
 --
 
 CREATE TABLE `diagnostico` (
-  `COD` varchar(10) NOT NULL,
-  `CODANIMAL` varchar(10) DEFAULT NULL,
-  `DESCRIPCION` text NOT NULL,
-  `TRATAMIENTO` text NOT NULL,
-  `FECHA` date NOT NULL
+  `cod` varchar(10) NOT NULL,
+  `codAnimal` varchar(10) DEFAULT NULL,
+  `descripcion` text NOT NULL,
+  `tratamiento` text NOT NULL,
+  `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -76,11 +86,11 @@ CREATE TABLE `diagnostico` (
 --
 
 CREATE TABLE `direcciones` (
-  `COD` int(11) NOT NULL,
-  `CODDUENO` varchar(10) DEFAULT NULL,
-  `NUMERO` int(11) NOT NULL,
-  `CALLE` varchar(60) NOT NULL,
-  `DESCRIPCION` text NOT NULL
+  `cod` int(11) NOT NULL,
+  `codDuenio` varchar(10) DEFAULT NULL,
+  `numero` int(11) NOT NULL,
+  `calle` varchar(60) NOT NULL,
+  `descripcion` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -90,12 +100,12 @@ CREATE TABLE `direcciones` (
 --
 
 CREATE TABLE `dueno` (
-  `COD` varchar(10) NOT NULL,
-  `NOMBRE` varchar(50) NOT NULL,
-  `APELLIDOPATERNO` varchar(50) NOT NULL,
-  `APELLIDOMATERNO` varchar(50) NOT NULL,
-  `FECHAADOPCION` date NOT NULL,
-  `PUNTUACIONADOPTANTE` int(11) NOT NULL
+  `cod` varchar(10) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `apellidoPaterno` varchar(50) NOT NULL,
+  `apellidoMaterno` varchar(50) NOT NULL,
+  `fechaAdopcion` date NOT NULL,
+  `puntuacionAdoptante` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -105,15 +115,15 @@ CREATE TABLE `dueno` (
 --
 
 CREATE TABLE `organizacion` (
-  `COD` varchar(10) NOT NULL,
-  `NOMBRE` varchar(100) NOT NULL
+  `cod` varchar(10) NOT NULL,
+  `nombre` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `organizacion`
 --
 
-INSERT INTO `organizacion` (`COD`, `NOMBRE`) VALUES
+INSERT INTO `organizacion` (`cod`, `nombre`) VALUES
 ('ORG-001', 'Brigada de rescate canina');
 
 -- --------------------------------------------------------
@@ -123,12 +133,12 @@ INSERT INTO `organizacion` (`COD`, `NOMBRE`) VALUES
 --
 
 CREATE TABLE `servicio` (
-  `COD` varchar(10) NOT NULL,
-  `CODORGANIZACION` varchar(10) DEFAULT NULL,
-  `NOMBRE` varchar(30) NOT NULL,
-  `TIPO` char(1) NOT NULL,
-  `VALOR` float NOT NULL,
-  `DESCRIPCION` text NOT NULL
+  `cod` varchar(10) NOT NULL,
+  `codOrganizacion` varchar(10) DEFAULT NULL,
+  `nombre` varchar(30) NOT NULL,
+  `tipo` char(1) NOT NULL,
+  `valor` float NOT NULL,
+  `descripcion` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -138,14 +148,21 @@ CREATE TABLE `servicio` (
 --
 
 CREATE TABLE `socio` (
-  `COD` varchar(10) NOT NULL,
-  `CODORGANIZACION` varchar(10) DEFAULT NULL,
-  `NOMBRE` varchar(50) NOT NULL,
-  `APELLIDOPATERNO` varchar(50) NOT NULL,
-  `APELLIDOMATERNO` varchar(50) NOT NULL,
-  `CARGO` varchar(20) NOT NULL,
-  `CONTRASENA` text NOT NULL
+  `cod` varchar(10) NOT NULL,
+  `codOrganizacion` varchar(10) DEFAULT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `apellidoPaterno` varchar(50) NOT NULL,
+  `apellidoMaterno` varchar(50) NOT NULL,
+  `cargo` varchar(20) NOT NULL,
+  `contrasena` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `socio`
+--
+
+INSERT INTO `socio` (`cod`, `codOrganizacion`, `nombre`, `apellidoPaterno`, `apellidoMaterno`, `cargo`, `contrasena`) VALUES
+('19463187-1', 'ORG-001', 'Marcelo', 'Hidalgo', 'Toro', 'Socio', 'asdfghjklp');
 
 --
 -- Índices para tablas volcadas
@@ -155,56 +172,56 @@ CREATE TABLE `socio` (
 -- Indices de la tabla `animal`
 --
 ALTER TABLE `animal`
-  ADD PRIMARY KEY (`COD`),
-  ADD KEY `TIENE_FK` (`CODDUENO`),
-  ADD KEY `RESCATA_FK` (`CODORGANIZACION`);
+  ADD PRIMARY KEY (`cod`),
+  ADD KEY `TIENE_FK` (`codDueno`),
+  ADD KEY `RESCATA_FK` (`codOrganizacion`);
 
 --
 -- Indices de la tabla `campana`
 --
 ALTER TABLE `campana`
-  ADD PRIMARY KEY (`COD`),
-  ADD KEY `ORGANIZA_FK` (`CODORGANIZACION`);
+  ADD PRIMARY KEY (`cod`),
+  ADD KEY `ORGANIZA_FK` (`codOrganizacion`);
 
 --
 -- Indices de la tabla `diagnostico`
 --
 ALTER TABLE `diagnostico`
-  ADD PRIMARY KEY (`COD`),
-  ADD KEY `RECIBE_FK` (`CODANIMAL`);
+  ADD PRIMARY KEY (`cod`),
+  ADD KEY `RECIBE_FK` (`codAnimal`);
 
 --
 -- Indices de la tabla `direcciones`
 --
 ALTER TABLE `direcciones`
-  ADD PRIMARY KEY (`COD`),
-  ADD KEY `POSEE_FK` (`CODDUENO`);
+  ADD PRIMARY KEY (`cod`),
+  ADD KEY `POSEE_FK` (`codDuenio`);
 
 --
 -- Indices de la tabla `dueno`
 --
 ALTER TABLE `dueno`
-  ADD PRIMARY KEY (`COD`);
+  ADD PRIMARY KEY (`cod`);
 
 --
 -- Indices de la tabla `organizacion`
 --
 ALTER TABLE `organizacion`
-  ADD PRIMARY KEY (`COD`);
+  ADD PRIMARY KEY (`cod`);
 
 --
 -- Indices de la tabla `servicio`
 --
 ALTER TABLE `servicio`
-  ADD PRIMARY KEY (`COD`),
-  ADD KEY `OFRECE_FK` (`CODORGANIZACION`);
+  ADD PRIMARY KEY (`cod`),
+  ADD KEY `OFRECE_FK` (`codOrganizacion`);
 
 --
 -- Indices de la tabla `socio`
 --
 ALTER TABLE `socio`
-  ADD PRIMARY KEY (`COD`),
-  ADD KEY `RECLUTA_FK` (`CODORGANIZACION`);
+  ADD PRIMARY KEY (`cod`),
+  ADD KEY `RECLUTA_FK` (`codOrganizacion`);
 
 --
 -- Restricciones para tablas volcadas
@@ -233,7 +250,7 @@ ALTER TABLE `diagnostico`
 -- Filtros para la tabla `direcciones`
 --
 ALTER TABLE `direcciones`
-  ADD CONSTRAINT `FK_POSEE` FOREIGN KEY (`CODDUENO`) REFERENCES `dueno` (`COD`);
+  ADD CONSTRAINT `FK_POSEE` FOREIGN KEY (`codDuenio`) REFERENCES `dueno` (`COD`);
 
 --
 -- Filtros para la tabla `socio`
