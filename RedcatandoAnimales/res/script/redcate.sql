@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-06-2019 a las 00:34:43
+-- Tiempo de generación: 05-06-2019 a las 06:21:44
 -- Versión del servidor: 10.1.31-MariaDB
 -- Versión de PHP: 7.2.4
 
@@ -33,7 +33,8 @@ CREATE TABLE `animal` (
   `codDueno` varchar(10) DEFAULT NULL,
   `codOrganizacion` varchar(10) NOT NULL,
   `nombre` varchar(50) NOT NULL,
-  `edad` int(11) DEFAULT NULL,
+  `edad` int(11) NOT NULL,
+  `fechaIngreso` date DEFAULT NULL,
   `especie` varchar(30) NOT NULL,
   `raza` varchar(100) NOT NULL,
   `patron` varchar(30) NOT NULL,
@@ -46,9 +47,9 @@ CREATE TABLE `animal` (
 -- Volcado de datos para la tabla `animal`
 --
 
-INSERT INTO `animal` (`cod`, `codDueno`, `codOrganizacion`, `nombre`, `edad`, `especie`, `raza`, `patron`, `sexo`, `observacion`, `chip`) VALUES
-('anm-001', NULL, 'ORG-001', 'misha', 4, 'perro', 'quiltro', 'negro', 'm', 'muy bonita', NULL),
-('anm-002', NULL, 'ORG-001', 'Pepa', 7, 'perro', 'quiltro', 'negro', 'm', 'grande', NULL);
+INSERT INTO `animal` (`cod`, `codDueno`, `codOrganizacion`, `nombre`, `edad`, `fechaIngreso`, `especie`, `raza`, `patron`, `sexo`, `observacion`, `chip`) VALUES
+('anm-001', NULL, 'ORG-001', 'misha', 4, '2019-05-21', 'perro', 'quiltro', 'negro', 'h', 'Infeccion en el oido izquierdo', 0),
+('anm-002', NULL, 'ORG-001', 'Pepa', 7, '2019-05-19', 'perro', 'quiltro', 'negro', 'h', 'Pata derecha rota', 0);
 
 -- --------------------------------------------------------
 
@@ -244,7 +245,7 @@ ALTER TABLE `campana`
 -- Filtros para la tabla `diagnostico`
 --
 ALTER TABLE `diagnostico`
-  ADD CONSTRAINT `FK_RECIBE` FOREIGN KEY (`CODANIMAL`) REFERENCES `animal` (`COD`);
+  ADD CONSTRAINT `FK_RECIBE` FOREIGN KEY (`CODANIMAL`) REFERENCES `animal` (`cod`);
 
 --
 -- Filtros para la tabla `direcciones`

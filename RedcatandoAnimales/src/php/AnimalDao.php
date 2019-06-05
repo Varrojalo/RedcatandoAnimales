@@ -12,7 +12,14 @@ $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         // output data of each row
         while($fila = $result->fetch_assoc()) {
-            echo "cod: " . $fila["COD"]. " - Nombre: " . $fila["NOMBRE"]. " - Edad: " . $fila["EDAD"]. "<br>";
+            echo "<tr><th scope='row'><input type='checkbox'></th>
+            <td>" . $fila["nombre"]. "</td>
+            <td>" . $fila["edad"]. "</td>
+            <td>" . $fila["raza"]. "</td>
+            <td>" . $fila["sexo"]. "</td>
+            <td>" . $fila["fechaIngreso"]. "</td>
+            <td>" . $fila["chip"]. "</td>
+            <td>" . $fila["observacion"]. "</td></tr>";
             $tabla[] = $fila;
         }
     } else {

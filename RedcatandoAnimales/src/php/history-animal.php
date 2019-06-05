@@ -115,22 +115,7 @@
                     <tbody class="table-body filasBody">
                         <?php
                             include 'AnimalDao.php';
-                            
-                        
                         ?>
-                        <tr>
-                            <th scope="row">
-                                <input type="checkbox" name="" id="">
-                            </th>
-                            <td>TEST</td>
-                            <td>TEST</td>
-                            <td>TEST</td>
-                            <td>TEST</td>
-                            <td>TEST</td>
-                            <td>TEST</td>
-                            <td>TEST</td>
-
-                        </tr>
                     </tbody>
                 </table>
                 <section class="py-3  bg-light fixed-bottom">
