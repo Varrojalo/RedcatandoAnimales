@@ -12,13 +12,13 @@ $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         // output data of each row
         while($fila = $result->fetch_assoc()) {
-            echo "cod: " . $fila["cod"]. " - Nombre: " . $fila["nombre"]. " - Edad: " . $fila["edad"]. "<br>";
+            echo "cod: " . $fila["COD"]. " - Nombre: " . $fila["NOMBRE"]. " - Edad: " . $fila["EDAD"]. "<br>";
             $tabla[] = $fila;
         }
         echo json_encode($tabla); 
     } else {
         echo "0 results";
     }
-    $conn->Desconectar();
+    $con->Desconectar();
 ?>
 

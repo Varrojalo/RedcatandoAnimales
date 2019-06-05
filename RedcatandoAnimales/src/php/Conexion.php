@@ -1,26 +1,40 @@
 <?php
-$servidor = "localhost";
-$usuario = "root";
-$contraseña = "";
-$db = "redcate";
-$conexion = NULL;
-
-
-public function Conectar()
+define('SERVIDOR', 'localhost');
+define('USUARIO', 'root');
+define('CONTRASENA', '');
+define('NOMBRE_DB', 'redcate');
+class Conexion
 {
-    // Create connection
-    $conexion = new mysqli($servidor, $usuario, $contraseña, $db);
-    // Check connection
-    if ($conexion->connect_error) {
-        die("Conexion fallida: " . $conexion->connect_error);
+    const SERVIDOR = "localhost";
+    const USUARIO = "root";
+    const CONTRASENA = "";
+    const NOMBRE_DB = "redcate";
+    
+
+    public function __construct() {
     }
-    return $conexion;
-}
 
- 
-public function Desconectar()
-{
-    $conexion->close();
+    public function __destruct()
+    {
+        print "Archivo destruido";
+    }
+    
+    public function Conectar()
+    {
+        // Create connection
+        $conexion = new mysqli("localhost", "root", "", "redcate");
+        // Check connection
+        if ($conexion->connect_error) {
+            die("Conexion fallida: " . $conexion->connect_error);
+        }
+        return $conexion;
+    }
+    
+     
+    public function Desconectar()
+    {
+        $conexion = $this->Conectar();
+        $conexion->close();
+    } 
 }
-
 ?>
