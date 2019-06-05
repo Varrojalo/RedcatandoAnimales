@@ -9,7 +9,13 @@ class Conexion
     public function __destruct()
     {
     }
-    
+    /** 
+     * Conexión a base de datos
+     * 
+     * Se conecta a la base datos con el nombre redcate,
+     * creando una conexión a esta, luego confirma si la hay,
+     * retorna una objeto tipo Conexion. 
+     */
     public function Conectar()
     {
         // Create connection
@@ -21,7 +27,11 @@ class Conexion
         return $conexion;
     }
     
-     
+     /**
+      * Desconecta de la base de datos
+      *
+      * Comprueba la conexión y desconecta si esta activa la conexión.
+      */
     public function Desconectar()
     {
         $conexion = $this->Conectar();
