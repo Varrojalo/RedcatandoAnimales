@@ -1,16 +1,9 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "redcate";
+include 'Conexion.php';
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
-
+$con = new Conexion();
+$conn = $con->Conectar();
 $sql = "SELECT * FROM animal";
 $result = $conn->query($sql);
 
@@ -22,6 +15,6 @@ if ($result->num_rows > 0) {
 } else {
     echo "0 results";
 }
-$conn->close();
+$conn->Desconectar();
 ?>
 

@@ -113,6 +113,11 @@
                         </tr>
                     </thead>
                     <tbody class="table-body filasBody">
+                        <?php
+                            include 'AnimalDao.php';
+                            
+                        
+                        ?>
                         <tr>
                             <th scope="row">
                                 <input type="checkbox" name="" id="">
