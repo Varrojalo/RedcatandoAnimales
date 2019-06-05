@@ -19,9 +19,6 @@ $result = $conn->query($sql);
     } else {
         echo "0 results";
     }
-} else {
-    echo "0 results";
-}
-$conn->Desconectar();
+    $conn->Desconectar();
 ?>
 
