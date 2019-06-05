@@ -1,22 +1,13 @@
 <?php
-define('SERVIDOR', 'localhost');
-define('USUARIO', 'root');
-define('CONTRASENA', '');
-define('NOMBRE_DB', 'redcate');
+
 class Conexion
 {
-    const SERVIDOR = "localhost";
-    const USUARIO = "root";
-    const CONTRASENA = "";
-    const NOMBRE_DB = "redcate";
-    
 
     public function __construct() {
     }
 
     public function __destruct()
     {
-        print "Archivo destruido";
     }
     
     public function Conectar()

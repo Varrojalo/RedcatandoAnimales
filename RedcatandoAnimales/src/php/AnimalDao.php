@@ -15,7 +15,6 @@ $result = $conn->query($sql);
             echo "cod: " . $fila["COD"]. " - Nombre: " . $fila["NOMBRE"]. " - Edad: " . $fila["EDAD"]. "<br>";
             $tabla[] = $fila;
         }
-        echo json_encode($tabla); 
     } else {
         echo "0 results";
     }
