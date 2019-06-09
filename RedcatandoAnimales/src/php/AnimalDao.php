@@ -1,30 +1,31 @@
 <?php
 include 'Conexion.php';
+include 'model/dto/Animal.php';
 
-// Create connection
-$con = new Conexion();
-$conn = $con->Conectar();
-$sql = "SELECT * FROM animal";
-$result = $conn->query($sql);
+function buscarAnimales(){
+    // Crea conexion
+    $con = new Conexion();
+    $conn = $con->Conectar();
+    $sql = "SELECT * FROM animal";
+    $result = $conn->query($sql);
 
     $tabla = array();
 
     if ($result->num_rows > 0) {
-        // output data of each row
+        // almacena resultado en arreglo
         while($fila = $result->fetch_assoc()) {
-            echo "<tr><th scope='row'><input type='checkbox'></th>
-            <td>" . $fila["nombre"]. "</td>
-            <td>" . $fila["edad"]. "</td>
-            <td>" . $fila["raza"]. "</td>
-            <td>" . $fila["sexo"]. "</td>
-            <td>" . $fila["fechaIngreso"]. "</td>
-            <td>" . $fila["chip"]. "</td>
-            <td>" . $fila["observacion"]. "</td></tr>";
-            $tabla[] = $fila;
+            $tabla[] = new Animal($fila["cod"], $fila["codOrganizacion"], $fila["codDueno"],
+            $fila["nombre"], $fila["edad"], $fila["fechaIngreso"], $fila["especie"], $fila["raza"], 
+            $fila["patron"], $fila["sexo"], $fila["observacion"], $fila["chip"]);
         }
+        return $tabla;
     } else {
         echo "0 results";
+        return null;
     }
     $con->Desconectar();
+}
+
+
 ?>
 
