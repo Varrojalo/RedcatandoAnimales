@@ -26,6 +26,15 @@ function buscarAnimales(){
     $con->Desconectar();
 }
 
+function eliminarAnimal(var $codigo)
+{
+    $con = new Conexion();
+    $conn = $con->Conectar();
+    $sql = "DELETE * FROM animal WHERE cod = ".$codigo;
+    $result = $conn->query($sql);
+
+    $con->Desconectar();
+}
 
 ?>
 
