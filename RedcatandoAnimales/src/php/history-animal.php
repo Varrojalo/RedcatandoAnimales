@@ -114,7 +114,8 @@
                     </thead>
                     <tbody class="table-body filasBody">
                         <?php
-                            include 'AnimalDao.php';
+                            include 'history-animal-control.php';
+                            llenarTabla();
                         ?>
                     </tbody>
                 </table>
