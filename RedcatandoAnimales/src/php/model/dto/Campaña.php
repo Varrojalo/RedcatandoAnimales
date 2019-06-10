@@ -1,16 +1,16 @@
 <?php
-class Campana
+class Campaña
 {
-    private $cod;
+    private $codigo;
     private $codOrganizacion;
     private $fechaInicio;
     private $fechaTermino;
     private $descripcion;
     private $tipo;
 
-    public function __construct($cod, $codOrganizacion, $fechaInicio,$fechaTermino, $descripcion, $tipo)
+    public function __construct($codigo, $codOrganizacion, $fechaInicio,$fechaTermino, $descripcion, $tipo)
     {
-        $this->cod = is_null($cod)?$this->cod:$cod;
+        $this->codigo = is_null($codigo)?$this->codigo:$codigo;
         $this->codOrganizacion = is_null($codOrganizacion)?$this->codOrganizacion:$codOrganizacion;
         $this->fechaInicio = is_null($fechaInicio)?$this->fechaInicio:$fechaInicio;
         $this->fechaTermino = is_null($fechaTermino)?$this->fechaTermino:$fechaTermino;
@@ -18,10 +18,10 @@ class Campana
         $this->tipo = is_null($tipo)?$this->tipo:$tipo;
     }
 
-    public function getCod(){
-        return $this->cod;
+    public function getCodigo(){
+        return $this->codigo;
     }
-    public function getCodOrganizacion(){
+    public function getCodigoOrganizacion(){
         return $this->codOrganizacion;
     }
     public function getFechaInicio(){
@@ -38,9 +38,9 @@ class Campana
     }
 
     public function setCod($codigo){
-        $this->cod = $codigo;
+        $this->codigo = $codigo;
     }
-    public function setCodOrganizacion($codOrganizacion){
+    public function setCodigoOrganizacion($codOrganizacion){
         $this->codOrganizacion = $codOrganizacion;
     }
     public function setFechaInicio($fechaInicio){

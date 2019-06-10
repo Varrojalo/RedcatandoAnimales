@@ -2,7 +2,7 @@
 include 'Conexion.php';
 include 'model/dto/Socio.php';
 
-function buscarSocio(var $codigo){
+function buscarSocio($codigo){
     // Crea conexion
     $con = new Conexion();
     $conn = $con->Conectar();
