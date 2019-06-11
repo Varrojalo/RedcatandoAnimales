@@ -3,7 +3,8 @@ include 'AnimalDao.php';
 
 function llenarTabla()
 {
-    $tabla = buscarAnimales();
+    $aDao = new AnimalDao();
+    $tabla = $aDao->buscarAnimales();
     foreach ($tabla as $f) {
         echo "<tr><th scope='row'><input type='checkbox'></th>
         <td>" . $f->getNombre(). "</td>
