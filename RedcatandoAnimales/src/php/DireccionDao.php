@@ -27,12 +27,12 @@ class DireccionDao
         $con->Desconectar();
     }
     
-    function agregarDireccion($campaña)
+    function agregarDireccion($direccion)
     {
         $con = new Conexion();
         $conn = $con->Conectar();
         $sql = $conn->prepare("INSERT INTO direccion (cod, codDuenio, numero, calle, descripcion) VALUES (?,?,?,?,?)");
-        $sql = $conn->bind_param($campaña->getCodigo(), $campaña->getDuenio(), $campaña->getNumero(), $campaña->getCalle(), $campaña->getDescripcion(), $campaña->getTipo());
+        $sql = $conn->bind_param($direccion->getCodigo(), $direccion->getDuenio(), $direccion->getNumero(), $direccion->getCalle(), $direccion->getDescripcion(), $direccion->getTipo());
         $result = $conn->query($sql);
     }
     
