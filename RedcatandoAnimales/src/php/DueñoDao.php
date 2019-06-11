@@ -14,7 +14,7 @@ function buscarDueños(){
     if ($result->num_rows > 0) {
         // almacena resultado en arreglo
         while($fila = $result->fetch_assoc()) {
-            $tabla[] = new Dueño($fila["cod"], $fila["codOrganizacion"], $fila["apellidoPaterno"],
+            $tabla[] = new Dueño($fila["cod"], $fila["nombre"], $fila["apellidoPaterno"],
             $fila["apellidoMaterno"], $fila["fechaAdopcion"], $fila["puntajeAdoptante"]);
         }
         return $tabla;
@@ -25,17 +25,17 @@ function buscarDueños(){
     $con->Desconectar();
 }
 
-function agregarCampaña($dueño)
+function agregarDueño($dueño)
 {
     $con = new Conexion();
     $conn = $con->Conectar();
-    $sql = $conn->prepare("INSERT INTO dueno (cod, codOrganizacion, apellidoPaterno, apellidoMaterno, fechaAdopcion, puntajeAdoptante)
+    $sql = $conn->prepare("INSERT INTO dueno (cod, nombre, apellidoPaterno, apellidoMaterno, fechaAdopcion, puntajeAdoptante)
     VALUES (?,?,?,?,?,?)");
-    $sql = $conn->bind_param($dueño->getCodigo(), $dueño->getCodigoOrganizacion(), $dueño->getApellidoPaterno(), $dueño->getApellidoMaterno(), $dueño->getFechaAdopcion(), $dueño->getPuntuacionAdoptante());
+    $sql = $conn->bind_param($dueño->getCodigo(), $dueño->getNombre(), $dueño->getApellidoPaterno(), $dueño->getApellidoMaterno(), $dueño->getFechaAdopcion(), $dueño->getPuntuacionAdoptante());
     $result = $conn->query($sql);
 }
 
-function eliminarCampaña($codigo)
+function eliminarDueño($codigo)
 {
     $con = new Conexion();
     $conn = $con->Conectar();
