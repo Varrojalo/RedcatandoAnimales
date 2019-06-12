@@ -18,7 +18,7 @@
         // $aDao = new AnimalDao();
         // $aDao->agregarAnimal($animal);
         // header("Location:../view/history-animal.php");
-        
+        // die();
     ?>
 </body>
 </html>

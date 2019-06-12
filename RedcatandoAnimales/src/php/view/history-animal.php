@@ -75,10 +75,11 @@
                         </div>
                     </div>
                     <div class="form-group col-md-2">
-                        <label for="selectRaza">Raza: </label>
-                        <select id="selectRaza" class="form-control">
-                            <option value="">TEST</option>
-                        </select>
+                        <label for="">¿Adoptado?</label>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" id="checkDueño" class="custom-control-input">
+                            <label for="checkDueño" class="custom-control-label">SI / NO</label>
+                        </div>
                     </div>
                     <div class="form-group col-md-2">
                         <label for="selectFecha">Año de Ingreso: </label>
