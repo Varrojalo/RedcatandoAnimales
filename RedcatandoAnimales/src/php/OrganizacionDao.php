@@ -47,7 +47,7 @@ function agregarOrganizacion($organizacion)
     $con = new Conexion();
     $conn = $con->Conectar();
     $stmt = $conn->prepare("INSERT INTO organizacion (cod, nombre) VALUES (?, ?)");
-    $stmt->bind_param("sss", $organizacion->cod, $organizacion->nombre);
+    $stmt->bind_param("ss", $organizacion->cod, $organizacion->nombre);
     $stmt->close();
     $con->Desconectar();
 
