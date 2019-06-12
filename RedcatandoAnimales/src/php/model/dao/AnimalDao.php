@@ -1,6 +1,6 @@
 <?php
-include 'Conexion.php';
-include 'model/dto/Animal.php';
+include '../model/Conexion.php';
+include '../model/dto/Animal.php';
 
 class AnimalDao
 {

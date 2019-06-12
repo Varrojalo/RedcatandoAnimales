@@ -1,5 +1,5 @@
 <?php
-include 'AnimalDao.php';
+include '../model/dao/AnimalDao.php';
 
 function llenarTabla()
 {

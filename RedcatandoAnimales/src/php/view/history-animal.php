@@ -6,17 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Historial de Animales | Redcatando Animales</title>
 
-    <link rel="stylesheet" href="/RedcatandoAnimales/RedcatandoAnimales/src/css/bootstrap.css">
+    <link rel="stylesheet" href="/RedcatandoAnimales/RedcatandoAnimales/src/css/main.css">
     <link rel="stylesheet" href="/RedcatandoAnimales/RedcatandoAnimales/src/css/bootstrap.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link rel="shortcut icon" href="/res/imgs/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/RedcatandoAnimales/RedcatandoAnimales/res/imgs/favicon.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Poller+One" rel="stylesheet">
 </head>
 <body class="bg-light">
     <nav class="mb-3 navbar navbar-dark navbar-expand-lg bg-primary">
         <div class="container container-fluid">
             <a class="navbar-brand" href="#">
-                <img src="/res/imgs/icon_512px.png" width="32" height="32" alt="">
+                <img src="/RedcatandoAnimales/RedcatandoAnimales/res/imgs/icon_512px.png" width="32" height="32" alt="">
                 <span class="brand-title">REDCATANDOANIMALES</span>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContenido" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,13 +24,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarContenido">
                 <ul class="navbar-nav">
-                    <!-- Tab NOTICIAS
-                    <li class="nav-item">
-                            <a href="" class="nav-link">Noticias</a>
-                    </li>
-                    -->
                     <li class="navbar-text ">
-                        <span class="nav-link active">Historial de animales</span>
+                        <span class="nav-link active">Animales</span>
                     </li>
                     <li class="navbar-text">
                         <a href="/src/html/history-campaign.html" class="nav-link">Campañas</a>
@@ -58,7 +53,7 @@
             <h2>Historial de Animales</h2>
         </div>
         <section class="container container-fluid">
-            <form action="#">
+            <form action="../controller/procesarEliminacion.php">
                 <div class="form-row">
                     <div class="form-group col-md-3">
                         <label>Nombre: </label>
@@ -114,41 +109,44 @@
                     </thead>
                     <tbody class="table-body filasBody">
                         <?php
-                            include 'history-animal-control.php';
+                            include '../controller/history-animal-control.php';
                             llenarTabla();
                         ?>
                     </tbody>
                 </table>
+                <!--TOOLBAR-->
                 <section class="py-3  bg-light fixed-bottom">
                     <div class="container container-fluid">                  
-                        <button class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal">ELIMINAR SELECCIONADOS</button>
-                        <a href="/RedcatandoAnimales/src/html/register-animal.html" class="btn btn-link float-right">NUEVO ANIMAL</a>
+                        <button class="btn btn-primary float-right" type="button" data-toggle="modal" data-target="#exampleModal">ELIMINAR SELECCIONADOS</button>
+                        <?php?>
+                        <a href="register-animal.php" class="btn btn-link float-right">NUEVO ANIMAL</a>
                     </div>
                 </section>
+                <!--MODAL-->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">ELIMINAR SELECCIONADOS</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Esta a punto de eliminar los elementos seleccionados. Esta accion no se puede deshacer.
+                            <p><strong>¿Esta seguro/a que quiere continuar?</strong></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">ACEPTAR</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
             </form>
 
         </section>
     </main>
-    <!--MODAL-->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              ...
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-          </div>
-        </div>
-    </div>
+
       
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
