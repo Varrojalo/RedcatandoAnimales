@@ -1,9 +1,11 @@
 <?php
+include "Dueño.php";
+include "Organizacion.php";
 class Animal
 {
     private $codigo = "anm-000";
-    private $codDueño;
-    private $codOrganizacion;
+    private $dueño;
+    private $organizacion;
     private $nombre;
     private $edad;
     private $fechaInfreso;
@@ -14,11 +16,12 @@ class Animal
     private $observacion;
     private $chip;
 
-    public function __construct($codigo, $codOrganizacion, $codDueño, $nombre, $edad, $fechaInfreso, $especie, $raza, $patron, $sexo, $observacion, $chip)
+    public function __construct($codigo, $organizacion, $dueño, $nombre, $edad, $fechaInfreso, $especie, $raza, $patron, $sexo, $observacion, $chip)
     {
         $this->codigo = is_null($codigo)?$this->codigo:$codigo;
-        $this->codOrganizacion = is_null($codOrganizacion)?$this->codOrganizacion:$codOrganizacion;
-        $this->codDueño = is_null($codDueño)?$this->codDueño:$codDueño;
+        $this->organizacion = is_null($organizacion)?new Organizacion(NULL,NULL):$organizacion;
+        //$this->codDueño = is_null($codDueño)?$this->codDueño:$codDueño;
+        $this->dueño = is_null($dueño)?new Dueño(NULL,NULL,NULL,NULL,NULL,NULL):$dueño; 
         $this->nombre = is_null($nombre)?$this->nombre:$nombre;
         $this->edad = is_null($edad)?$this->edad:$edad;
         $this->fechaInfreso = is_null($fechaInfreso)?$this->fechaInfreso:$fechaInfreso;
@@ -34,10 +37,17 @@ class Animal
         return $this->codigo;
     }
     public function getCodigoDueño(){
-        return $this->codDueño;
+        return $this->dueño->getCodigo();
+    }
+    public function getDueño()
+    {
+        return $this->dueño;
     }
     public function getCodigoOrganizacion(){
-        return $this->codOrganizacion;
+        return $this->organizacion->getCodigo();
+    }
+    public function getOrganizacion(){
+        return $this->organizacion;
     }
     public function getNombre(){
         return $this->nombre;

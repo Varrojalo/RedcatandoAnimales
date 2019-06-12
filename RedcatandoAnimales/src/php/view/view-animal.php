@@ -25,42 +25,66 @@
             <div class="dropdown-divider"></div>
             <?php
                 include_once '../model/dao/AnimalDao.php';
+                $codigo = $_GET["cod"];
+                $aDao = new AnimalDao();
+
+                $animal = $aDao->buscarAnimal($codigo);
+
                 echo "<div class='row'>";
                 echo "<div class='col-md-4'>";
-                echo "<h4>Pepa <span class='badge badge-primary'>ADOPTADO</span></h4>";
+                if($animal->getCodigoDueño() == NULL)
+                {
+                    echo "<h4>".$animal->getNombre()."</h4>";
+                }
+                else{
+                    echo "<h4>".$animal->getNombre()." <span class='badge badge-primary'>ADOPTADO</span></h4>";
+                }
                 echo "</div>";
-                echo "<div class='col-md-4'>";
+                echo "<div class='col-md-3'>";
+                echo "<p><strong>Nº CHIP: </strong> ".$animal->getChip()."</p>";
+                echo "</div>";
+                echo "<div class='col-md-2'>";
                 echo "<p><strong>Especie: </strong><span class='fas fa-dog'></span></p>";
                 echo "</div>";
-                echo "<div class='col-md-4'>";
-                echo "<p><strong>Raza: </strong> Quiltro</p>";
+                echo "<div class='col-md-3'>";
+                echo "<p><strong>Raza: </strong> ".$animal->getRaza()."</p>";
                 echo "</div>";
                 echo "</div>";
                 echo "<div class='row'>";
                 echo "<div class='col-md-3'>";
-                echo "<p><strong>Edad: </strong> 4</p>";
+                echo "<p><strong>Edad: </strong> ".$animal->getEdad()."</p>";
                 echo "</div>";
                 echo "<div class='col-md-3'>";
-                echo "<p><strong>Patron: </strong> Negro</p>";
+                echo "<p><strong>Patron: </strong> ".$animal->getPatron()."</p>";
                 echo "</div>";
                 echo "<div class='col-md-2'>";
                 echo "<p><strong>Sexo: </strong><span class='fas fa-venus '></span></p>";
                 echo "</div>";
                 echo "<div class='col-md-4'>";
-                echo "<p><strong>Fecha de Ingreso: </strong>2019-05-19</p>";
+                echo "<p><strong>Fecha de Ingreso: </strong>".$animal->getFechaIngreso()."</p>";
                 echo "</div>";
                 echo "</div>";
                 echo "<div class='row'>";
-                echo "<div class='col-md-6'>";
-                echo "<strong>Observacion: </strong>";
-                echo "<p>Pata derecha rota</p>";
-                echo "</div>";
-                echo "<div class='col-md-6'>";
-                echo "<h5>Datos del dueño: </h5>";
-                echo "<div class='dropdown-divider'></div>";
-                echo "<p><strong>Nº CHIP: </strong> 111111111111111</p>";
-                echo "<p><strong>Dueño: </strong> Sebastian Hidalgo Toro</p>";
-                echo "</div>";
+                if($animal->getCodigoDueño()==NULL)
+                {
+                    echo "<div class='col-md-12'>";
+                    echo "<strong>Observacion: </strong>";
+                    echo "<p>".$animal->getObservacion()."</p>";
+                    echo "</div>";
+                }
+                else
+                {
+                    echo "<div class='col-md-6'>";
+                    echo "<strong>Observacion: </strong>";
+                    echo "<p>".$animal->getObservacion()."</p>";
+                    echo "</div>";
+                    echo "<div class='col-md-6'>";
+                    echo "<h5>Datos del dueño: </h5>";
+                    echo "<div class='dropdown-divider'></div>";
+                    echo "<p><strong>Dueño: </strong> Sebastian Hidalgo</p>";
+                    //echo "<p><strong>Dueño: </strong> ".$animal->getDueño()->getNombre()."</p>";
+                    echo "</div>";
+                }
                 echo "</div>";
             ?>
             
