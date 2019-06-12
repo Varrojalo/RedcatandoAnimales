@@ -125,11 +125,11 @@
                     <div class="form-group col-md-2">
                         <label for="">Sexo: </label>
                         <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" id="radioMacho" name="radioSexo">
+                            <input type="radio" class="custom-control-input" id="radioMacho" value="m" name="radioSexo">
                             <label class="custom-control-label" for="radioMacho">Macho</label>
                         </div>
                         <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" id="radioHembra" name="radioSexo">
+                            <input type="radio" class="custom-control-input" id="radioHembra" value="h" name="radioSexo">
                             <label class="custom-control-label" for="radioHembra">Hembra</label>
                         </div>
                     </div>
@@ -153,7 +153,7 @@
                     <textarea name="observacion" id="" cols="30" rows="9" class="form-control"></textarea>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-primary">REGISTRAR</button>
+                    <button type="submit" class="btn btn-primary">REGISTRAR</button>
                     <a href="history-animal.php" class="btn btn-link">CANCELAR</a>
                 </div>
             </form>
