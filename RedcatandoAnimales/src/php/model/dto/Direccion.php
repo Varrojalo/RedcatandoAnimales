@@ -1,27 +1,30 @@
 <?php
 class Direccion
 {
-    private $cod;
-    private $codDuenio;
+    private $codigo;
+    private $dueño;
     private $numero;
     private $calle;
     private $descripcion;
     
 
-    public function __construct($cod, $codDuenio, $numero, $calle, $descripcion)
+    public function __construct($codigo, $dueño, $numero, $calle, $descripcion)
     {
-        $this->cod = is_null($cod)?$this->cod:$cod;
-        $this->codDuenio = is_null($codDuenio)?$this->codDuenio:$codDuenio;
+        $this->cod = is_null($codigo)?$this->cod:$codigo;
+        $this->dueño = is_null($dueño)?new Dueño(NULL,NULL,NULL,NULL,NULL,NULL):$dueño;
         $this->numero = is_null($numero)?$this->numero:$numero;
         $this->calle = is_null($calle)?$this->calle:$calle;
         $this->descripcion = is_null($descripcion)?$this->descripcion:$descripcion;
     }
 
-    public function getCod(){
-        return $this->cod;
+    public function getCodigo(){
+        return $this->codigo;
     }
-    public function getCodDuenio(){
-        return $this->codDuenio;
+    public function getCodigoDueño(){
+        return $this->dueño->getCodigo();
+    }
+    public function getDueño(){
+        return $this->dueño;
     }
     
     public function getNumero(){
@@ -37,11 +40,11 @@ class Direccion
     
     
 
-    public function setCod($codigo){
-        $this->cod = $codigo;
+    public function setCodigo($codigo){
+        $this->codigo = $codigo;
     }
-    public function setCodDuenio($codDuenio){
-        $this->codDuenio = $codDuenio;
+    public function setDueño($dueño){
+        $this->dueño = $dueño;
     }
     
     public function setNumero($numero){

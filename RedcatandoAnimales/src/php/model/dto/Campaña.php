@@ -2,16 +2,16 @@
 class Campaña
 {
     private $codigo;
-    private $codOrganizacion;
+    private $organizacion;
     private $fechaInicio;
     private $fechaTermino;
     private $descripcion;
     private $tipo;
 
-    public function __construct($codigo, $codOrganizacion, $fechaInicio,$fechaTermino, $descripcion, $tipo)
+    public function __construct($codigo, $organizacion, $fechaInicio,$fechaTermino, $descripcion, $tipo)
     {
         $this->codigo = is_null($codigo)?$this->codigo:$codigo;
-        $this->codOrganizacion = is_null($codOrganizacion)?$this->codOrganizacion:$codOrganizacion;
+        $this->organizacion = is_null($organizacion)?new Organizacion(NULL,NULL):$organizacion;
         $this->fechaInicio = is_null($fechaInicio)?$this->fechaInicio:$fechaInicio;
         $this->fechaTermino = is_null($fechaTermino)?$this->fechaTermino:$fechaTermino;
         $this->descripcion = is_null($descripcion)?$this->descripcion:$descripcion;
@@ -22,7 +22,10 @@ class Campaña
         return $this->codigo;
     }
     public function getCodigoOrganizacion(){
-        return $this->codOrganizacion;
+        return $this->organizacion->getCodigo();
+    }
+    public function getOrganizacion(){
+        return $this->organizacion;
     }
     public function getFechaInicio(){
         return $this->fechaInicio;

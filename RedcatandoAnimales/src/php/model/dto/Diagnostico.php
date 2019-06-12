@@ -1,26 +1,29 @@
 <?php
 class Diagnostico
 {
-    private $cod;
-    private $codAnimal;
+    private $codigo;
+    private $animal;
     private $descripcion;
     private $tratamiento;
     private $fecha;
 
-    public function __construct($cod, $codAnimal, $descripcion,$tratamiento, $fecha)
+    public function __construct($codigo, $animal, $descripcion,$tratamiento, $fecha)
     {
-        $this->cod = is_null($cod)?$this->cod:$cod;
-        $this->codAnimal = is_null($codAnimal)?$this->codAnimal:$codAnimal;
+        $this->codigo = is_null($codigo)?$this->codigo:$codigo;
+        $this->animal = is_null($animal)?new Animal(NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL):$animal;
         $this->descripcion = is_null($descripcion)?$this->descripcion:$descripcion;
         $this->tratamiento = is_null($tratamiento)?$this->tratamiento:$tratamiento;
         $this->fecha = is_null($fecha)?$this->fecha:$fecha;
     }
 
-    public function getCod(){
-        return $this->cod;
+    public function getCodigo(){
+        return $this->codigo;
     }
-    public function getCodAnimal(){
-        return $this->codAnimal;
+    public function getCodigoAnimal(){
+        return $this->animal->getCodigo();
+    }
+    public function getAnimal(){
+        return $this->animal;
     }
     public function getDescripcion(){
         return $this->descripcion;
@@ -35,10 +38,10 @@ class Diagnostico
     
     
 
-    public function setCod($codigo){
-        $this->cod = $codigo;
+    public function setCodigo($codigo){
+        $this->codigo = $codigo;
     }
-    public function setCodAnimal($codAnimal){
+    public function setCodigoAnimal($codAnimal){
         $this->codAnimal = $codAnimal;
     }
     public function setDescripcion($descripcion){

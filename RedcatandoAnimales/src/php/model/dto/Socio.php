@@ -2,16 +2,16 @@
 class Socio
 {
     private $codigo;
-    private $codOrganizacion;
+    private $organizacion;
     private $pass;
     private $nombre;
     private $apellido;
     private $cargo;
     
-    function __construct($codigo, $codOrganizacion, $pass, $nombre, $apellido, $cargo)
+    function __construct($codigo, $organizacion, $pass, $nombre, $apellido, $cargo)
     {
         $this->codigo = is_null($codigo)?$this->codigo:$codigo;
-        $this->codOrganizacion = is_null($codOrganizacion)?$this->codOrganizacion:$codOrganizacion;
+        $this->organizacion = is_null($organizacion)?new Organizacion(NULL,NULL):$organizacion;
         $this->pass = is_null($pass)?$this->pass:$pass;
         $this->nombre = is_null($nombre)?$this->nombre:$nombre;
         $this->apellido = is_null($apellido)?$this->apellido:$apellido;
@@ -22,10 +22,12 @@ class Socio
         return $this->codigo;
     }
 
-    public function getCodOrganizacion(){
-        return $this->codOrganizacion;
+    public function getCodigoOrganizacion(){
+        return $this->organizacion->getCodigo();
     }
-
+    public function getOrganizacion(){
+        return $this->organizacion;
+    }
     public function getPass(){
         return $this->pass;
     }
@@ -46,8 +48,8 @@ class Socio
         $this->codigo = $codigo;
     }
 
-    public function setCodOrganizacion($codOrganizacion){
-        $this->codOrganizacion = $codOrganizacion;
+    public function setOrganizacion($organizacion){
+        $this->organizacion = $organizacion;
     }
 
     public function setPass($pass){
