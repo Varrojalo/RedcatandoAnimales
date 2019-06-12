@@ -47,7 +47,11 @@ function agregarOrganizacion($organizacion)
     $con = new Conexion();
     $conn = $con->Conectar();
     $stmt = $conn->prepare("INSERT INTO organizacion (cod, nombre) VALUES (?, ?)");
+<<<<<<< HEAD:RedcatandoAnimales/src/php/OrganizacionDao.php
     $stmt->bind_param("ss", $organizacion->cod, $organizacion->nombre);
+=======
+    $stmt->bind_param($organizacion->cod, $organizacion->nombre);
+>>>>>>> c803718de41bbe5b0a81c09ae61d2cf652edde90:RedcatandoAnimales/src/php/model/dao/OrganizacionDao.php
     $stmt->close();
     $con->Desconectar();
 

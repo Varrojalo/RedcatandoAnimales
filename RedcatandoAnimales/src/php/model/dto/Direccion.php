@@ -20,7 +20,7 @@ class Direccion
     public function getCod(){
         return $this->cod;
     }
-    public function getCodAnimal(){
+    public function getCodDuenio(){
         return $this->codDuenio;
     }
     

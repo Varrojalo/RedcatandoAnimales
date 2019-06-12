@@ -40,7 +40,7 @@ function eliminarCampaña($codigo)
     $con = new Conexion();
     $conn = $con->Conectar();
     $sql = $conn->prepare("DELETE * FROM campana WHERE cod = ?");
-    $sql->bind_param($codigo)
+    $sql->bind_param($codigo);
     $result = $conn->query($sql);
 
     $con->Desconectar();
