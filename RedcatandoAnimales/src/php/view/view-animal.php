@@ -15,11 +15,14 @@
     <div class="container container-fluid">
         <div class="my-3 shadow p-3 bg-white rounded">
             <div class="row">
-                <div class="col-md-10">
+                <div class="col-md-8">
                     <h2>Ficha de Animal</h2>
                 </div>
                 <div class="col-md-2">
-                    <a href="" class="btn btn-link text-muted font-weight-bold"><i class="fas fa-edit"></i>  EDITAR</a>
+                    <a href="" class="btn btn-link text-muted font-weight-bold"><i class="fas fa-edit"></i> EDITAR</a>
+                </div>
+                <div class="col-md-2">
+                    <a href="" class="btn btn-link text-muted font-weight-bold"><i class="fas fa-heart"></i> ADOPTAR</a>
                 </div>
             </div>
             <div class="dropdown-divider"></div>
@@ -34,7 +37,7 @@
                 echo "<div class='col-md-4'>";
                 if($animal->getCodigoDueño() == NULL)
                 {
-                    echo "<h4>".$animal->getNombre()."</h4>";
+                    echo "<h4 class='text-capitalized'>".$animal->getNombre()."</h4>";
                 }
                 else{
                     echo "<h4>".$animal->getNombre()." <span class='badge badge-primary'>ADOPTADO</span></h4>";
@@ -43,9 +46,17 @@
                 echo "<div class='col-md-3'>";
                 echo "<p><strong>Nº CHIP: </strong> ".$animal->getChip()."</p>";
                 echo "</div>";
-                echo "<div class='col-md-2'>";
-                echo "<p><strong>Especie: </strong><span class='fas fa-dog'></span></p>";
-                echo "</div>";
+                if($animal->getEspecie()=="perro"){
+                    echo "<div class='col-md-2'>";
+                    echo "<p><strong>Especie: </strong><span class='fas fa-dog fa-2x'></span></p>";
+                    echo "</div>";
+                }
+                else{
+                    echo "<div class='col-md-2'>";
+                    echo "<p><strong>Especie: </strong><span class='fas fa-cat fa-2x'></span></p>";
+                    echo "</div>";
+                }
+
                 echo "<div class='col-md-3'>";
                 echo "<p><strong>Raza: </strong> ".$animal->getRaza()."</p>";
                 echo "</div>";
@@ -57,9 +68,17 @@
                 echo "<div class='col-md-3'>";
                 echo "<p><strong>Patron: </strong> ".$animal->getPatron()."</p>";
                 echo "</div>";
-                echo "<div class='col-md-2'>";
-                echo "<p><strong>Sexo: </strong><span class='fas fa-venus '></span></p>";
-                echo "</div>";
+                if($animal->getSexo()=='h'){
+                    echo "<div class='col-md-2'>";
+                    echo "<p><strong>Sexo: </strong><span class='fas fa-venus fa-2x'></span></p>";
+                    echo "</div>";
+                }
+                else
+                {
+                    echo "<div class='col-md-2'>";
+                    echo "<p><strong>Sexo: </strong><span class='fas fa-mars fa-2x'></span></p>";
+                    echo "</div>";
+                }
                 echo "<div class='col-md-4'>";
                 echo "<p><strong>Fecha de Ingreso: </strong>".$animal->getFechaIngreso()."</p>";
                 echo "</div>";
