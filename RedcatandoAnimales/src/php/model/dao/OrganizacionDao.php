@@ -1,6 +1,6 @@
 <?php
-include 'Conexion.php';
-include 'model/dto/Organizacion.php';
+include_once '../model/Conexion.php';
+include_once '../model/dto/Organizacion.php';
 
 function buscarOrganizacion(){
     // Crea conexion

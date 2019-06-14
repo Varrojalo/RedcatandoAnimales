@@ -1,6 +1,6 @@
 <?php
-include "Dueño.php";
-include "Organizacion.php";
+include_once "Dueño.php";
+include_once "Organizacion.php";
 class Animal
 {
     private $codigo = "anm-000";

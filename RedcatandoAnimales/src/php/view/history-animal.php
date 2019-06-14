@@ -119,8 +119,9 @@
                 <section class="py-3  bg-light fixed-bottom">
                     <div class="container container-fluid">                  
                         <button class="btn btn-primary float-right" type="button" data-toggle="modal" data-target="#exampleModal">ELIMINAR SELECCIONADOS</button>
-                        <?php?>
-                        <a href="register-animal.php" class="btn btn-link float-right">NUEVO ANIMAL</a>
+                        <?php
+                            echo "<a href='register-animal.php?codOrg=".$_GET["codOrg"]."' class='btn btn-link float-right'>NUEVO ANIMAL</a>"
+                        ?>
                     </div>
                 </section>
                 <!--MODAL-->

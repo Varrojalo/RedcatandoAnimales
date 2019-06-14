@@ -20,6 +20,11 @@
                         <label>Nombre:</label>
                         <input type="text" name="nombre" class="form-control">
                     </div>
+                    <div class="form-group d-none">
+                        <?php
+                            echo "<input type='text' value=".$_GET["codOrg"]." name='organizacion' class='form-control' readonly>";
+                        ?>
+                    </div>
                     <div class="form-group col-md-6">
                         <label for="listaEspecies">Especie:</label>
                         <select id="listaEspecies" name="listaEspecies" class="form-control">

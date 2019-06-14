@@ -1,8 +1,10 @@
 <?php
-include '../model/Conexion.php';
-include '../model/dto/Animal.php';
+include_once '../model/Conexion.php';
+include_once '../model/dto/Animal.php';
 include_once '../model/dto/Dueño.php';
 include_once '../model/dto/Organizacion.php';
+include_once '../model/dao/DueñoDao.php';
+include_once '../model/dao/OrganizacionDao.php';
 class AnimalDao
 {
     function buscarAnimales(){
@@ -100,7 +102,24 @@ class AnimalDao
         $conn = $con->Conectar();
         $sql = "INSERT INTO animal (cod, codDueno, codOrganizacion, nombre, edad, fechaIngreso, especie, raza, patron, sexo, observacion, chip) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
         $statement = $conn->prepare($sql);
-        $statement->bind_param('ssssissssssi',$animal->getCodigo(),$animal->getCodigoDueño(),$animal->getCodigoOrganizacion(),$animal->getNombre(),$animal->getEdad(),$animal->getFechaIngreso(),$animal->getEspecie(),$animal->getRaza(),$animal->getPatron(),$animal->getSexo(),$animal->getObservacion(),$animal->getChip());
+
+        $dDao = new DueñoDao();
+        $dueño = $dDao->buscarDueño($animal->getCodigoDueño());
+
+        $cod = $animal->getCodigo();
+        $codDueño = $animal->getCodigoDueño();
+        $codOrg = $animal->getCodigoOrganizacion();
+        $nombre = $animal->getNombre();
+        $edad = $animal->getEdad();
+        $fechaIngreso = $animal->getFechaIngreso();
+        $especie = $animal->getEspecie();
+        $raza = $animal->getRaza();
+        $patron = $animal->getPatron();
+        $sexo = $animal->getSexo();
+        $obs = $animal->getObservacion();
+        $chip =$animal->getChip();
+
+        $statement->bind_param('ssssissssssi',$cod,$codDueño,$codOrg,$nombre,$edad,$fechaIngreso,$especie,$raza,$patron,$sexo,$obs,$chip);
         $statement->execute();
         $con->Desconectar();
     }

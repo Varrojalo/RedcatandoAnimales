@@ -97,7 +97,7 @@
                     echo "<div class='col-md-6'>";
                     echo "<h5>Datos del dueño: </h5>";
                     echo "<div class='dropdown-divider'></div>";
-                    echo "<p><strong>RUT: </strong> ".$dueño->getCodigo()."</p> <a class='fas fa-edit'></a>";
+                    echo "<p><strong>RUT: </strong> <a class='btn btn-link' href='view-adoptant.php?cod=".$dueño->getCodigo()."'>".$dueño->getCodigo()."</a>";
                     echo "<p><strong>Nombre: </strong> ".$dueño->getNombreCompleto()."</p>";
                     echo "<p><strong>Puntuación: </strong> ".$dueño->getPuntuacionAdoptante()."</p>";
                     echo "</div>";

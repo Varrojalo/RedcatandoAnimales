@@ -14,12 +14,30 @@
         date_default_timezone_set('mst');
 
         $fechaActual = date("Y-m-j");
-        $animal = new Animal(codigo,organizacion,new Dueño(NULL,NULL,NULL,NULL,NULL,NULL),$_POST["nombre"],$_POST["edad"],$fechaActual,$_POST["listaEspecies"],
-        $_POST["listaRazas"],$_POST["listaPatrones"],$_POST["radioSexo"],$_POST["observacion"],0);
+        $org = new Organizacion($_POST["organizacion"],NULL);
+        $dueño = new Dueño(NULL,NULL,NULL,NULL,NULL,NULL);
+        $nombre = $_POST["nombre"];
+        $edad = $_POST["edad"];
+        $especie = $_POST["listaEspecies"];
+        $raza = $_POST["listaRazas"];
+        $patron = $_POST["listaPatrones"];
+        $sexo = $_POST["radioSexo"];
+        $obs = $_POST["observacion"];
+        $animal = new Animal(generarCodigo(),$org,$dueño,$nombre,$edad,$fechaActual,$especie,$raza,$patron,$sexo,$obs,0);
         $aDao = new AnimalDao();
         $aDao->agregarAnimal($animal);
-        header("Location:../view/history-animal.php");
-        die();
+
+        header("Location: ../view/history-animal.php?codOrg=".$_POST["organizacion"]."");
+
+        function generarCodigo()
+        {
+            $prefijo = "ANM-";
+            for ($i=0; $i < 6 ; $i++) { 
+                $randInt = random_int(0,9);
+                $prefijo = $prefijo.$randInt;
+            }
+            return $prefijo;
+        }
     ?>
 </body>
 </html>
