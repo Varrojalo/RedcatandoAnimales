@@ -1,7 +1,8 @@
 <?php
 include '../model/Conexion.php';
 include '../model/dto/Animal.php';
-
+include_once '../model/dto/Dueño.php';
+include_once '../model/dto/Organizacion.php';
 class AnimalDao
 {
     function buscarAnimales(){
@@ -18,7 +19,7 @@ class AnimalDao
         if ($result->num_rows > 0) {
             // almacena resultado en arreglo
             while($fila = $result->fetch_assoc()) {
-                $lista[] = new Animal($fila["cod"], $fila["codOrganizacion"], $fila["codDueno"],
+                $lista[] = new Animal($fila["cod"], new Organizacion($fila["codOrganizacion"],NULL), new Dueño($fila["codDueno"],NULL,NULL,NULL,NULL,NULL),
                 $fila["nombre"], $fila["edad"], $fila["fechaIngreso"], $fila["especie"], $fila["raza"], 
                 $fila["patron"], $fila["sexo"], $fila["observacion"], $fila["chip"]);
             }
@@ -45,7 +46,7 @@ class AnimalDao
         if ($result->num_rows > 0) {
             // almacena resultado en arreglo
             $fila = $result->fetch_assoc();
-            $animal = new Animal($fila["cod"], $fila["codOrganizacion"], $fila["codDueno"],
+            $animal = new Animal($fila["cod"], new Organizacion($fila["codOrganizacion"],NULL), new Dueño($fila["codDueno"],NULL,NULL,NULL,NULL,NULL),
                 $fila["nombre"], $fila["edad"], $fila["fechaIngreso"], $fila["especie"], $fila["raza"], 
                 $fila["patron"], $fila["sexo"], $fila["observacion"], $fila["chip"]);
             

@@ -13,7 +13,35 @@
     color:var(--dark-color);
 }
 
-
+.stars-container
+{
+    position: relative;
+    display: inline-block;
+    background: #000;
+}
+.stars-inner
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0px;
+}
+.stars-container::before
+{
+    content: "\f005 \f005 \f005 \f005 \f005";
+    font-family: "Font Awesome 5 Free";
+    color: #ccc;
+    font-weight: 900;
+}
+.stars-inner::before
+{
+    content: "\f005 \f005 \f005 \f005 \f005";
+    font-family: "Font Awesome 5 Free";
+    color: #fcc737;
+    font-weight: 900;
+}
 .brand-title
 {
     font-family: 'Poller One', cursive;

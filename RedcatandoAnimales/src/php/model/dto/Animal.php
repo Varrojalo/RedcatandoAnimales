@@ -20,7 +20,6 @@ class Animal
     {
         $this->codigo = is_null($codigo)?$this->codigo:$codigo;
         $this->organizacion = is_null($organizacion)?new Organizacion(NULL,NULL):$organizacion;
-        //$this->codDueño = is_null($codDueño)?$this->codDueño:$codDueño;
         $this->dueño = is_null($dueño)?new Dueño(NULL,NULL,NULL,NULL,NULL,NULL):$dueño; 
         $this->nombre = is_null($nombre)?$this->nombre:$nombre;
         $this->edad = is_null($edad)?$this->edad:$edad;

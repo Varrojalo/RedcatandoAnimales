@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Bienvenid@ | Redcatando Animales</title>
     
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/bootstrap.css">
-    <link rel="shortcut icon" href="/RedcatandoAnimales/res/imgs/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/RedcatandoAnimales/RedcatandoAnimales/src/css/main.css">
+    <link rel="stylesheet" href="/RedcatandoAnimales/RedcatandoAnimales/src/css/bootstrap.css">
+    <link rel="shortcut icon" href="/RedcatandoAnimales/RedcatandoAnimales/res/imgs/favicon.png" type="image/x-icon">
     
 </head>
 <body class="bg-primary">
@@ -16,18 +16,18 @@
         <div class="container container-fluid">
             <div class="my-5 align-self-middle shadow p-3 bg-white rounded">
                 <div class="header-logo mx-5 text-center">
-                    <img src="/RedcatandoAnimales/res/imgs/logo_dark_1024x512.png" width="512" height="256" class="img-fluid my-3">
+                    <img src="/RedcatandoAnimales/RedcatandoAnimales/res/imgs/logo_dark_1024x512.png" width="512" height="256" class="img-fluid my-3">
                     <h1>Iniciar Sesion</h1>
                 </div>
                 <div class="content">
                     <form action="#">
                         <div class="form-group">
                             <label>RUT:</label>
-                            <input placeholder="Ej: 1234567-8" id="rut" type="text" class="form-control">
+                            <input placeholder="Ej: 1234567-8" id="rut" name="rut" type="text" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Contraseña:</label>
-                            <input id="contraseña" type="password" class="form-control">
+                            <input id="contraseña" name="pa" type="password" class="form-control">
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary btn-lg btn-block" onclick="ValidarCredenciales()">INICIAR SESION</button>

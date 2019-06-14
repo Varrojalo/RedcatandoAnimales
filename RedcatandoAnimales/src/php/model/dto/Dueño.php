@@ -30,6 +30,10 @@ class Dueño
     public function getApellidoMaterno(){
         return $this->apellidoMaterno;
     }
+    public function getNombreCompleto()
+    {
+        return $this->nombre." ".$this->apellidoPaterno." ".$this->apellidoMaterno;
+    }
     public function getFechaAdopcion(){
         return $this->fechaAdopcion;
     }
