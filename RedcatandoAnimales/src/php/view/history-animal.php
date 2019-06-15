@@ -106,6 +106,7 @@
                             <th scope="col">Fecha de Ingreso</th>
                             <th scope="col">N° Chip</th>
                             <th scope="col">Observacion</th>
+                            <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody class="table-body filasBody">
@@ -115,6 +116,7 @@
                         ?>
                     </tbody>
                 </table>
+                <div class="fixed-bottom"></div>
                 <!--TOOLBAR-->
                 <section class="py-3  bg-light fixed-bottom">
                     <div class="container container-fluid">                  
