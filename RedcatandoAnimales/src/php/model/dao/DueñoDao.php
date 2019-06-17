@@ -31,8 +31,10 @@ class DueñoDao
         // Crea conexion
         $con = new Conexion();
         $conn = $con->Conectar();
-        $sql = $conn->prepare("SELECT * FROM dueno");
-        $result = $conn->query($sql);
+        $sql = "SELECT * FROM dueno";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+        $result = $statement->get_result();
     
         $tabla = array();
     

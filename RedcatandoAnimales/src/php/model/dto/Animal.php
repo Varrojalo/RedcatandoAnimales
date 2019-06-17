@@ -82,6 +82,10 @@ class Animal
     public function setCodigoDueño($codDueño){
         $this->codDueño = $codDueño;
     }
+    public function setDueño($dueño)
+    {
+        $this->dueño = $dueño;
+    }
     public function setCodigoOrganizacion($codOrganizacion){
         $this->codOrganizacion = $codOrganizacion;
     }

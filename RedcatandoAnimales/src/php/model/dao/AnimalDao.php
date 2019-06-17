@@ -96,6 +96,16 @@ class AnimalDao
         $statement->execute();
         $con->Desconectar();
     }
+    function eliminarAnimalCod($codigo)
+    {
+        $con = new Conexion();
+        $conn = $con->Conectar();
+        $sql = "DELETE * FROM animal WHERE cod = ?";
+        $statement = $conn->prepare($sql);
+        $statement->bind_param("s",$codigo);
+        $statement->execute();
+        $con->Desconectar();
+    }
     function agregarAnimal($animal)
     {
         $con = new Conexion();
@@ -120,6 +130,38 @@ class AnimalDao
         $chip =$animal->getChip();
 
         $statement->bind_param('ssssissssssi',$cod,$codDueño,$codOrg,$nombre,$edad,$fechaIngreso,$especie,$raza,$patron,$sexo,$obs,$chip);
+        $statement->execute();
+        $con->Desconectar();
+    }
+
+    public function actualizarAnimal($animal)
+    {
+        $con = new Conexion();
+        $conn = $con->Conectar();
+        $sql = "UPDATE animal SET nombre=?, edad=?, fechaIngreso=?, patron=?, sexo=?, observacion=?, chip=? WHERE cod=?";
+        $statement = $conn->prepare($sql);
+
+        $cod = $animal->getCodigo();
+        $nombre = $animal->getNombre();
+        $edad = $animal->getEdad();
+        $fechaIngreso = $animal->getFechaIngreso();
+        $patron = $animal->getPatron();
+        $sexo = $animal->getSexo();
+        $obs = $animal->getObservacion();
+        $chip =$animal->getChip();
+
+        $statement->bind_param('sissssis',$nombre,$edad,$fechaIngreso,$patron,$sexo,$obs,$chip,$cod);
+        $statement->execute();
+        $con->Desconectar();
+    }
+    public function adoptarAnimal($codAnimal,$codDueño)
+    {
+        $con = new Conexion();
+        $conn = $con->Conectar();
+        $sql = "UPDATE animal SET codDueno=? WHERE cod=?";
+        $statement = $conn->prepare($sql);
+
+        $statement->bind_param('ss',$codDueño,$codAnimal);
         $statement->execute();
         $con->Desconectar();
     }

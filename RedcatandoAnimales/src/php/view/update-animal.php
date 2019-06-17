@@ -4,46 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Registrar Animal | Redcatando Animales</title>
+    <title>Actualizar Animal | Redcatando Animales</title>
 
     <link rel="stylesheet" href="/RedcatandoAnimales/RedcatandoAnimales/src/css/main.css">
     <link rel="stylesheet" href="/RedcatandoAnimales/RedcatandoAnimales/src/css/bootstrap.css">
     <link rel="shortcut icon" href="/RedcatandoAnimales/RedcatandoAnimales/res/imgs/favicon.png" type="image/x-icon">
 </head>
+<body>
 <body class="bg-primary">
+    <?php
+        include_once '../model/dao/AnimalDao.php';
+        include_once '../model/dto/Animal.php';
+        
+        $aDao = new AnimalDao();
+        
+        $animal = $aDao->buscarAnimal($_GET["cod"]);
+    ?>
     <div class="container container-fluid">
         <div class="my-3 shadow p-3 bg-white rounded">
-            <h2>Registrar Animal</h2>
+            <h2>Actualizar Animal</h2>
             <form action="../controller/procesarIngresoAnimal.php" method="POST">
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label>Nombre:</label>
-                        <input type="text" name="nombre" class="form-control">
+                        <input type="text" name="nombre" value="<?php echo $animal->getNombre();?>" class="form-control">
                     </div>
                     <div class="form-group d-none">
                         <?php
                             echo "<input type='text' value=".$_GET["codOrg"]." name='organizacion' class='form-control' readonly>";
                         ?>
                     </div>
+                    <div class="form-group d-none">
+                        <?php
+                            echo "<input type='text' value=".$_GET["cod"]." name='codigo' class='form-control' readonly>";
+                        ?>
+                    </div>
                     <div class="form-group col-md-6">
-                        <label for="listaEspecies">Especie:</label>
-                        <select id="listaEspecies" name="listaEspecies" class="form-control">
-                            <option value="perro">Perro</option>
-                            <option value="gato">Gato</option>
-                        </select>
+                        <label for="">CHIP: </label>
+                        <input type="number" name="chip" value="<?php echo $animal->getChip();?>" class="form-control" min="1">
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-3">
-                        <label for="listaRazas">Raza: </label>
-                        <select name="listaRazas" id="listaRazas" class="form-control">
-                        </select>
-                    </div>
-                    <div class="form-group col-md-1">
                         <label for="">Edad: </label>
-                        <input type="number" name="edad" class="form-control" min="1" max="30" value="10">
+                        <input type="number" name="edad" value="<?php echo $animal->getEdad();?>" class="form-control" min="1" max="30" value="10">
                     </div>
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-3">
                         <label for="">Sexo: </label>
                         <div class="custom-control custom-radio">
                             <input type="radio" class="custom-control-input" id="radioMacho" value="m" name="radioSexo">
@@ -71,10 +77,10 @@
 
                 <div class="form-group">
                     <label for="">Observacion: </label>
-                    <textarea name="observacion" id="" cols="30" rows="9" class="form-control"></textarea>
+                    <textarea name="observacion" id="" placeholder="<?php echo $animal->getObservacion();?>" rows="9" class="form-control"></textarea>
                 </div>
                 <div class="form-group">
-                    <button type="submit" name="btnAgregarAnimal" class="btn btn-primary">REGISTRAR</button>
+                    <button type="submit" name="btnActualizarAnimal" class="btn btn-primary">ACTUALIZAR</button>
                     <?php
                         echo "<a href='history-animal.php?codOrg=".$_GET["codOrg"]."' class='btn btn-link'>CANCELAR</a>";
                     ?> 

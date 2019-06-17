@@ -53,7 +53,7 @@
             <h2>Historial de Animales</h2>
         </div>
         <section class="container container-fluid">
-            <form action="../controller/procesarEliminacion.php">
+            <form action="../controller/procesarIngresoAnimal.php">
                 <div class="form-row">
                     <div class="form-group col-md-3">
                         <label>Nombre: </label>
@@ -111,7 +111,7 @@
                     </thead>
                     <tbody class="table-body filasBody">
                         <?php
-                            include '../controller/history-animal-control.php';
+                            include '../controller/procesarIngresoAnimal.php';
                             llenarTabla();
                         ?>
                     </tbody>

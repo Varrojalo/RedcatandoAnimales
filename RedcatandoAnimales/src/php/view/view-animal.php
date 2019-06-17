@@ -12,6 +12,15 @@
     <link rel="shortcut icon" href="/RedcatandoAnimales/RedcatandoAnimales/res/imgs/favicon.png" type="image/x-icon">
 </head>
 <body class="bg-primary">
+    <?php
+    include_once '../model/dao/AnimalDao.php';
+    include_once '../model/dao/DueñoDao.php';
+    $codigo = $_GET["cod"];
+    $aDao = new AnimalDao();
+    $dDao = new DueñoDao();
+    
+    $animal = $aDao->buscarAnimal($codigo);
+    ?>
     <div class="container container-fluid">
         <div class="my-3 shadow p-3 bg-white rounded">
             <div class="row">
@@ -19,21 +28,15 @@
                     <h2>Ficha de Animal</h2>
                 </div>
                 <div class="col-md-2">
-                    <a href="" class="btn btn-link text-muted font-weight-bold"><i class="fas fa-edit"></i> EDITAR</a>
+                    <a href="update-animal.php?cod=<?php echo $animal->getCodigo()."&codOrg=".$animal->getCodigoOrganizacion();?>" class="btn btn-link text-muted font-weight-bold"><i class="fas fa-edit"></i> EDITAR</a>
                 </div>
                 <div class="col-md-2">
-                    <a href="" class="btn btn-link text-muted font-weight-bold"><i class="fas fa-heart"></i> ADOPTAR</a>
+                    <a href="adopt-animal.php?cod=<?php echo $animal->getCodigo()."&codOrg=".$animal->getCodigoOrganizacion();?>" class="btn btn-link text-muted font-weight-bold"><i class="fas fa-heart"></i> ADOPTAR</a>
                 </div>
             </div>
             <div class="dropdown-divider"></div>
             <?php
-                include_once '../model/dao/AnimalDao.php';
-                include_once '../model/dao/DueñoDao.php';
-                $codigo = $_GET["cod"];
-                $aDao = new AnimalDao();
-                $dDao = new DueñoDao();
                 
-                $animal = $aDao->buscarAnimal($codigo);
                 $dueño = is_null($dDao->buscarDueño($animal->getCodigoDueño()))?new Dueño(NULL,NULL,NULL,NULL,NULL,NULL):$dDao->buscarDueño($animal->getCodigoDueño());
                 
                 echo "<div class='row'>";
