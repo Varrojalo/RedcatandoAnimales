@@ -19,7 +19,13 @@
         }
         else if(isset($_GET["btnEliminarAnimal"]))
         {
+            // try {
+            //     eliminarAnimal();
+            // } catch (Exception $e) {
+            //     die('Error modificando producto: ' .  $e->getMessage());
+            // }
             eliminarAnimal();
+            header("Location: ../view/history-animal.php?codOrg=".$_GET["organizacion"]."");
         }
         else if(isset($_POST["btnActualizarAnimal"]))
         {
@@ -56,9 +62,10 @@
             $codigo = $_GET["cod"];
             
             $aDao = new AnimalDao();
+            
 
             $aDao->eliminarAnimalCod($codigo);
-            header("Location: ../view/history-animal.php?codOrg=".$_GET["organizacion"]."");
+            
         }
         function actualizarAnimal()
         {
@@ -84,7 +91,12 @@
             $aDao->adoptarAnimal($_POST["codigo"],$_POST["listaAdoptantes"]);
             header("Location: ../view/history-animal.php?codOrg=".$_POST["organizacion"]."");
         }
-
+        function EliminarAnimalesSelec()
+        {
+            foreach ($selec as $codAnim) {
+                eliminarAnimal($codAnim);
+            }
+        }
 
 
         function generarCodigo()
@@ -103,22 +115,22 @@
             $tabla = $aDao->buscarAnimales();
             foreach ($tabla as $f) {
                 //$sexo = "macho";
-                $sexo = "<i class='fas fa-mars fa-2x text-info'></i>";
+                $sexo = "<i class='fas fa-mars fa-2x text-info'><span class='d-none'>macho</span></i>";
                 if($f->getSexo()=='h')
                 {
                     //$sexo = "hembra"; 
-                    $sexo = "<i class='fas fa-venus fa-2x text-danger'></i>";
+                    $sexo = "<i class='fas fa-venus fa-2x text-danger'><span class='d-none'>hembra</span></i>";
                 }
                 if($f->getCodigoDueño()==NULL)
                 {
-                    echo "<tr>";
+                    echo "<tr><td class='d-none'>RESCATADO</td>";
                 }
                 else
                 {
-                    echo "<tr class='table-success'>";
+                    echo "<tr class='table-success'><td class='d-none'>ADOPTADO</td>";
                 }
                 echo "<th scope='row'><input type='checkbox' name='".$f->getCodigo()."' id='".$f->getCodigo()."'></th>";
-                echo "<td><a class='btn btn-link' href='view-animal.php?cod=".$f->getCodigo()."'>" . $f->getNombre(). "</a></td>";
+                echo "<td><a class='btn btn-link' href='view-animal.php?cod=".$f->getCodigo()."&codOrg=".$f->getCodigoOrganizacion()."'>" . $f->getNombre(). "</a></td>";
                 echo "<td>" . $f->getEdad(). "</td>";
                 echo "<td>" . $f->getRaza(). "</td>";
                 echo "<td>" . $sexo. "</td>";

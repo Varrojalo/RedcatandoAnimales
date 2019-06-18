@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="/RedcatandoAnimales/RedcatandoAnimales/src/css/main.css">
     <link rel="stylesheet" href="/RedcatandoAnimales/RedcatandoAnimales/src/css/bootstrap.css">
+    <link rel="stylesheet" href="/RedcatandoAnimales/RedcatandoAnimales/src/css/footable.bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="shortcut icon" href="/RedcatandoAnimales/RedcatandoAnimales/res/imgs/favicon.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Poller+One" rel="stylesheet">
@@ -50,63 +51,28 @@
     </nav>
     <main>
         <div class="container container-fluid">
-            <h2>Historial de Animales</h2>
+            <h2>Lista de Animales</h2>
         </div>
         <section class="container container-fluid">
             <form action="../controller/procesarIngresoAnimal.php">
                 <div class="form-row">
-                    <div class="form-group col-md-3">
-                        <label>Nombre: </label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="form-group col-md-1">
-                        <label for="">Edad:</label>
-                        <input type="number" min=1 max=30 value=10 class="form-control">
-                    </div>
-                    <div class="form-group col-md-1">
-                        <label for="">Sexo:</label>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="radioMacho" name="customRadio" class="custom-control-input">
-                            <label for="radioMacho" class="custom-control-label">Macho</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="radioHembra" name="customRadio"class="custom-control-input">
-                            <label for="radioHembra" class="custom-control-label">Hembra</label>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-2">
-                        <label for="">¿Adoptado?</label>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" id="checkDueño" class="custom-control-input">
-                            <label for="checkDueño" class="custom-control-label">SI / NO</label>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-2">
-                        <label for="selectFecha">Año de Ingreso: </label>
-                        <select id="selectFecha" class="form-control">
-                            <option value="2017">2017</option>
-                            <option value="2018">2018</option>
-                            <option value="2019">2019</option>
-                            <option value="2020">2020</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-3 align-self-center pl-5">
-                        <button class="btn btn-primary w-100">BUSCAR ANIMAL</button>
+                    <div id="filter-container" class="form-group col-md-12">   
                     </div>
                 </div>
                 
-                <table class="border border-dark mb-5 table table-responsive-sm table-light table-striped table-borderless text-center">
+                <table data-filter-container="#filter-container" data-filter-placeholder="Ingrese valor a filtrar" class="border border-dark mb-5 table table-responsive-sm table-light table-striped table-borderless text-center" data-filtering="true" data-filter="#filter">
                     <thead class="thead-dark">
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Edad</th>
-                            <th scope="col">Raza</th>
-                            <th scope="col">Sexo</th>
-                            <th scope="col">Fecha de Ingreso</th>
-                            <th scope="col">N° Chip</th>
-                            <th scope="col">Observacion</th>
-                            <th scope="col">Acciones</th>
+                            <th class="d-none">estado</th>
+                            <th scope="col" data-breakpoints="sm">#</th>
+                            <th scope="col" data-type="html" data-breakpoints="xs" name="nombre">Nombre</th>
+                            <th scope="col" data-breakpoints="md">Edad</th>
+                            <th scope="col" data-breakpoints="sm">Raza</th>
+                            <th scope="col" data-breakpoints="xs">Sexo</th>
+                            <th scope="col" data-breakpoints="xs">Fecha de Ingreso</th>
+                            <th scope="col" data-breakpoints="sm">N° Chip</th>
+                            <th scope="col" data-breakpoints="sm">Observacion</th>
+                            <th scope="col" data-breakpoints="xs">Acciones</th>
                         </tr>
                     </thead>
                     <tbody class="table-body filasBody">
@@ -156,7 +122,18 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-<script type="module" src="../js/AnimalDao.js"></script>
-<script type="module" src="../js/HistoryAnimalControl.js"></script>
+<script src="/RedcatandoAnimales/RedcatandoAnimales/src/js/footable.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.table').footable({
+		"filtering": {
+			"filters": [{
+				"name": "nombre",
+				"query": "nombre",
+				"columns": ["nombre"]
+			}]
+		}
+	});
+    });
+</script>
 </html>

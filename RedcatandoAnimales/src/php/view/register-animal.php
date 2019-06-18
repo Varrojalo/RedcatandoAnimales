@@ -28,8 +28,8 @@
                     <div class="form-group col-md-6">
                         <label for="listaEspecies">Especie:</label>
                         <select id="listaEspecies" name="listaEspecies" class="form-control">
-                            <option value="perro">Perro</option>
-                            <option value="gato">Gato</option>
+                            <option value="canino">Canino</option>
+                            <option value="felino">felino</option>
                         </select>
                     </div>
                 </div>

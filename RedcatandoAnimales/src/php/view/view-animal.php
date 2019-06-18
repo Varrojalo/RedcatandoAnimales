@@ -52,7 +52,7 @@
                 echo "<div class='col-md-3'>";
                 echo "<p><strong>Nº CHIP: </strong> ".$animal->getChip()."</p>";
                 echo "</div>";
-                if($animal->getEspecie()=="perro"){
+                if($animal->getEspecie()=="canino"){
                     echo "<div class='col-md-2'>";
                     echo "<p><strong>Especie: </strong><span class='fas fa-dog fa-2x'></span></p>";
                     echo "</div>";
@@ -108,12 +108,14 @@
                 echo "</div>";
             ?>
             
-            <a href="history-animal.php" class="btn btn-link">ATRAS</a>
+            <a href="history-animal.php?codOrg=<?php echo $_GET["codOrg"]?>" class="btn btn-link">ATRAS</a>
         </div>
     </div>
 </body>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+
 <!-- <script>
     <?php
         echo "let puntuacion =".$dueño->getPuntuacionAdoptante().";";
