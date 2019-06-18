@@ -20,7 +20,7 @@
                     <h1>Iniciar Sesion</h1>
                 </div>
                 <div class="content">
-                    <form action="#">
+                    <form action="../controller/procesarLogin.php">
                         <div class="form-group">
                             <label>RUT:</label>
                             <input placeholder="Ej: 1234567-8" id="rut" name="rut" type="text" class="form-control">
@@ -30,8 +30,8 @@
                             <input id="contraseña" name="pa" type="password" class="form-control">
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-primary btn-lg btn-block" onclick="ValidarCredenciales()">INICIAR SESION</button>
-                            <btn class="btn btn-link btn-lg btn-block">REGISTRARSE</button>
+                            <button class="btn btn-primary btn-lg btn-block">INICIAR SESION</button>
+                            <button class="btn btn-link btn-lg btn-block">REGISTRARSE</button>
                         </div>
                     </form>
                 </div>
