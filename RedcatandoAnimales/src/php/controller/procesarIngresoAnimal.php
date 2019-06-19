@@ -112,16 +112,16 @@
         function llenarTabla()
         {
             $aDao = new AnimalDao();
-            $tabla = $aDao->buscarAnimales();
-            foreach ($tabla as $f) {
+            $animales = $aDao->buscarAnimales();
+            foreach ($animales as $a) {
                 //$sexo = "macho";
                 $sexo = "<i class='fas fa-mars fa-2x text-info'><span class='d-none'>macho</span></i>";
-                if($f->getSexo()=='h')
+                if($a->getSexo()=='h')
                 {
                     //$sexo = "hembra"; 
                     $sexo = "<i class='fas fa-venus fa-2x text-danger'><span class='d-none'>hembra</span></i>";
                 }
-                if($f->getCodigoDueño()==NULL)
+                if($a->getCodigoDueño()==NULL)
                 {
                     echo "<tr><td class='d-none'>RESCATADO</td>";
                 }
@@ -129,15 +129,15 @@
                 {
                     echo "<tr class='table-success'><td class='d-none'>ADOPTADO</td>";
                 }
-                echo "<th scope='row'><input type='checkbox' name='".$f->getCodigo()."' id='".$f->getCodigo()."'></th>";
-                echo "<td><a class='btn btn-link' href='view-animal.php?cod=".$f->getCodigo()."&codOrg=".$f->getCodigoOrganizacion()."'>" . $f->getNombre(). "</a></td>";
-                echo "<td>" . $f->getEdad(). "</td>";
-                echo "<td>" . $f->getRaza(). "</td>";
+                echo "<th scope='row'><input type='checkbox' name='".$a->getCodigo()."' id='".$a->getCodigo()."'></th>";
+                echo "<td><a class='btn btn-link' href='view-animal.php?cod=".$a->getCodigo()."&codOrg=".$a->getCodigoOrganizacion()."'>" . $a->getNombre(). "</a></td>";
+                echo "<td>" . $a->getEdad(). "</td>";
+                echo "<td>" . $a->getRaza(). "</td>";
                 echo "<td>" . $sexo. "</td>";
-                echo "<td>" . $f->getFechaIngreso(). "</td>";
-                echo "<td>" . $f->getChip(). "</td>";
-                echo "<td>" . $f->getObservacion(). "</td>";
-                echo "<td><a href='../controller/procesarIngresoAnimal.php?btnEliminarAnimal=btnEliminarAnimal&cod=".$f->getCodigo()."' name='btnEliminarAnimal' class='btn btn-link text-danger fas fa-times-circle'></a>|<a href='update-animal.php?cod=".$f->getCodigo()."&codOrg=".$f->getCodigoOrganizacion()."' class='btn btn-link text-info fas fa-edit'></a></td>";
+                echo "<td>" . $a->getFechaIngreso(). "</td>";
+                echo "<td>" . $a->getChip(). "</td>";
+                echo "<td>" . $a->getObservacion(). "</td>";
+                echo "<td><a href='../controller/procesarIngresoAnimal.php?btnEliminarAnimal=btnEliminarAnimal&cod=".$a->getCodigo()."' name='btnEliminarAnimal' class='btn btn-link text-danger fas fa-times-circle'></a>|<a href='update-animal.php?cod=".$a->getCodigo()."&codOrg=".$a->getCodigoOrganizacion()."' class='btn btn-link text-info fas fa-edit'></a></td>";
                 echo "</tr>";
             }
         }

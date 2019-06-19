@@ -38,6 +38,7 @@ class AnimalDao
         $con = new Conexion();
         $conn = $con->Conectar();
         $sql = "SELECT * FROM animal WHERE cod = ?";
+        $conn->set_charset("utf8");
         $statement = $conn->prepare($sql);
         $statement->bind_param('s',$codigo);
         $statement->execute();

@@ -32,6 +32,7 @@ class DueñoDao
         $con = new Conexion();
         $conn = $con->Conectar();
         $sql = "SELECT * FROM dueno";
+        $conn->set_charset("utf8");
         $statement = $conn->prepare($sql);
         $statement->execute();
         $result = $statement->get_result();
