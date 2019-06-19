@@ -60,14 +60,15 @@ class AnimalDao
         }
         $con->Desconectar();
     }
-    function buscarAnimalesOrganizacion($organizacion)
+    function buscarAnimalesOrganizacion($codOrganizacion)
     {
         // Crea conexion
         $con = new Conexion();
         $conn = $con->Conectar();
         $sql = "SELECT * FROM animal WHERE codOrganizacion = ?";
+        $conn->set_charset("utf8");
         $statement = $conn->prepare($sql);
-        $statement->bind_param('s',$organizacion->getCodigo());
+        $statement->bind_param('s',$codOrganizacion);
         $statement->execute();
         $result = $statement->get_result();
     
@@ -76,7 +77,7 @@ class AnimalDao
         if ($result->num_rows > 0) {
             // almacena resultado en arreglo
             while($fila = $result->fetch_assoc()) {
-                $lista[] = new Animal($fila["cod"], $fila["codOrganizacion"], $fila["codDueno"],
+                $lista[] = new Animal($fila["cod"], new Organizacion($fila["codOrganizacion"],NULL), new Dueño($fila["codDueno"],NULL,NULL,NULL,NULL,NULL),
                 $fila["nombre"], $fila["edad"], $fila["fechaIngreso"], $fila["especie"], $fila["raza"], 
                 $fila["patron"], $fila["sexo"], $fila["observacion"], $fila["chip"]);
             }

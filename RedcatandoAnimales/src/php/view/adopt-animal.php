@@ -99,6 +99,7 @@
                             </select>
                         </div>
                         
+                        <div class="d-none">
                         <h3>Nuevo Adoptante</h3>
                         <div class='dropdown-divider'></div>
                         <form action="../controller/procesarIngresoAnimal.php" id="registroNuevoAdoptante" method="POST">
@@ -122,6 +123,7 @@
                                 <button type="submit" name="registrarAdoptante" form="registroNuevoAdoptante" class="btn btn-primary">REGISTRAR ADOPTANTE</button>
                             </div>
                         </form>
+                        </div>
                     </div>
                 </div>
                 <div class="row">

@@ -106,10 +106,10 @@
             return $prefijo;
         }
 
-        function llenarTabla()
+        function llenarTabla($codOrg)
         {
             $aDao = new AnimalDao();
-            $animales = $aDao->buscarAnimales();
+            $animales = $aDao->buscarAnimalesOrganizacion($codOrg);
             foreach ($animales as $a) {
                 //$sexo = "macho";
                 $sexo = "<i class='fas fa-mars fa-2x text-info'><span class='d-none'>macho</span></i>";
