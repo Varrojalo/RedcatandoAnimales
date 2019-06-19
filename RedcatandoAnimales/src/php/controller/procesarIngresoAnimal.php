@@ -19,12 +19,11 @@
         }
         else if(isset($_GET["btnEliminarAnimal"]))
         {
-            // try {
-            //     eliminarAnimal();
-            // } catch (Exception $e) {
-            //     die('Error modificando producto: ' .  $e->getMessage());
-            // }
-            eliminarAnimal();
+            try {
+                eliminarAnimal();
+            } catch (Exception $e) {
+                die('Error modificando producto: '.$e->getMessage());
+            }
             header("Location: ../view/history-animal.php?codOrg=".$_GET["organizacion"]."");
         }
         else if(isset($_POST["btnActualizarAnimal"]))
@@ -63,9 +62,7 @@
             
             $aDao = new AnimalDao();
             
-
             $aDao->eliminarAnimalCod($codigo);
-            
         }
         function actualizarAnimal()
         {

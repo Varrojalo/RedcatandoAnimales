@@ -91,7 +91,7 @@ class AnimalDao
     {
         $con = new Conexion();
         $conn = $con->Conectar();
-        $sql = "DELETE * FROM animal WHERE cod = ?";
+        $sql = "DELETE FROM animal WHERE cod = ?";
         $statement = $conn->prepare($sql);
         $statement->bind_param("s",$animal->getCodigo());
         $statement->execute();
@@ -101,18 +101,14 @@ class AnimalDao
     {
         $con = new Conexion();
         $conn = $con->Conectar();
-        $sql = "DELETE * FROM animal WHERE cod = ?";
+        $sql = "DELETE FROM animal WHERE cod = ?";
         $statement = $conn->prepare($sql);
-
-        //Comprobacion de si la preparaciòn del sql se realizo con exito o no
-        if($statement === false)
-            return ["ok" => "false"];
-            
         $statement->bind_param("s",$codigo);
         $statement->execute();
         $statement->close();
         $con->Desconectar();
     }
+
     function agregarAnimal($animal)
     {
         $con = new Conexion();
