@@ -1,3 +1,6 @@
+﻿<?php
+$loader = require '../../../vendor/autoload.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

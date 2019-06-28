@@ -1,0 +1,6 @@
+{
+    "require": {
+        "monolog/monolog": "1.0.*",
+        "grimmlink/webcamjs": "^1.0"
+    }
+}
