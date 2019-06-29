@@ -4,6 +4,30 @@ include_once '../model/dto/Organizacion.php';
 
 class OrganizacionDao
 {
+    function buscarOrganizacionUsuario($user)
+    {
+        // Crea conexion
+        $con = new Conexion();
+        $conn = $con->Conectar();
+        $sql = "SELECT * FROM organizacion_user WHERE USER_ID = ?";
+        $statement = $conn->prepare($sql);
+        $statement->bind_param('i', $user);
+        $statement->execute();
+        $result = $statement->get_result();
+        $tabla = array();
+    
+        if ($result->num_rows > 0) {
+            $fila = $result->fetch_assoc();
+
+            $IdOrganizacion = $fila["ORGANIZACION_ID"];
+            return $IdOrganizacion;
+        } else {
+            echo "0 results";
+            return null;
+        }
+        $con->Desconectar();
+    }
+
     function buscarOrganizacion(){
         // Crea conexion
         $con = new Conexion();

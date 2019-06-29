@@ -10,6 +10,7 @@
 <?php
 include_once '../model/dao/UserDao.php';
 include_once '../model/dto/User.php';
+include_once '../model/dao/OrganizacionDao.php';
 
 $rut = $_GET["rut"];
 $pass = $_GET["pa"];
@@ -20,8 +21,12 @@ $usuario = $uDao->buscarUsuario($rut);
 
 if ($usuario->getPass() == $pass) { //IMPORTANTE AGREGAR ENCRIPCION
     session_start();
-    $_SESSION["usuario"]=$usuario;
-    header("Location: ../view/history-animal.php?codOrg= ORG-001");
+    $_SESSION["usuario"] = $usuario;
+    $oDao = new OrganizacionDao();
+    $org = $oDao->buscarOrganizacionUsuario($usuario->getID());
+    $_SESSION["org"] = $org;
+
+    header("Location: ../view/history-animal.php?codOrg=".$org);
 }else {
     header("Location: ../view/index.php");
 }
