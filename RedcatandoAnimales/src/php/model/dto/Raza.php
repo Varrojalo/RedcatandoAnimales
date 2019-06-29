@@ -1,14 +1,15 @@
 <?php
-class Organizacion
+include_once "Especie.php";
+class Raza
 {
     private $id;
-    private $rut;
+    private $especie;
     private $nombre;
-
-    public function __construct($id, $rut, $nombre)
+    
+    public function __construct($id, $especie, $nombre)
     {
         $this->id = is_null($id)?$this->id:$id;
-        $this->rut = is_null($rut)?$this->rut:$rut;
+        $this->especie = is_null($especie)?new Especie(NULL,NULL):$especie;
         $this->nombre = is_null($nombre)?$this->nombre:$nombre;
     }
 
@@ -16,9 +17,9 @@ class Organizacion
     {
         return $this->id;
     }
-    public function getRut()
+    public function getEspecie()
     {
-        return $this->rut;
+        return $this->especie;
     }
     public function getNombre()
     {
@@ -28,9 +29,9 @@ class Organizacion
     {
         $this->id = $id;
     }
-    public function setRut($rut)
+    public function setEspecie($especie)
     {
-        $this->rut = $rut;
+        $this->especie = $especie;
     }
     public function setNombre($nombre)
     {

@@ -1,6 +1,7 @@
 <?php
 include_once '../model/Conexion.php';
 include_once '../model/dto/Animal.php';
+include_once '../model/dto/User.php';
 include_once '../model/dto/Dueño.php';
 include_once '../model/dto/Organizacion.php';
 include_once '../model/dao/DueñoDao.php';
@@ -65,10 +66,10 @@ class AnimalDao
         // Crea conexion
         $con = new Conexion();
         $conn = $con->Conectar();
-        $sql = "SELECT * FROM animal WHERE codOrganizacion = ?";
+        $sql = "SELECT * FROM animal WHERE organizacion_id = ?";
         $conn->set_charset("utf8");
         $statement = $conn->prepare($sql);
-        $statement->bind_param('s',$codOrganizacion);
+        $statement->bind_param('i',$codOrganizacion);
         $statement->execute();
         $result = $statement->get_result();
     
@@ -77,9 +78,7 @@ class AnimalDao
         if ($result->num_rows > 0) {
             // almacena resultado en arreglo
             while($fila = $result->fetch_assoc()) {
-                $lista[] = new Animal($fila["cod"], new Organizacion($fila["codOrganizacion"],NULL), new Dueño($fila["codDueno"],NULL,NULL,NULL,NULL,NULL),
-                $fila["nombre"], $fila["edad"], $fila["fechaIngreso"], $fila["especie"], $fila["raza"], 
-                $fila["patron"], $fila["sexo"], $fila["observacion"], $fila["chip"]);
+                $lista[] = new Animal($fila["ID"], new Raza($fila["RAZA_ID"],NULL,NULL), new Organizacion($fila["ORGANIZACION_ID"],NULL,NULL), new User ($fila["USER_ID"],NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL), $fila["CHIP"], $fila["NOMBRE"], $fila["PATRON"], $fila["FECHA_NACIMIENTO"], $fila["SEXO"], $fila["OBSERVACION"], $fila["ESTERILIZADO"], $fila["ESTADO"], $fila["CREATED_AT"], $fila["UPDATED_AT"]);
             }
             return $lista;
         } else {

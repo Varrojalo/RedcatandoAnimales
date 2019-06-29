@@ -13,6 +13,9 @@ $loader = require '../../../vendor/autoload.php';
     <?php
         include_once '../model/dao/AnimalDao.php';
         include_once '../model/dao/DueñoDao.php';
+        include_once '../model/dao/RazaDao.php';
+        include_once '../model/dao/AdoptanteDao.php';
+        include_once '../model/dao/AdopcionDao.php';
         include_once '../model/dto/Animal.php';
 
 
@@ -112,16 +115,22 @@ $loader = require '../../../vendor/autoload.php';
         function llenarTabla($codOrg)
         {
             $aDao = new AnimalDao();
+            $rDao = new RazaDao();
             $animales = $aDao->buscarAnimalesOrganizacion($codOrg);
             foreach ($animales as $a) {
-                //$sexo = "macho";
+                $adopDao = new AdopcionDao();
+                $adpDao = new AdoptanteDao();
+                $adopcion = $adopDao->buscarAdopcionAnimal($a->getID());  
+
+                //sexo "macho"
                 $sexo = "<i class='fas fa-mars fa-2x text-info'><span class='d-none'>macho</span></i>";
                 if($a->getSexo()=='h')
                 {
-                    //$sexo = "hembra"; 
+                    //sexo "hembra" 
                     $sexo = "<i class='fas fa-venus fa-2x text-danger'><span class='d-none'>hembra</span></i>";
                 }
-                if($a->getCodigoDueño()==NULL)
+                $razaID = $a->getRaza()->getID();
+                if($adpDao->buscarAdoptanteID($adopcion->getAdoptante()->getID()) == NULL)
                 {
                     echo "<tr><td class='d-none'>RESCATADO</td>";
                 }
@@ -129,15 +138,15 @@ $loader = require '../../../vendor/autoload.php';
                 {
                     echo "<tr class='table-success'><td class='d-none'>ADOPTADO</td>";
                 }
-                echo "<th scope='row'><input type='checkbox' name='".$a->getCodigo()."' id='".$a->getCodigo()."'></th>";
-                echo "<td><a class='btn btn-link' href='view-animal.php?cod=".$a->getCodigo()."&codOrg=".$a->getCodigoOrganizacion()."'>" . $a->getNombre(). "</a></td>";
-                echo "<td>" . $a->getEdad(). "</td>";
-                echo "<td>" . $a->getRaza(). "</td>";
+                echo "<th scope='row'><input type='checkbox' name='".$a->getID()."' id='".$a->getID()."'></th>";
+                echo "<td><a class='btn btn-link' href='view-animal.php?cod=".$a->getID()."&codOrg=".$a->getCodigoOrganizacion()."'>" . $a->getNombre(). "</a></td>";
+                echo "<td>" . obtenerEdad($a->getFechaNacimiento()). "</td>";
+                echo "<td>" . $rDao->buscarRazaId($razaID)->getNombre(). "</td>";
                 echo "<td>" . $sexo. "</td>";
                 echo "<td>" . $a->getFechaIngreso(). "</td>";
                 echo "<td>" . $a->getChip(). "</td>";
                 echo "<td>" . $a->getObservacion(). "</td>";
-                echo "<td><a href='../controller/procesarIngresoAnimal.php?btnEliminarAnimal=btnEliminarAnimal&cod=".$a->getCodigo()."' name='btnEliminarAnimal' class='btn btn-link text-danger fas fa-times-circle'></a>|<a href='update-animal.php?cod=".$a->getCodigo()."&codOrg=".$a->getCodigoOrganizacion()."' class='btn btn-link text-info fas fa-edit'></a></td>";
+                echo "<td><a href='../controller/procesarIngresoAnimal.php?btnEliminarAnimal=btnEliminarAnimal&cod=".$a->getID()."' name='btnEliminarAnimal' class='btn btn-link text-danger fas fa-times-circle'></a>|<a href='update-animal.php?cod=".$a->getID()."&codOrg=".$a->getCodigoOrganizacion()."' class='btn btn-link text-info fas fa-edit'></a></td>";
                 echo "</tr>";
             }
         }
@@ -152,7 +161,13 @@ $loader = require '../../../vendor/autoload.php';
                 echo $a->getCodigo();
             }
         }
-
+        function obtenerEdad($fechaNacimiento)
+        {
+            # object oriented
+            $from = new DateTime($fechaNacimiento);
+            $to   = new DateTime('today');
+            return $from->diff($to)->y;
+        }
     ?>
 </body>
 </html>

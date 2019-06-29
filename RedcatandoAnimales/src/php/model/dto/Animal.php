@@ -1,49 +1,48 @@
 <?php
 include_once "Dueño.php";
 include_once "Organizacion.php";
+include_once "Raza.php";
 class Animal
 {
-    private $codigo = "anm-000";
-    private $dueño;
-    private $organizacion;
-    private $nombre;
-    private $edad;
-    private $fechaInfreso;
-    private $especie;
+    private $id;
     private $raza;
+    private $organizacion;
+    private $user;
+    private $chip;
+    private $nombre;
     private $patron;
+    private $fechaNacimiento;
     private $sexo;
     private $observacion;
-    private $chip;
+    private $esterilizado;
+    private $estado;
+    private $created_at;
+    private $updated_at;
 
-    public function __construct($codigo, $organizacion, $dueño, $nombre, $edad, $fechaInfreso, $especie, $raza, $patron, $sexo, $observacion, $chip)
-    {
-        $this->codigo = is_null($codigo)?$this->codigo:$codigo;
-        $this->organizacion = is_null($organizacion)?new Organizacion(NULL,NULL):$organizacion;
-        $this->dueño = is_null($dueño)?new Dueño(NULL,NULL,NULL,NULL,NULL,NULL):$dueño; 
+    public function __construct($id,$raza,$organizacion,$user,$chip,$nombre,$patron,$fechaNacimiento,$sexo,$observacion,$esterilizado,$estado,$created_at,$updated_at) {
+        $this->id = is_null($id)?$this->id:$id;
+        $this->organizacion = is_null($organizacion)?new Organizacion(NULL,NULL,NULL):$organizacion;
         $this->nombre = is_null($nombre)?$this->nombre:$nombre;
-        $this->edad = is_null($edad)?$this->edad:$edad;
-        $this->fechaInfreso = is_null($fechaInfreso)?$this->fechaInfreso:$fechaInfreso;
-        $this->especie = is_null($especie)?$this->especie:$especie;
-        $this->raza = is_null($raza)?$this->raza:$raza;
+        $this->user = is_null($user)?$this->nombre:$nombre;
+        $this->fechaNacimiento = is_null($fechaNacimiento)?$this->fechaNacimiento:$fechaNacimiento;
+        $this->raza = is_null($raza)?new Raza(NULL,NULL,NULL):$raza;
         $this->patron = is_null($patron)?$this->patron:$patron;
         $this->sexo = is_null($sexo)?$this->sexo:$sexo;
         $this->observacion = is_null($observacion)?$this->observacion:$observacion;
         $this->chip = is_null($chip)?$this->chip:$chip;
+        $this->esterilizado = is_null($esterilizado)?$this->esterilizado:$esterilizado;
+        $this->estado = is_null($estado)?$this->estado:$estado;
+        $this->created_at = is_null($created_at)?$this->created_at:$created_at;
+        $this->updated_at = is_null($updated_at)?$this->updated_at:$updated_at;
     }
 
-    public function getCodigo(){
-        return $this->codigo;
+
+    public function getID(){
+        return $this->id;
     }
-    public function getCodigoDueño(){
-        return $this->dueño->getCodigo();
-    }
-    public function getDueño()
-    {
-        return $this->dueño;
-    }
+    
     public function getCodigoOrganizacion(){
-        return $this->organizacion->getCodigo();
+        return $this->organizacion->getID();
     }
     public function getOrganizacion(){
         return $this->organizacion;
@@ -51,14 +50,8 @@ class Animal
     public function getNombre(){
         return $this->nombre;
     }
-    public function getEdad(){
-        return $this->edad;
-    }
-    public function getFechaIngreso(){
-        return $this->fechaInfreso;
-    }
-    public function getEspecie(){
-        return $this->especie;
+    public function getFechaNacimiento(){
+        return $this->fechaNacimiento;
     }
     public function getRaza(){
         return $this->raza;
@@ -74,6 +67,9 @@ class Animal
     }
     public function getChip(){
         return $this->chip;
+    }
+    public function getFechaIngreso(){
+        return $this->created_at;
     }
 
     public function setCodigo($codigo){

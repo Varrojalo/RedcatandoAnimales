@@ -1,14 +1,14 @@
 <?php
-class Organizacion
+include_once "Region.php";
+class Comuna
 {
     private $id;
-    private $rut;
+    private $region;
     private $nombre;
 
-    public function __construct($id, $rut, $nombre)
-    {
+    public function __construct($id,$region,$nombre) {
         $this->id = is_null($id)?$this->id:$id;
-        $this->rut = is_null($rut)?$this->rut:$rut;
+        $this->region = is_null($region)?new Region(NULL,NULL):$region;
         $this->nombre = is_null($nombre)?$this->nombre:$nombre;
     }
 
@@ -16,9 +16,9 @@ class Organizacion
     {
         return $this->id;
     }
-    public function getRut()
+    public function getRegion()
     {
-        return $this->rut;
+        return $this->region;
     }
     public function getNombre()
     {
@@ -28,9 +28,9 @@ class Organizacion
     {
         $this->id = $id;
     }
-    public function setRut($rut)
+    public function setRegion($region)
     {
-        $this->rut = $rut;
+        $this->region = $region;
     }
     public function setNombre($nombre)
     {

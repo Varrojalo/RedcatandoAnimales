@@ -19,7 +19,7 @@ class Conexion
     public function Conectar()
     {
         // Create connection
-        $conexion = new mysqli("localhost", "root", "", "redcate");
+        $conexion = new mysqli("localhost", "root", "", "redcate2");
         // Check connection
         if ($conexion->connect_error) {
             die("Conexion fallida: " . $conexion->connect_error);
