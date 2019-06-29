@@ -17,8 +17,6 @@ class AdoptanteDao
         $statement->execute();
         $result = $statement->get_result();
     
-        //$lista = array();
-    
         if ($result->num_rows > 0) {
             // almacena resultado en arreglo
             $fila = $result->fetch_assoc();

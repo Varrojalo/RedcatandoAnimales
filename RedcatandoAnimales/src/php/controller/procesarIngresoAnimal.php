@@ -119,7 +119,6 @@ $loader = require '../../../vendor/autoload.php';
             $animales = $aDao->buscarAnimalesOrganizacion($codOrg);
             foreach ($animales as $a) {
                 $adopDao = new AdopcionDao();
-                $adpDao = new AdoptanteDao();
                 $adopcion = $adopDao->buscarAdopcionAnimal($a->getID());  
 
                 //sexo "macho"
@@ -130,7 +129,7 @@ $loader = require '../../../vendor/autoload.php';
                     $sexo = "<i class='fas fa-venus fa-2x text-danger'><span class='d-none'>hembra</span></i>";
                 }
                 $razaID = $a->getRaza()->getID();
-                if($adpDao->buscarAdoptanteID($adopcion->getAdoptante()->getID()) == NULL)
+                if(is_null($adopcion))
                 {
                     echo "<tr><td class='d-none'>RESCATADO</td>";
                 }
