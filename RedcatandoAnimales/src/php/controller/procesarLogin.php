@@ -8,18 +8,20 @@
 </head>
 <body>
 <?php
-include_once '../model/dao/SocioDao.php';
-include_once '../model/dto/Socio.php';
+include_once '../model/dao/UserDao.php';
+include_once '../model/dto/User.php';
 
 $rut = $_GET["rut"];
 $pass = $_GET["pa"];
 
-$sDao = new SocioDao();
+$uDao = new UserDao();
 
-$socio = $sDao->buscarSocio($rut);
+$usuario = $uDao->buscarUsuario($rut);
 
-if ($socio->getPass() == $pass) { //IMPORTANTE AGREGAR ENCRIPCION
-    header("Location: ../view/history-animal.php?codOrg=".$socio->getCodigoOrganizacion());
+if ($usuario->getPass() == $pass) { //IMPORTANTE AGREGAR ENCRIPCION
+    session_start();
+    $_SESSION["usuario"]=$usuario;
+    header("Location: ../view/history-animal.php?codOrg= ORG-001");
 }else {
     header("Location: ../view/index.php");
 }

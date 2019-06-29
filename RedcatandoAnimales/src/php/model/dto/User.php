@@ -11,7 +11,7 @@ class User
     private $cargo;
     private $remember_token;
     
-    function __construct($id, $rut, $pass, $primerNombre, $segundoNombre, $apellidoPaterno, $apellidoMaterno, $cargo,$remember_token)
+    function __construct($id, $rut, $pass, $primerNombre, $segundoNombre, $apellidoPaterno, $apellidoMaterno, $cargo, $remember_token)
     {
         $this->id = is_null($id)?$this->id:$id;
         $this->pass = is_null($pass)?$this->pass:$pass;
