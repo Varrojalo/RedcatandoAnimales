@@ -71,6 +71,9 @@ class Animal
     public function getFechaIngreso(){
         return $this->created_at;
     }
+    public function getEstado(){
+        return $this->estado;
+    }
 
     public function setCodigo($codigo){
         $this->codigo = $codigo;

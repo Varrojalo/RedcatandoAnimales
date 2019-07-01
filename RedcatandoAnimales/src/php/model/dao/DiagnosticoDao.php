@@ -1,17 +1,19 @@
 <?php
 include_once '../model/Conexion.php';
 include_once '../model/dto/Animal.php';
-
+include_once '../model/dto/Diagnostico.php';
+include_once '../model/dao/AnimalDao.php';
+include_once '../model/dao/OrganizacionDao.php';
 class DiagnosticoDao
 {
-    function buscarDiagnosticosAnimal($animal)
+    function buscarDiagnosticosAnimal($animalID)
     {
          // Crea conexion
          $con = new Conexion();
          $conn = $con->Conectar();
-         $sql = "SELECT * FROM diagnostico WHERE codAnimal = ?";
+         $sql = "SELECT d.ID as DIAGNOSTICO_ID,d.ORGANIZACION_ID,d.NOMBRE,d.DESCRIPCION ,a.ID as AFECTA_ID,a.ANIMAL_ID,a.FECHA_DIAGNOSTICO FROM afecta as a , diagnostico as d WHERE a.DIAGNOSTICO_ID = d.ID and a.ANIMAL_ID=?;";
          $statement = $conn->prepare($sql);
-         $statement->bind_param('s',$animal->getCodigo());
+         $statement->bind_param('i',$animalID);
          $statement->execute();
          $result = $statement->get_result();
      
@@ -21,16 +23,20 @@ class DiagnosticoDao
              // almacena resultado en arreglo
              while($fila = $result->fetch_assoc()) {
                 $aDao = new AnimalDao(); 
-                $animal = $aDao->buscarAnimal($fila["codAnimal"]);
-                $lista[] = new Diagnostico($fila["cod"], $animal,$fila["descripcion"],$fila["tratamiento"],$fila["fecha"] );
+                $oDao = new OrganizacionDao();
+                $animal = $aDao->buscarAnimal($fila["ANIMAL_ID"]);
+                $organizacion = $oDao->buscarOrganizacion($fila["ORGANIZACION_ID"]);
+                $lista[] = new Diagnostico($fila["ID"],$organizacion,$animal,$fila["NOMBRE"],$fila["DESCRIPCION"]);
              }
              return $lista;
          } else {
-             echo "0 results";
              return null;
          }
          $con->Desconectar();
     }
+
+    
+
 }
 
 ?>

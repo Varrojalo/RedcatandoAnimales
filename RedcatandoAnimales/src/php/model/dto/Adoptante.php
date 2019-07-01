@@ -19,6 +19,7 @@ class Adoptante
         $this->id = is_null($id)?$this->id:$id;
         $this->comuna = is_null($comuna)?new Comuna(NULL,NULL,NULL):$comuna;
         $this->user = is_null($user)?new User(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,NULL):$user;
+        $this->rut = is_null($rut)?$this->rut:$rut;
         $this->primerNombre = is_null($primerNombre)?$this->primerNombre:$primerNombre;
         $this->segundoNombre = is_null($segundoNombre)?$this->segundoNombre:$segundoNombre;
         $this->apellidoPaterno = is_null($apellidoPaterno)?$this->apellidoPaterno:$apellidoPaterno;

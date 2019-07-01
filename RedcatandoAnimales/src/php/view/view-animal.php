@@ -14,11 +14,21 @@
 <body class="bg-primary">
     <?php
     include_once '../model/dao/AnimalDao.php';
-    include_once '../model/dao/DueñoDao.php';
+    include_once '../model/dao/AdopcionDao.php';
+    include_once '../model/dao/AdoptanteDao.php';
+    include_once '../model/dao/RazaDao.php';
+    include_once '../model/dao/EspecieDao.php';
+    include_once '../model/dao/RazaDao.php';
+    include_once '../model/dao/DiagnosticoDao.php';
+
     $codigo = $_GET["cod"];
     $aDao = new AnimalDao();
-    $dDao = new DueñoDao();
-    
+    $adopDao = new AdopcionDao();
+    $espDao = new EspecieDao();
+    $rDao = new RazaDao();
+    $adpDao = new AdoptanteDao();
+    $diagDao = new DiagnosticoDao();
+
     $animal = $aDao->buscarAnimal($codigo);
     ?>
     <div class="container container-fluid">
@@ -28,31 +38,45 @@
                     <h2>Ficha de Animal</h2>
                 </div>
                 <div class="col-md-2">
-                    <a href="update-animal.php?cod=<?php echo $animal->getCodigo()."&codOrg=".$animal->getCodigoOrganizacion();?>" class="btn btn-link text-muted font-weight-bold"><i class="fas fa-edit"></i> EDITAR</a>
+                    <a href="update-animal.php?cod=<?php echo $animal->getID()."&codOrg=".$animal->getCodigoOrganizacion();?>" class="btn btn-link text-muted font-weight-bold"><i class="fas fa-edit"></i> EDITAR</a>
                 </div>
                 <div class="col-md-2">
-                    <a href="adopt-animal.php?cod=<?php echo $animal->getCodigo()."&codOrg=".$animal->getCodigoOrganizacion();?>" class="btn btn-link text-muted font-weight-bold"><i class="fas fa-heart"></i> ADOPTAR</a>
+                    <a href="adopt-animal.php?cod=<?php echo $animal->getID()."&codOrg=".$animal->getCodigoOrganizacion();?>" class="btn btn-link text-muted font-weight-bold"><i class="fas fa-heart"></i> ADOPTAR</a>
                 </div>
             </div>
             <div class="dropdown-divider"></div>
             <?php
                 
-                $dueño = is_null($dDao->buscarDueño($animal->getCodigoDueño()))?new Dueño(NULL,NULL,NULL,NULL,NULL,NULL):$dDao->buscarDueño($animal->getCodigoDueño());
+                $adopcion = $adopDao->buscarAdopcionAnimal($animal->getID());
+                $especie = $espDao->buscarEspecieRazaID($animal->getRaza()->getID());
+                $raza = $rDao->buscarRazaID($animal->getRaza()->getID());
                 
+                $adoptanteID = is_null($adopcion)?"":$adopcion->getAdoptante()->getID();
+                
+                $adoptante = $adpDao->buscarAdoptanteID($adoptanteID);
+                $diagnosticos = $diagDao->buscarDiagnosticosAnimal($animal->getID());
                 echo "<div class='row'>";
                 echo "<div class='col-md-4'>";
-                if(is_null($dueño->getCodigo()))
+                if(is_null($adoptante->getID()))
                 {
                     echo "<h4 class='text-capitalized'>".$animal->getNombre()."</h4>";
                 }
                 else{
-                    echo "<h4>".$animal->getNombre()." <span class='badge badge-primary'>ADOPTADO</span></h4>";
+                    if($animal->getEstado() == "adoptado")
+                    {
+                        echo "<h4>".$animal->getNombre()." <span class='badge badge-primary text-uppercase'>".$animal->getEstado()."</span></h4>";
+                    }
+                    else if($animal->getEstado() == "adoptado")
+                    {
+                        echo "<h4>".$animal->getNombre()." <span class='badge badge-danger text-uppercase'>".$animal->getEstado()."</span></h4>";
+                    }
+                    
                 }
                 echo "</div>";
                 echo "<div class='col-md-3'>";
                 echo "<p><strong>Nº CHIP: </strong> ".$animal->getChip()."</p>";
                 echo "</div>";
-                if($animal->getEspecie()=="canino"){
+                if($especie->getNombre()=="canino"){
                     echo "<div class='col-md-2'>";
                     echo "<p><strong>Especie: </strong><span class='fas fa-dog fa-2x'></span></p>";
                     echo "</div>";
@@ -64,27 +88,27 @@
                 }
 
                 echo "<div class='col-md-3'>";
-                echo "<p><strong>Raza: </strong> ".$animal->getRaza()."</p>";
+                echo "<p><strong>Raza: </strong> ".$raza->getNombre()."</p>";
                 echo "</div>";
                 echo "</div>";
                 echo "<div class='row'>";
                     echo "<div class='col-md-6'>";
-                        echo "<p><strong>Edad: </strong> ".$animal->getEdad()."</p>";
+                        echo "<p><strong>Fecha de Nacimiento: </strong> ".$animal->getFechaNacimiento()."</p>";
                         echo "<p><strong>Patron: </strong> ".$animal->getPatron()."</p>";
                     echo "</div>";
                     echo "<div class='col-md-6'>";
                 if($animal->getSexo()=='h'){
-                        echo "<p><strong>Sexo: </strong><span class='fas fa-venus fa-2x'></span></p>";
+                        echo "<p><strong>Sexo: </strong><span class='fas fa-venus text-danger fa-2x'></span></p>";
                 }
                 else
                 {
-                        echo "<p><strong>Sexo: </strong><span class='fas fa-mars fa-2x'></span></p>";
+                        echo "<p><strong>Sexo: </strong><span class='fas fa-mars text-info fa-2x'></span></p>";
                 }
                         echo "<p><strong>Fecha de Ingreso: </strong>".$animal->getFechaIngreso()."</p>";
                     echo "</div>";
                 echo "</div>";
                 echo "<div class='row'>";
-                if($dueño->getCodigo() == NULL)
+                if(is_null($adopcion->getAdoptante()->getID()))
                 {
                     echo "<div class='col-md-12'>";
                     echo "<strong>Observacion: </strong>";
@@ -100,11 +124,47 @@
                     echo "<div class='col-md-6'>";
                     echo "<h5>Datos del dueño: </h5>";
                     echo "<div class='dropdown-divider'></div>";
-                    echo "<p><strong>RUT: </strong> <a class='btn btn-link' href='view-adoptant.php?cod=".$dueño->getCodigo()."'>".$dueño->getCodigo()."</a>";
-                    echo "<p><strong>Nombre: </strong> ".$dueño->getNombreCompleto()."</p>";
-                    echo "<p><strong>Puntuación: </strong> ".$dueño->getPuntuacionAdoptante()."</p>";
+                    echo "<p><strong>RUT: </strong> <a class='btn btn-link' href='view-adoptant.php?cod=".$adoptante->getID()."'>".$adoptante->getRut()."</a>";
+                    echo "<p><strong>Nombre: </strong> ".$adoptante->getNombreCompleto()."</p>";
+                    echo "<p><strong>Puntuación: </strong> ".$adoptante->getPuntuacion()."</p>";
                     echo "</div>";
                 }
+                echo "<div class='col-md-12'>";
+                echo "<div class='dropdown-divider'></div>";
+                echo "</div>";                
+                echo "<div class='col-md-9'>";
+                echo "<h3>Diagnosticos</h3>";
+                echo "</div>";
+                echo "<div class='col-md-3'>";
+                echo "<a class='btn btn-primary btn-block text-white'>NUEVO DIAGNOSTICO</a>";
+                echo "</div>";
+                echo "<div class='col-md-12 mt-3'>";
+                if(!empty($diagnosticos) || !is_null($diagnosticos))
+                {
+                    echo "<table class='border border-dark mb-5 table table-responsive-sm table-light table-striped table-borderless text-center'>";
+                    echo "<thead class='thead-dark'>";
+                    echo "<tr>";
+                    echo "<th scope='col'>NOMBRE</th>";
+                    echo "<th scope='col'>DESCRIPCIÓN</th>";
+                    echo "<th scope='col'>FECHA ADOPCION</th>";
+                    echo "</tr>";
+                    echo "</thead>";
+                    echo "<tbody class='table-body filasBody'>";
+                    foreach ($diagnosticos as $diag) {
+                        echo "<tr>";
+                        echo "<td scope='col'>NOMBRE</td>";
+                        echo "<td scope='col'>DESCRIPCIÓN</td>";
+                        echo "<td scope='col'>FECHA ADOPCION</td>";
+                        echo "</tr>";
+                    }
+                    echo "</tbody>";
+                    echo "</table>";
+                }
+                else
+                {
+                    echo "<p>NO HAY DIAGNOSTICOS DISPONIBLES</p>";
+                }
+                echo "</div>";
                 echo "</div>";
             ?>
             
@@ -115,24 +175,4 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
-
-<!-- <script>
-    <?php
-        echo "let puntuacion =".$dueño->getPuntuacionAdoptante().";";
-    ?>
-
-    $(document).ready(function () {
-        obtenerPuntuacion(puntuacion);
-    });
-
-    function obtenerPuntuacion(punt) {
-        let pctEstrellas = (punt/5)*100;
-
-        let pctEstrellasRedondeado = `${Math.round(pctEstrellas/10)*10}`;
-
-        $(".stars-inner").css("width", pctEstrellasRedondeado);
-    }
-
-
-</script> -->
 </html>

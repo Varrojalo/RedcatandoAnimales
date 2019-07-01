@@ -1,26 +1,32 @@
 <?php
 class Diagnostico
 {
-    private $codigo;
+    private $id;
+    private $organizacion;
     private $animal;
+    private $nombre;
     private $descripcion;
-    private $tratamiento;
-    private $fecha;
 
-    public function __construct($codigo, $animal, $descripcion,$tratamiento, $fecha)
+    public function __construct($id,$organizacion,$animal,$nombre,$descripcion)
     {
-        $this->codigo = is_null($codigo)?$this->codigo:$codigo;
-        $this->animal = is_null($animal)?new Animal(NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL):$animal;
+        $this->id = is_null($id)?$this->id:$id;
+        $this->animal = is_null($animal)?new Animal(NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL):$animal;
+        $this->organizacion = is_null($organizacion)?new Organizacion(NULL,NULL,NULL):$organizacion;
+        $this->nombre = is_null($nombre)?$this->nombre:$nombre;
         $this->descripcion = is_null($descripcion)?$this->descripcion:$descripcion;
-        $this->tratamiento = is_null($tratamiento)?$this->tratamiento:$tratamiento;
-        $this->fecha = is_null($fecha)?$this->fecha:$fecha;
     }
 
-    public function getCodigo(){
-        return $this->codigo;
+    public function getID(){
+        return $this->id;
     }
     public function getCodigoAnimal(){
-        return $this->animal->getCodigo();
+        return $this->animal->getID();
+    }
+    public function getCodigoOrganizacion(){
+        return $this->organizacion->getID();
+    }
+    public function getOrganizacion(){
+        return $this->organizacion;
     }
     public function getAnimal(){
         return $this->animal;
@@ -28,15 +34,9 @@ class Diagnostico
     public function getDescripcion(){
         return $this->descripcion;
     }
-    public function getTratamiento(){
-        return $this->tratamiento;
-    }
-    public function getFecha(){
-        return $this->fecha;
-    }
-    
-    
-    
+    public function getNombre(){
+        return $this->nombre;
+    }    
 
     public function setCodigo($codigo){
         $this->codigo = $codigo;
@@ -47,8 +47,8 @@ class Diagnostico
     public function setDescripcion($descripcion){
         $this->descripcion = $descripcion;
     }
-    public function setTratamiento($tratamiento){
-        $this->tratamiento = $tratamiento;
+    public function setNombre($nombre){
+        $this->nombre = $nombre;
     }
     public function setFecha($fecha){
         $this->fecha = $fecha;

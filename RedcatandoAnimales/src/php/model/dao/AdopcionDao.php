@@ -1,4 +1,5 @@
 <?php
+include_once '../model/Conexion.php';
 include_once '../model/dto/Adopcion.php';
 class AdopcionDao
 {
@@ -6,7 +7,7 @@ class AdopcionDao
     {
         $con = new Conexion();
         $conn = $con->Conectar();
-        $sql = "SELECT DISTINCT * FROM adopcion WHERE animal_id = ?";
+        $sql = "SELECT DISTINCT * FROM adopcion WHERE ANIMAL_ID = ?";
         $conn->set_charset("utf8");
         $statement = $conn->prepare($sql);
         $statement->bind_param('i',$animalID);
@@ -20,9 +21,13 @@ class AdopcionDao
             // almacena resultado en arreglo
             $fila = $result->fetch_assoc();
             $adopcion = new Adopcion(
+                $fila["ID"],
                 new Animal($fila["ANIMAL_ID"],NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
                 new Adoptante($fila["ADOPTANTE_ID"],NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
-                $fila["FECHA_ADOPCION"]);
+                new User($fila["USER_ID"],NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+                $fila["FECHA_ADOPCION"],
+                $fila["CANCELADA"]
+            );
             
             return $adopcion;
         } else {

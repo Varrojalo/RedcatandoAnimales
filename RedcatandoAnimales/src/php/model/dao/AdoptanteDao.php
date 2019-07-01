@@ -30,8 +30,7 @@ class AdoptanteDao
                 $fila["APELLIDO_PATERNO"],
                 $fila["APELLIDO_MATERNO"],
                 $fila["PUNTUACION"],
-                $fila["DIRECCION"]
-            );
+                $fila["DIRECCION"]);
             
             return $adoptante;
         } else {

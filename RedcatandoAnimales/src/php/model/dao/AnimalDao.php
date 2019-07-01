@@ -38,10 +38,10 @@ class AnimalDao
         // Crea conexion
         $con = new Conexion();
         $conn = $con->Conectar();
-        $sql = "SELECT * FROM animal WHERE cod = ?";
+        $sql = "SELECT * FROM animal WHERE ID = ?";
         $conn->set_charset("utf8");
         $statement = $conn->prepare($sql);
-        $statement->bind_param('s',$codigo);
+        $statement->bind_param('i',$codigo);
         $statement->execute();
         $result = $statement->get_result();
     
@@ -50,9 +50,7 @@ class AnimalDao
         if ($result->num_rows > 0) {
             // almacena resultado en arreglo
             $fila = $result->fetch_assoc();
-            $animal = new Animal($fila["cod"], new Organizacion($fila["codOrganizacion"],NULL), new Dueño($fila["codDueno"],NULL,NULL,NULL,NULL,NULL),
-                $fila["nombre"], $fila["edad"], $fila["fechaIngreso"], $fila["especie"], $fila["raza"], 
-                $fila["patron"], $fila["sexo"], $fila["observacion"], $fila["chip"]);
+            $animal = new Animal($fila["ID"], new Raza($fila["RAZA_ID"],NULL,NULL), new Organizacion($fila["ORGANIZACION_ID"],NULL,NULL), new User ($fila["USER_ID"],NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL), $fila["CHIP"], $fila["NOMBRE"], $fila["PATRON"], $fila["FECHA_NACIMIENTO"], $fila["SEXO"], $fila["OBSERVACION"], $fila["ESTERILIZADO"], $fila["ESTADO"], $fila["CREATED_AT"], $fila["UPDATED_AT"]);
             
             return $animal;
         } else {
