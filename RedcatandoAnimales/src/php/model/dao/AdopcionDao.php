@@ -3,7 +3,7 @@ include_once '../model/Conexion.php';
 include_once '../model/dto/Adopcion.php';
 class AdopcionDao
 {
-    function BuscarAdopcionAnimal($animalID)
+    function buscarAdopcionAnimal($animalID)
     {
         $con = new Conexion();
         $conn = $con->Conectar();

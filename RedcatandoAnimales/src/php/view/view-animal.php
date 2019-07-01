@@ -51,13 +51,14 @@
                 $especie = $espDao->buscarEspecieRazaID($animal->getRaza()->getID());
                 $raza = $rDao->buscarRazaID($animal->getRaza()->getID());
                 
-                $adoptanteID = is_null($adopcion)?"":$adopcion->getAdoptante()->getID();
+                $adoptanteID = is_null($adopcion)?NULL:$adopcion->getAdoptante()->getID();
                 
                 $adoptante = $adpDao->buscarAdoptanteID($adoptanteID);
+                
                 $diagnosticos = $diagDao->buscarDiagnosticosAnimal($animal->getID());
                 echo "<div class='row'>";
                 echo "<div class='col-md-4'>";
-                if(is_null($adoptante->getID()))
+                if($animal->getEstado()=="")
                 {
                     echo "<h4 class='text-capitalized'>".$animal->getNombre()."</h4>";
                 }
@@ -66,7 +67,7 @@
                     {
                         echo "<h4>".$animal->getNombre()." <span class='badge badge-primary text-uppercase'>".$animal->getEstado()."</span></h4>";
                     }
-                    else if($animal->getEstado() == "adoptado")
+                    else if($animal->getEstado() == "muerto")
                     {
                         echo "<h4>".$animal->getNombre()." <span class='badge badge-danger text-uppercase'>".$animal->getEstado()."</span></h4>";
                     }
@@ -108,7 +109,7 @@
                     echo "</div>";
                 echo "</div>";
                 echo "<div class='row'>";
-                if(is_null($adopcion->getAdoptante()->getID()))
+                if(is_null($adoptanteID))
                 {
                     echo "<div class='col-md-12'>";
                     echo "<strong>Observacion: </strong>";
@@ -146,15 +147,15 @@
                     echo "<tr>";
                     echo "<th scope='col'>NOMBRE</th>";
                     echo "<th scope='col'>DESCRIPCIÓN</th>";
-                    echo "<th scope='col'>FECHA ADOPCION</th>";
+                    echo "<th scope='col'>ACCIONES</th>";
                     echo "</tr>";
                     echo "</thead>";
                     echo "<tbody class='table-body filasBody'>";
                     foreach ($diagnosticos as $diag) {
                         echo "<tr>";
-                        echo "<td scope='col'>NOMBRE</td>";
-                        echo "<td scope='col'>DESCRIPCIÓN</td>";
-                        echo "<td scope='col'>FECHA ADOPCION</td>";
+                        echo "<td scope='col'>".$diag->getNombre()."</td>";
+                        echo "<td scope='col'>".$diag->getDescripcion()."</td>";
+                        echo "<td scope='col'><a href='../controller/procesarIngresoAnimal.php?btnEliminarAnimal=btnEliminarAnimal&cod=".$diag->getID()."' name='btnEliminarAnimal' class='btn btn-link text-danger fas fa-times-circle'></a></td>";
                         echo "</tr>";
                     }
                     echo "</tbody>";

@@ -22,7 +22,6 @@ class OrganizacionDao
             $IdOrganizacion = $fila["ORGANIZACION_ID"];
             return $IdOrganizacion;
         } else {
-            echo "0 results";
             return null;
         }
         $con->Desconectar();
@@ -33,22 +32,47 @@ class OrganizacionDao
         $con = new Conexion();
         $conn = $con->Conectar();
         $sql = "SELECT * FROM organizacion";
-        $result = $conn->query($sql);
+        $statement = $conn->prepare($sql);
+        $statement->bind_param('i', $user);
+        $statement->execute();
+        $result = $statement->get_result();
         $tabla = array();
     
         if ($result->num_rows > 0) {
             // almacena resultado en arreglo
             while($fila = $result->fetch_assoc()) {
-                $tabla[] = new Oganizacion($fila["cod"], $fila["nombre"]);
+                $tabla[] = new Organizacion($fila["ID"], $fila["RUT"], $fila["RAZON_SOCIAL"]);
             }
             return $tabla;
         } else {
-            echo "0 results";
             return null;
         }
         $con->Desconectar();
     }
+    function buscarOrganizacionID($id)
+    {
+        // Crea conexion
+        $con = new Conexion();
+        $conn = $con->Conectar();
+        $sql = "SELECT * FROM organizacion WHERE ID = ?";
+        $conn->set_charset("utf8");
+        $statement = $conn->prepare($sql);
+        $statement->bind_param('i',$id);
+        $statement->execute();
+        $result = $statement->get_result();
     
+        //$lista = array();
+    
+        if ($result->num_rows > 0) {
+            // almacena resultado en arreglo
+            $fila = $result->fetch_assoc();
+            $animal = new Organizacion($fila["ID"], $fila["RUT"], $fila["RAZON_SOCIAL"]);
+            return $animal;
+        } else {
+            return null;
+        }
+        $con->Desconectar();
+    }
     function eliminarOrganizacion($codigo)
     {
         $con = new Conexion();

@@ -12,6 +12,7 @@ class DiagnosticoDao
          $con = new Conexion();
          $conn = $con->Conectar();
          $sql = "SELECT d.ID as DIAGNOSTICO_ID,d.ORGANIZACION_ID,d.NOMBRE,d.DESCRIPCION ,a.ID as AFECTA_ID,a.ANIMAL_ID,a.FECHA_DIAGNOSTICO FROM afecta as a , diagnostico as d WHERE a.DIAGNOSTICO_ID = d.ID and a.ANIMAL_ID=?;";
+         $conn->set_charset("utf8");
          $statement = $conn->prepare($sql);
          $statement->bind_param('i',$animalID);
          $statement->execute();
@@ -25,8 +26,8 @@ class DiagnosticoDao
                 $aDao = new AnimalDao(); 
                 $oDao = new OrganizacionDao();
                 $animal = $aDao->buscarAnimal($fila["ANIMAL_ID"]);
-                $organizacion = $oDao->buscarOrganizacion($fila["ORGANIZACION_ID"]);
-                $lista[] = new Diagnostico($fila["ID"],$organizacion,$animal,$fila["NOMBRE"],$fila["DESCRIPCION"]);
+                $organizacion = $oDao->buscarOrganizacionID($fila["ORGANIZACION_ID"]);
+                $lista[] = new Diagnostico($fila["DIAGNOSTICO_ID"],$organizacion,$animal,$fila["NOMBRE"],$fila["DESCRIPCION"]);
              }
              return $lista;
          } else {

@@ -129,13 +129,21 @@ $loader = require '../../../vendor/autoload.php';
                     $sexo = "<i class='fas fa-venus fa-2x text-danger'><span class='d-none'>hembra</span></i>";
                 }
                 $razaID = $a->getRaza()->getID();
-                if(is_null($adopcion))
+                if($a->getEstado()=="")
                 {
-                    echo "<tr><td class='d-none'>RESCATADO</td>";
+                    echo "<tr><td class='d-none'>SIN ESTADO</td>";    
                 }
-                else
+                else if ($a->getEstado()=="adoptado")
                 {
-                    echo "<tr class='table-success'><td class='d-none'>ADOPTADO</td>";
+                    echo "<tr class='table-success'><td class='d-none'>".$a->getEstado()."</td>";
+                }
+                else if ($a->getEstado()=="muerto")
+                {
+                    echo "<tr class='table-danger'><td class='d-none'>".$a->getEstado()."</td>";
+                }
+                else if ($a->getEstado()=="diagnostico pendiente")
+                {
+                    echo "<tr class='table-info'><td class='d-none'>".$a->getEstado()."</td>";
                 }
                 echo "<th scope='row'><input type='checkbox' name='".$a->getID()."' id='".$a->getID()."'></th>";
                 echo "<td><a class='btn btn-link' href='view-animal.php?cod=".$a->getID()."&codOrg=".$a->getCodigoOrganizacion()."'>" . $a->getNombre(). "</a></td>";
