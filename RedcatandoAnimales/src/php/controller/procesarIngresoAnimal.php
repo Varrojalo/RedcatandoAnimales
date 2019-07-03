@@ -147,10 +147,10 @@ $loader = require '../../../vendor/autoload.php';
                 }
                 echo "<th scope='row'><input type='checkbox' name='".$a->getID()."' id='".$a->getID()."'></th>";
                 echo "<td><a class='btn btn-link' href='view-animal.php?cod=".$a->getID()."&codOrg=".$a->getCodigoOrganizacion()."'>" . $a->getNombre(). "</a></td>";
-                echo "<td>" . obtenerEdad($a->getFechaNacimiento()). "</td>";
+                echo "<td><span class='d-none'>Edad:".obtenerEdad($a->getFechaNacimiento())."</span>".obtenerEdad($a->getFechaNacimiento()). "</td>";
                 echo "<td>" . $rDao->buscarRazaId($razaID)->getNombre(). "</td>";
                 echo "<td>" . $sexo. "</td>";
-                echo "<td>" . $a->getFechaIngreso(). "</td>";
+                echo "<td><span class='d-none'>AÑO:".date("Y",strtotime($a->getFechaIngreso()))."</span><span class='d-none'>MES:".date("m",strtotime($a->getFechaIngreso()))."</span><span class='d-none'>DIA:".date("d",strtotime($a->getFechaIngreso()))."</span>". date("Y-m-d",strtotime($a->getFechaIngreso())). "</td>";
                 echo "<td>" . $a->getChip(). "</td>";
                 echo "<td>" . $a->getObservacion(). "</td>";
                 echo "<td><a href='../controller/procesarIngresoAnimal.php?btnEliminarAnimal=btnEliminarAnimal&cod=".$a->getID()."' name='btnEliminarAnimal' class='btn btn-link text-danger fas fa-times-circle'></a>|<a href='update-animal.php?cod=".$a->getID()."&codOrg=".$a->getCodigoOrganizacion()."' class='btn btn-link text-info fas fa-edit'></a></td>";
