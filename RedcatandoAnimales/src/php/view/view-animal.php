@@ -30,6 +30,15 @@
     $diagDao = new DiagnosticoDao();
 
     $animal = $aDao->buscarAnimal($codigo);
+    $adopcion = $adopDao->buscarAdopcionAnimal($animal->getID());
+    $especie = $espDao->buscarEspecieRazaID($animal->getRaza()->getID());
+    $raza = $rDao->buscarRazaID($animal->getRaza()->getID());
+    
+    $adoptanteID = is_null($adopcion)?NULL:$adopcion->getAdoptante()->getID();
+    
+    $adoptante = $adpDao->buscarAdoptanteID($adoptanteID);
+    
+    $diagnosticos = $diagDao->buscarDiagnosticosAnimal($animal->getID());
     ?>
     <div class="container container-fluid">
         <div class="my-3 shadow p-3 bg-white rounded">
@@ -46,16 +55,6 @@
             </div>
             <div class="dropdown-divider"></div>
             <?php
-                
-                $adopcion = $adopDao->buscarAdopcionAnimal($animal->getID());
-                $especie = $espDao->buscarEspecieRazaID($animal->getRaza()->getID());
-                $raza = $rDao->buscarRazaID($animal->getRaza()->getID());
-                
-                $adoptanteID = is_null($adopcion)?NULL:$adopcion->getAdoptante()->getID();
-                
-                $adoptante = $adpDao->buscarAdoptanteID($adoptanteID);
-                
-                $diagnosticos = $diagDao->buscarDiagnosticosAnimal($animal->getID());
                 echo "<div class='row'>";
                 echo "<div class='col-md-4'>";
                 if($animal->getEstado()=="" || $animal->getEstado()=="diagnostico pendiente")

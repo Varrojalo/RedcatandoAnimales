@@ -83,7 +83,7 @@
                             <?php
                                 foreach ($imagenes as $i) {
                                     echo "<div class='carousel-item active'>";
-                                    echo "<img src=".$i->getURL()." class='d-block w-100' alt='".$i->getDescripcion()."'>";
+                                    echo "<img src="."/RedcatandoAnimales/RedcatandoAnimales".$i->getURL()." class='d-block w-100' alt='".$i->getDescripcion()."'>";
                                     echo "</div>";
                                 }
                             ?>

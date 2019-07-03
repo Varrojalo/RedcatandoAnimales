@@ -23,11 +23,9 @@ class DiagnosticoDao
          if ($result->num_rows > 0) {
              // almacena resultado en arreglo
              while($fila = $result->fetch_assoc()) {
-                $aDao = new AnimalDao(); 
                 $oDao = new OrganizacionDao();
-                $animal = $aDao->buscarAnimal($fila["ANIMAL_ID"]);
                 $organizacion = $oDao->buscarOrganizacionID($fila["ORGANIZACION_ID"]);
-                $lista[] = new Diagnostico($fila["DIAGNOSTICO_ID"],$organizacion,$animal,$fila["NOMBRE"],$fila["DESCRIPCION"]);
+                $lista[] = new Diagnostico($fila["DIAGNOSTICO_ID"],$organizacion,$fila["NOMBRE"],$fila["DESCRIPCION"]);
              }
              return $lista;
          } else {
