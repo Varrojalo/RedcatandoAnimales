@@ -18,17 +18,21 @@ $pass = $_GET["pa"];
 $uDao = new UserDao();
 
 $usuario = $uDao->buscarUsuario($rut);
-
-if ($usuario->getPass() == $pass) { //IMPORTANTE AGREGAR ENCRIPCION
-    session_start();
-    $_SESSION["usuario"] = $usuario;
-    $oDao = new OrganizacionDao();
-    $org = $oDao->buscarOrganizacionUsuario($usuario->getID());
-    $_SESSION["org"] = $org;
-
-    header("Location: ../view/history-animal.php?codOrg=".$org);
-}else {
-    header("Location: ../view/index.php");
+try {
+    if ($usuario->getPass() == $pass) { //IMPORTANTE AGREGAR ENCRIPCION
+        session_start();
+        $_SESSION["usuario"] = $usuario;
+        $oDao = new OrganizacionDao();
+        $org = $oDao->buscarOrganizacionUsuario($usuario->getID());
+        $_SESSION["org"] = $org;
+    
+        header("Location: ../view/history-animal.php?codOrg=".$org);
+    }else {
+        header("Location: ../view/index.php");
+    }
+} catch (\Throwable $th) {
+    header("Location: ../view/error.php");
 }
 ?>
 </body>
+</html>

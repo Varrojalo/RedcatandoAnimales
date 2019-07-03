@@ -39,9 +39,9 @@
                         <select name="listaRazas" id="listaRazas" class="form-control">
                         </select>
                     </div>
-                    <div class="form-group col-md-1">
-                        <label for="">Edad: </label>
-                        <input type="number" name="edad" class="form-control" min="1" max="30" value="10">
+                    <div class="form-group col-md-3">
+                        <label for="fechaNacimiento">Fecha de Nacimiento: </label>
+                        <input type="date" name="fechaNacimiento" max="<?php echo date("Y-m-d");?>" class="form-control">
                     </div>
                     <div class="form-group col-md-2">
                         <label for="">Sexo: </label>
@@ -54,7 +54,7 @@
                             <label class="custom-control-label" for="radioHembra">Hembra</label>
                         </div>
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                         <label for="listaPatrones">Patron: </label>
                         <select name="listaPatrones" id="listaPatrones" class="form-control">
                             <option value="RAYAS_ATIGRADO">RAYAS/ATIGRADO</option>

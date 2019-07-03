@@ -95,6 +95,14 @@
                     echo "<div class='col-md-6'>";
                         echo "<p><strong>Fecha de Nacimiento: </strong> ".$animal->getFechaNacimiento()."</p>";
                         echo "<p><strong>Patron: </strong> ".$animal->getPatron()."</p>";
+                        if($animal->isEsterilizado()==1)
+                        {
+                            echo "<p><strong>Esterilizado: </strong> <span class='fas fa-check-circle fa-2x text-success'></span></p>";
+                        }
+                        else
+                        {
+                            echo "<p><strong>Esterilizado: </strong> <span class='fas fa-times-circle fa-2x text-danger'></span></p>";
+                        }
                     echo "</div>";
                     echo "<div class='col-md-6'>";
                 if($animal->getSexo()=='h'){

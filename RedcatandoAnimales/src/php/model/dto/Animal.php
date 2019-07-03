@@ -74,6 +74,9 @@ class Animal
     public function getEstado(){
         return $this->estado;
     }
+    public function isEsterilizado(){
+        return $this->esterilizado;
+    }
 
     public function setCodigo($codigo){
         $this->codigo = $codigo;

@@ -30,7 +30,7 @@ $loader = require '../../../vendor/autoload.php';
             } catch (Exception $e) {
                 die('Error modificando producto: '.$e->getMessage());
             }
-            header("Location: ../view/history-animal.php?codOrg=".$_GET["organizacion"]."");
+            header("Location: ../view/history-animal.php?codOrg=".$_GET["codOrg"]."");
         }
         else if(isset($_POST["btnActualizarAnimal"]))
         {
@@ -46,16 +46,16 @@ $loader = require '../../../vendor/autoload.php';
             date_default_timezone_set('mst');
 
             $fechaActual = date("Y-m-j");
-            $org = new Organizacion($_POST["organizacion"],NULL);
+            $org = new Organizacion($_POST["organizacion"],NULL,NULL);
+            $user = new User(0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
             $dueño = new Dueño(NULL,NULL,NULL,NULL,NULL,NULL);
             $nombre = $_POST["nombre"];
-            $edad = $_POST["edad"];
-            $especie = $_POST["listaEspecies"];
+            $fechaNacimiento = $_POST["fechaNacimiento"];
             $raza = $_POST["listaRazas"];
             $patron = $_POST["listaPatrones"];
             $sexo = $_POST["radioSexo"];
             $obs = $_POST["observacion"];
-            $animal = new Animal(generarCodigo(),$org,$dueño,$nombre,$edad,$fechaActual,$especie,$raza,$patron,$sexo,$obs,0);
+            $animal = new Animal(0,$raza,$org,$user,0,$nombre,$patron,$fechaNacimiento,$sexo,$obs,false,"",date("today"),NULL);
             $aDao = new AnimalDao();
             $aDao->agregarAnimal($animal);
 
@@ -99,17 +99,6 @@ $loader = require '../../../vendor/autoload.php';
             foreach ($selec as $codAnim) {
                 eliminarAnimal($codAnim);
             }
-        }
-
-
-        function generarCodigo()
-        {
-            $prefijo = "ANM-";
-            for ($i=0; $i < 6 ; $i++) { 
-                $randInt = random_int(0,9);
-                $prefijo = $prefijo.$randInt;
-            }
-            return $prefijo;
         }
 
         function llenarTabla($codOrg)

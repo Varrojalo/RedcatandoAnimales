@@ -99,9 +99,9 @@ class AnimalDao
     {
         $con = new Conexion();
         $conn = $con->Conectar();
-        $sql = "DELETE FROM animal WHERE cod = ?";
+        $sql = "DELETE FROM animal WHERE ID = ?";
         $statement = $conn->prepare($sql);
-        $statement->bind_param("s",$codigo);
+        $statement->bind_param("i",$codigo);
         $statement->execute();
         $statement->close();
         $con->Desconectar();
