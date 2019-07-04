@@ -55,8 +55,12 @@
         </div>
         <section class="container container-fluid">
             <form action="../controller/procesarIngresoAnimal.php">
-                <div class="form-row">
-                    <div id="filter-container" class="form-group col-md-12">   
+                <div class="row">
+                    <div id="filter-container" class="form-group col-md-3">   
+                    </div>
+                    <div class="form-group col-md-9">
+                        <button type="button" class="btn btn-light " data-container="body" data-toggle="popover" data-placement="right">
+                            <i class="fas fa-info-circle text-dark fa-2x"></i></button>
                     </div>
                 </div>
                 
@@ -123,14 +127,20 @@
 <script>
     $(document).ready(function () {
         $('.table').footable({
-		"filtering": {
-			"filters": [{
-				"name": "nombre",
-				"query": "nombre",
-				"columns": ["nombre"]
-			}]
-		}
-	});
+            "filtering": {
+                "filters": [{
+                    "name": "nombre",
+                    "query": "nombre",
+                    "columns": ["nombre"]
+                }]
+            }
+	    });
+        $('[data-toggle="popover"]').popover({
+            trigger: 'hover',
+            title: '<h5> Leyendas de estados</h5>',
+            content: '<p><i class="fas fa-square fa-lg text-success"></i> = ADOPTADO.</p><p><i class="fas fa-square fa-lg text-danger"></i> = FALLECIDO.</p><p><i class="fas fa-square fa-lg text-info"></i> = DIAGNOSTICO PENDIENTE.</p>',
+            html: true
+    });
     });
 </script>
 </html>
