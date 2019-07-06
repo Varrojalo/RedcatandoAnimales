@@ -46,6 +46,10 @@ class User
     public function getApellidoMaterno(){
         return $this->apellidoMaterno;
     }
+    public function getNombreCompleto()
+    {
+        return $this->primerNombre." ".$this->segundoNombre." ".$this->apellidoPaterno." ".$this->apellidoMaterno;
+    }
     public function getCargo(){
         return $this->cargo;
     }

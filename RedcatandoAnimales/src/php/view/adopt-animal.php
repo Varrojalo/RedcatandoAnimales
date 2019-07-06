@@ -14,11 +14,13 @@
 <body class="bg-primary">
     <?php
         include_once '../model/dao/AnimalDao.php';
+        include_once '../model/dao/RazaDao.php';
         include_once '../model/dto/Animal.php';
         
         $aDao = new AnimalDao();
-        
+        $rDao = new RazaDao();
         $animal = $aDao->buscarAnimal($_GET["cod"]);
+        $raza = $rDao->buscarRazaId($animal->getRaza()->getID());
     ?>
     <div class="container container-fluid">
         <div class="my-3 shadow p-3 bg-white rounded">
@@ -35,7 +37,7 @@
                         ?>
                         </div>
                         <div class="form-group row">
-                            <label for="chio" class="col-sm-4 col-form-label font-weight-bold">Nº CHIP:</label>
+                            <label for="chip" class="col-sm-4 col-form-label font-weight-bold">Nº CHIP:</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="chip" name="chip" value="<?php echo $animal->getChip();?>">
                             </div>
@@ -53,9 +55,9 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="edad" class="col-sm-4 col-form-label font-weight-bold">Edad:</label>
+                            <label for="edad" class="col-sm-4 col-form-label font-weight-bold">Fecha de Nacimiento:</label>
                             <div class="col-sm-8">
-                                <input type="text" readonly class="form-control-plaintext" id="edad" name="edad" value="<?php echo $animal->getEdad();?>">
+                                <input type="text" readonly class="form-control-plaintext" id="edad" name="edad" value="<?php echo $animal->getFechaNacimiento();?>">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -65,15 +67,9 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="especie" class="col-sm-4 col-form-label font-weight-bold">Especie:</label>
-                            <div class="col-sm-8">
-                                <input type="text" readonly class="form-control-plaintext" id="especie" name="especie" value="<?php echo $animal->getEspecie();?>">
-                            </div>
-                        </div>
-                        <div class="form-group row">
                             <label for="raza" class="col-sm-4 col-form-label font-weight-bold">Raza:</label>
                             <div class="col-sm-8">
-                                <input type="text" readonly class="form-control-plaintext" id="raza" name="raza" value="<?php echo $animal->getRaza();?>">
+                                <input type="text" readonly class="form-control-plaintext" id="raza" name="raza" value="<?php echo $raza->getID();?>">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -94,6 +90,18 @@
                             <?php
                                 include "../controller/procesarIngresoAnimal.php";
                                 llenarListaAdoptantes();
+                            ?>
+
+                            </select>
+                        </div>
+                        <h5>Socio</h5>
+                        <div class='dropdown-divider'></div>
+                        <div class="form-group">
+                            <label for="listaUsuarios">Socios registrados:</label>
+                            <select name="listaUsuarios" id="listaUsuarios" class="form-control">
+                            
+                            <?php
+                                llenarListaUsuarios($_GET["codOrg"]);
                             ?>
 
                             </select>

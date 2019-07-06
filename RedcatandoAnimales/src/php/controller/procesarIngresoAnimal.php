@@ -12,9 +12,9 @@ $loader = require '../../../vendor/autoload.php';
 <body>
     <?php
         include_once '../model/dao/AnimalDao.php';
-        include_once '../model/dao/DueñoDao.php';
-        include_once '../model/dao/RazaDao.php';
         include_once '../model/dao/AdoptanteDao.php';
+        include_once '../model/dao/RazaDao.php';
+        include_once '../model/dao/UserDao.php';
         include_once '../model/dao/AdopcionDao.php';
         include_once '../model/dto/Animal.php';
 
@@ -88,10 +88,8 @@ $loader = require '../../../vendor/autoload.php';
 
         function adoptarAnimal()
         {
-            $aDao = new AnimalDao();
-         
-
-            $aDao->adoptarAnimal($_POST["codigo"],$_POST["listaAdoptantes"]);
+            $aDao = new AdopcionDao();
+            $aDao->adoptarAnimal($_POST["codigo"],$_POST["listaAdoptantes"],$_POST["listaUsuarios"]);
             header("Location: ../view/history-animal.php?codOrg=".$_POST["organizacion"]."");
         }
         function EliminarAnimalesSelec()
@@ -147,14 +145,23 @@ $loader = require '../../../vendor/autoload.php';
             }
         }
 
+        function llenarListaUsuarios($codOrg)
+        {
+            $uDao = new UserDao();
+            $usuarios = $uDao->buscarUsuariosOrganizacion($codOrg);
+
+            foreach ($usuarios as $u) {
+                echo "<option value=".$u->getID().">".$u->getNombreCompleto()."</option>";
+            }
+        }
         function llenarListaAdoptantes()
         {
-            $dDao = new DueñoDao();
-            $adoptantes = $dDao->buscarDueños();
+            $adoDao = new AdoptanteDao();
+            $adoptantes = $adoDao->buscarAdoptantes();
 
             foreach ($adoptantes as $a) {
-                echo "<option value=".$a->getCodigo().">".$a->getNombreCompleto()."</option>";
-                echo $a->getCodigo();
+                echo "<option value=".$a->getID().">".$a->getNombreCompleto()."</option>";
+                echo $a->getID();
             }
         }
         function obtenerEdad($fechaNacimiento)

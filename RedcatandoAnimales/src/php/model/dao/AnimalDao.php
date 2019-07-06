@@ -50,7 +50,7 @@ class AnimalDao
         if ($result->num_rows > 0) {
             // almacena resultado en arreglo
             $fila = $result->fetch_assoc();
-            $animal = new Animal($fila["ID"], new Raza($fila["RAZA_ID"],NULL,NULL), new Organizacion($fila["ORGANIZACION_ID"],NULL,NULL), new User ($fila["USER_ID"],NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL), $fila["CHIP"], $fila["NOMBRE"], $fila["PATRON"], $fila["FECHA_NACIMIENTO"], $fila["SEXO"], $fila["OBSERVACION"], $fila["ESTERILIZADO"], $fila["ESTADO"], $fila["CREATED_AT"], $fila["UPDATED_AT"]);
+            $animal = new Animal($fila["ID"], new Raza($fila["RAZA_ID"],NULL,NULL), new Organizacion($fila["ORGANIZACION_ID"],NULL,NULL), new User ($fila["USER_ID"],NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),$fila["URL"] , $fila["CHIP"], $fila["NOMBRE"], $fila["PATRON"], $fila["FECHA_NACIMIENTO"], $fila["SEXO"], $fila["OBSERVACION"], $fila["ESTERILIZADO"], $fila["ESTADO"], $fila["CREATED_AT"], $fila["UPDATED_AT"]);
             
             return $animal;
         } else {
@@ -64,7 +64,7 @@ class AnimalDao
         // Crea conexion
         $con = new Conexion();
         $conn = $con->Conectar();
-        $sql = "SELECT * FROM animal WHERE organizacion_id = ?";
+        $sql = "SELECT * FROM animal WHERE ORGANIZACION_ID = ?";
         $conn->set_charset("utf8");
         $statement = $conn->prepare($sql);
         $statement->bind_param('i',$codOrganizacion);
@@ -76,7 +76,23 @@ class AnimalDao
         if ($result->num_rows > 0) {
             // almacena resultado en arreglo
             while($fila = $result->fetch_assoc()) {
-                $lista[] = new Animal($fila["ID"], new Raza($fila["RAZA_ID"],NULL,NULL), new Organizacion($fila["ORGANIZACION_ID"],NULL,NULL), new User ($fila["USER_ID"],NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL), $fila["CHIP"], $fila["NOMBRE"], $fila["PATRON"], $fila["FECHA_NACIMIENTO"], $fila["SEXO"], $fila["OBSERVACION"], $fila["ESTERILIZADO"], $fila["ESTADO"], $fila["CREATED_AT"], $fila["UPDATED_AT"]);
+                $lista[] = new Animal(
+                    $fila["ID"], 
+                    new Raza($fila["RAZA_ID"],NULL,NULL), 
+                    new Organizacion($fila["ORGANIZACION_ID"],NULL,NULL), 
+                    new User ($fila["USER_ID"],NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL), 
+                    $fila["URL"],
+                    $fila["CHIP"], 
+                    $fila["NOMBRE"], 
+                    $fila["PATRON"], 
+                    $fila["FECHA_NACIMIENTO"], 
+                    $fila["SEXO"], 
+                    $fila["OBSERVACION"], 
+                    $fila["ESTERILIZADO"], 
+                    $fila["ESTADO"], 
+                    $fila["CREATED_AT"], 
+                    $fila["UPDATED_AT"]
+                );
             }
             return $lista;
         } else {
@@ -155,14 +171,14 @@ class AnimalDao
         $statement->execute();
         $con->Desconectar();
     }
-    public function adoptarAnimal($codAnimal,$codDueño)
+    public function cambiarEstado($estado,$animalID)
     {
         $con = new Conexion();
         $conn = $con->Conectar();
-        $sql = "UPDATE animal SET codDueno=? WHERE cod=?";
+        $sql = "UPDATE animal SET ESTADO=? WHERE ID=?";
         $statement = $conn->prepare($sql);
 
-        $statement->bind_param('ss',$codDueño,$codAnimal);
+        $statement->bind_param('si',$estado,$animalID);
         $statement->execute();
         $con->Desconectar();
     }

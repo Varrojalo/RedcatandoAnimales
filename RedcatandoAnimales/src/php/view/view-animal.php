@@ -33,12 +33,12 @@
     $adopcion = $adopDao->buscarAdopcionAnimal($animal->getID());
     $especie = $espDao->buscarEspecieRazaID($animal->getRaza()->getID());
     $raza = $rDao->buscarRazaID($animal->getRaza()->getID());
-    
     $adoptanteID = is_null($adopcion)?NULL:$adopcion->getAdoptante()->getID();
-    
     $adoptante = $adpDao->buscarAdoptanteID($adoptanteID);
-    
     $diagnosticos = $diagDao->buscarDiagnosticosAnimal($animal->getID());
+
+    $fechaIngreso = new DateTime($animal->getFechaIngreso());
+
     ?>
     <div class="container container-fluid">
         <div class="my-3 shadow p-3 bg-white rounded">
@@ -56,7 +56,10 @@
             <div class="dropdown-divider"></div>
             <?php
                 echo "<div class='row'>";
-                echo "<div class='col-md-4'>";
+                echo "<div class='col-md-6'>";
+                echo "<img class='img-fluid' src='/RedcatandoAnimales/RedcatandoAnimales".$animal->getURL()."'>";
+                echo "</div>";
+                echo "<div class='col-md-6'>";
                 if($animal->getEstado()=="" || $animal->getEstado()=="diagnostico pendiente")
                 {
                     echo "<h4 class='text-capitalized'>".$animal->getNombre()."</h4>";
@@ -72,39 +75,24 @@
                     }
                     
                 }
-                echo "</div>";
-                echo "<div class='col-md-3'>";
                 echo "<p><strong>Nº CHIP: </strong> ".$animal->getChip()."</p>";
-                echo "</div>";
                 if($especie->getNombre()=="canino"){
-                    echo "<div class='col-md-2'>";
                     echo "<p><strong>Especie: </strong><span class='fas fa-dog fa-2x'></span></p>";
-                    echo "</div>";
                 }
                 else{
-                    echo "<div class='col-md-2'>";
                     echo "<p><strong>Especie: </strong><span class='fas fa-cat fa-2x'></span></p>";
-                    echo "</div>";
                 }
-
-                echo "<div class='col-md-3'>";
                 echo "<p><strong>Raza: </strong> ".$raza->getNombre()."</p>";
-                echo "</div>";
-                echo "</div>";
-                echo "<div class='row'>";
-                    echo "<div class='col-md-6'>";
-                        echo "<p><strong>Fecha de Nacimiento: </strong> ".$animal->getFechaNacimiento()."</p>";
-                        echo "<p><strong>Patron: </strong> ".$animal->getPatron()."</p>";
-                        if($animal->isEsterilizado()==1)
-                        {
-                            echo "<p><strong>Esterilizado: </strong> <span class='fas fa-check-circle fa-2x text-success'></span></p>";
-                        }
-                        else
-                        {
-                            echo "<p><strong>Esterilizado: </strong> <span class='fas fa-times-circle fa-2x text-danger'></span></p>";
-                        }
-                    echo "</div>";
-                    echo "<div class='col-md-6'>";
+                echo "<p><strong>Fecha de Nacimiento: </strong> ".$animal->getFechaNacimiento()."</p>";
+                echo "<p><strong>Patron: </strong> ".$animal->getPatron()."</p>";
+                if($animal->isEsterilizado()==1)
+                {
+                    echo "<p><strong>Esterilizado: </strong> <span class='fas fa-check-circle fa-2x text-success'></span></p>";
+                }
+                else
+                {
+                    echo "<p><strong>Esterilizado: </strong> <span class='fas fa-times-circle fa-2x text-danger'></span></p>";
+                }
                 if($animal->getSexo()=='h'){
                         echo "<p><strong>Sexo: </strong><span class='fas fa-venus text-danger fa-2x'></span></p>";
                 }
@@ -112,30 +100,36 @@
                 {
                         echo "<p><strong>Sexo: </strong><span class='fas fa-mars text-info fa-2x'></span></p>";
                 }
-                        echo "<p><strong>Fecha de Ingreso: </strong>".$animal->getFechaIngreso()."</p>";
-                    echo "</div>";
+                        echo "<p><strong>Fecha de Ingreso: </strong>".$fechaIngreso->format("Y-m-d")."</p>";
+                echo "</div>";
                 echo "</div>";
                 echo "<div class='row'>";
-                if(is_null($adoptanteID))
+                if(empty($animal->getObservacion())&&is_null($adoptanteID))
                 {
-                    echo "<div class='col-md-12'>";
-                    echo "<strong>Observacion: </strong>";
-                    echo "<p>".$animal->getObservacion()."</p>";
-                    echo "</div>";
                 }
                 else
                 {
-                    echo "<div class='col-md-6'>";
-                    echo "<strong>Observacion: </strong>";
-                    echo "<p>".$animal->getObservacion()."</p>";
-                    echo "</div>";
-                    echo "<div class='col-md-6'>";
-                    echo "<h5>Datos del dueño: </h5>";
-                    echo "<div class='dropdown-divider'></div>";
-                    echo "<p><strong>RUT:</strong><a class='btn btn-link' href='view-adoptant.php?cod=".$adoptante->getID()."'>".$adoptante->getRut()."</a>";
-                    echo "<p><strong>Nombre: </strong> ".$adoptante->getNombreCompleto()."</p>";
-                    echo "<p><strong>Puntuación: </strong> ".$adoptante->getPuntuacion()."</p>";
-                    echo "</div>";
+                    if(is_null($adoptanteID))
+                    {
+                        echo "<div class='col-md-12'>";
+                        echo "<strong>Observacion: </strong>";
+                        echo "<p>".$animal->getObservacion()."</p>";
+                        echo "</div>";
+                    }
+                    else
+                    {
+                        echo "<div class='col-md-6'>";
+                        echo "<strong>Observacion: </strong>";
+                        echo "<p>".$animal->getObservacion()."</p>";
+                        echo "</div>";
+                        echo "<div class='col-md-6'>";
+                        echo "<h5>Datos del dueño: </h5>";
+                        echo "<div class='dropdown-divider'></div>";
+                        echo "<p><strong>RUT:</strong><a class='btn btn-link' href='view-adoptant.php?cod=".$adoptante->getID()."'>".$adoptante->getRut()."</a>";
+                        echo "<p><strong>Nombre: </strong> ".$adoptante->getNombreCompleto()."</p>";
+                        echo "<p><strong>Puntuación: </strong> ".$adoptante->getPuntuacion()."</p>";
+                        echo "</div>";
+                    }
                 }
                 echo "<div class='col-md-12'>";
                 echo "<div class='dropdown-divider'></div>";

@@ -1,6 +1,7 @@
 <?php
 include_once '../model/Conexion.php';
 include_once '../model/dto/Adopcion.php';
+include_once '../model/dao/AnimalDao.php';
 class AdopcionDao
 {
     function buscarAdopcionAnimal($animalID)
@@ -22,7 +23,7 @@ class AdopcionDao
             $fila = $result->fetch_assoc();
             $adopcion = new Adopcion(
                 $fila["ID"],
-                new Animal($fila["ANIMAL_ID"],NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+                new Animal($fila["ANIMAL_ID"],NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
                 new Adoptante($fila["ADOPTANTE_ID"],NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
                 new User($fila["USER_ID"],NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
                 $fila["FECHA_ADOPCION"],
@@ -35,7 +36,19 @@ class AdopcionDao
         }
         $con->Desconectar();
     }
-
+    public function adoptarAnimal($animalID,$adoptanteID,$userID)
+    {
+        $con = new Conexion();
+        $conn = $con->Conectar();
+        $aDao = new AnimalDao();
+        $aDao->cambiarEstado("adoptado",$animalID);
+        $sql = "INSERT INTO adopcion (ANIMAL_ID, ADOPTANTE_ID, USER_ID, FECHA_ADOPCION) VALUES (?,?,?,?);";
+        $statement = $conn->prepare($sql);
+        $fechaActual = date('Y-m-d');
+        $statement->bind_param('iiis',$animalID,$adoptanteID,$userID,$fechaActual);
+        $statement->execute();        
+        $con->Desconectar();
+    }
 }
 
 ?>
