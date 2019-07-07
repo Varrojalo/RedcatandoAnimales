@@ -127,26 +127,24 @@ class AnimalDao
     {
         $con = new Conexion();
         $conn = $con->Conectar();
-        $sql = "INSERT INTO animal (cod, codDueno, codOrganizacion, nombre, edad, fechaIngreso, especie, raza, patron, sexo, observacion, chip) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO animal (RAZA_ID, ORGANIZACION_ID, USER_ID, URL, CHIP, NOMBRE, PATRON, FECHA_NACIMIENTO, SEXO, OBSERVACION, CREATED_AT) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
         $statement = $conn->prepare($sql);
+        $conn->set_charset("utf8");
 
-        $dDao = new DueñoDao();
-        $dueño = $dDao->buscarDueño($animal->getCodigoDueño());
-
-        $cod = $animal->getCodigo();
-        $codDueño = $animal->getCodigoDueño();
-        $codOrg = $animal->getCodigoOrganizacion();
+        $chip = $animal->getChip();
+        $codOrg = $animal->getOrganizacion()->getID();
+        $user = $animal->getUserID();
+        echo $user;
         $nombre = $animal->getNombre();
-        $edad = $animal->getEdad();
-        $fechaIngreso = $animal->getFechaIngreso();
-        $especie = $animal->getEspecie();
+        $url = $animal->getURL();
+        $fechaNacimiento = $animal->getFechaNacimiento();
+        $fechaIngreso = date("Y-m-d");
         $raza = $animal->getRaza();
         $patron = $animal->getPatron();
         $sexo = $animal->getSexo();
         $obs = $animal->getObservacion();
-        $chip =$animal->getChip();
 
-        $statement->bind_param('ssssissssssi',$cod,$codDueño,$codOrg,$nombre,$edad,$fechaIngreso,$especie,$raza,$patron,$sexo,$obs,$chip);
+        $statement->bind_param('iiisissssss',$raza,$codOrg,$user,$url,$chip,$nombre,$patron,$fechaNacimiento,$sexo,$obs,$fechaIngreso);
         $statement->execute();
         $con->Desconectar();
     }

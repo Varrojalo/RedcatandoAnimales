@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -170,7 +171,7 @@
                 echo "</div>";
             ?>
             
-            <a href="history-animal.php?codOrg=<?php echo $_GET["codOrg"]?>" class="btn btn-link">ATRAS</a>
+            <a href="history-animal.php" class="btn btn-link">ATRAS</a>
         </div>
     </div>
 </body>

@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,7 +57,7 @@
             <h2>Lista de Animales</h2>
         </div>
         <section class="container container-fluid">
-            <form action="../controller/procesarIngresoAnimal.php">
+            <form method="POST" action="../controller/procesarIngresoAnimal.php">
                 <div class="row">
                     <div id="filter-container" class="form-group col-md-3">   
                     </div>
@@ -81,8 +84,10 @@
                     </thead>
                     <tbody class="table-body filasBody">
                         <?php
+                            
                             include '../controller/procesarIngresoAnimal.php';
-                            llenarTabla($_GET["codOrg"]);
+                        
+                            llenarTabla($_SESSION["org"]);
                         ?>
                     </tbody>
                 </table>
@@ -92,7 +97,7 @@
                     <div class="container container-fluid">                  
                         <button class="btn btn-primary float-right" type="button" data-toggle="modal" data-target="#exampleModal">ELIMINAR SELECCIONADOS</button>
                         <?php
-                            echo "<a href='register-animal.php?codOrg=".$_GET["codOrg"]."' class='btn btn-link float-right'>NUEVO ANIMAL</a>"
+                            echo "<a href='register-animal.php' class='btn btn-link float-right'>NUEVO ANIMAL</a>"
                         ?>
                     </div>
                 </section>
@@ -111,7 +116,7 @@
                             <p><strong>¿Esta seguro/a que quiere continuar?</strong></p>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">ACEPTAR</button>
+                            <button type="submit" name="btnEliminarSeleccionados" id="btnEliminarSeleccionados" class="btn btn-primary">ACEPTAR</button>
                         </div>
                 </div>
             </form>

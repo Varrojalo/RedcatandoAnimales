@@ -1,4 +1,5 @@
 ﻿<?php
+
 $loader = require '../../../vendor/autoload.php';
 ?>
 <!DOCTYPE html>
@@ -22,6 +23,7 @@ $loader = require '../../../vendor/autoload.php';
         if(isset($_POST["btnAgregarAnimal"]))
         {
             ingresarAnimal();
+            header("Location: ../view/history-animal.php");
         }
         else if(isset($_GET["btnEliminarAnimal"]))
         {
@@ -30,7 +32,7 @@ $loader = require '../../../vendor/autoload.php';
             } catch (Exception $e) {
                 die('Error modificando producto: '.$e->getMessage());
             }
-            header("Location: ../view/history-animal.php?codOrg=".$_GET["codOrg"]."");
+            header("Location: ../view/history-animal.php");
         }
         else if(isset($_POST["btnActualizarAnimal"]))
         {
@@ -40,26 +42,34 @@ $loader = require '../../../vendor/autoload.php';
         {
             adoptarAnimal();
         }
-
+        else if(isset($_POST["btnEliminarSeleccionados"]))
+        {
+            try {
+                EliminarAnimalesSelec();
+            } catch (Exception $e) {
+                die('Error modificando producto: '.$e->getMessage());
+            }
+            header("Location: ../view/history-animal.php");
+        }
+        
         function ingresarAnimal()
         {
             date_default_timezone_set('mst');
-
+            //SubirArchivo($_FILES["animalURL"],$_POST["organizacion"]);
             $fechaActual = date("Y-m-j");
-            $org = new Organizacion($_POST["organizacion"],NULL,NULL);
-            $user = new User(0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
-            $dueño = new Dueño(NULL,NULL,NULL,NULL,NULL,NULL);
+            $organizacion = new Organizacion($_POST["organizacion"],NULL,NULL);
+            $user = new User($_POST["usuario"],NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
             $nombre = $_POST["nombre"];
             $fechaNacimiento = $_POST["fechaNacimiento"];
             $raza = $_POST["listaRazas"];
             $patron = $_POST["listaPatrones"];
             $sexo = $_POST["radioSexo"];
             $obs = $_POST["observacion"];
-            $animal = new Animal(0,$raza,$org,$user,0,$nombre,$patron,$fechaNacimiento,$sexo,$obs,false,"",date("today"),NULL);
+            $url = "/res/imgs/orgs/".$organizacion->getID()."/animals/".$_POST["animalURL"];
+            $chip = $_POST["chip"];
+            $animal = new Animal(0,$raza,$organizacion,$user,$url,$chip,$nombre,$patron,$fechaNacimiento,$sexo,$obs,false,"",date("Y-m-d"),NULL);
             $aDao = new AnimalDao();
             $aDao->agregarAnimal($animal);
-
-            header("Location: ../view/history-animal.php?codOrg=".$_POST["organizacion"]."");
         }
 
         function eliminarAnimal()
@@ -94,8 +104,11 @@ $loader = require '../../../vendor/autoload.php';
         }
         function EliminarAnimalesSelec()
         {
-            foreach ($selec as $codAnim) {
-                eliminarAnimal($codAnim);
+            if(!empty($_POST["animSelec"]))
+            {
+                foreach ($_POST["animSelec"] as $codAnim) {
+                    eliminarAnimal($codAnim);
+                }
             }
         }
 
@@ -132,7 +145,7 @@ $loader = require '../../../vendor/autoload.php';
                 {
                     echo "<tr class='table-info'><td class='d-none'>".$a->getEstado()."</td>";
                 }
-                echo "<th scope='row'><input type='checkbox' name='".$a->getID()."' id='".$a->getID()."'></th>";
+                echo "<th scope='row'><input type='checkbox' name='animSelec' id='animSelec' value='".$a->getID()."'></th>";
                 echo "<td><a class='btn btn-link' href='view-animal.php?cod=".$a->getID()."&codOrg=".$a->getCodigoOrganizacion()."'>" . $a->getNombre(). "</a></td>";
                 echo "<td><span class='d-none'>Edad:".obtenerEdad($a->getFechaNacimiento())."</span>".obtenerEdad($a->getFechaNacimiento()). "</td>";
                 echo "<td>" . $rDao->buscarRazaId($razaID)->getNombre(). "</td>";
@@ -142,6 +155,59 @@ $loader = require '../../../vendor/autoload.php';
                 echo "<td>" . $a->getObservacion(). "</td>";
                 echo "<td><a href='../controller/procesarIngresoAnimal.php?btnEliminarAnimal=btnEliminarAnimal&cod=".$a->getID()."' name='btnEliminarAnimal' class='btn btn-link text-danger fas fa-times-circle'></a>|<a href='update-animal.php?cod=".$a->getID()."&codOrg=".$a->getCodigoOrganizacion()."' class='btn btn-link text-info fas fa-edit'></a></td>";
                 echo "</tr>";
+            }
+        }
+
+        function SubirArchivo($url,$organizacion)
+        {
+
+            if(isset($_POST["btnEvidencia"]))
+            {
+                $target_dir = "/res/imgs/orgs/".$organizacion."/animals/evidencias/";
+            }
+            else if($_POST["btnAgregarAnimal"])
+            {
+                $target_dir = "/res/imgs/orgs/".$organizacion."/animals/";
+            }
+            else
+            {
+                $target_dir = "/res/imgs/orgs/".$organizacion."/";
+            }
+            
+            $target_file = $target_dir . basename($url["name"]);
+            $uploadOk = 1;
+            $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+            // Check if image file is a actual image or fake image
+            if(isset($_POST["submit"])) {
+                $check = getimagesize($url["tmp_name"]);
+                if($check !== false) {
+                    echo "File is an image - " . $check["mime"] . ".";
+                    $uploadOk = 1;
+                } else {
+                    echo "File is not an image.";
+                    $uploadOk = 0;
+                }
+            }
+            // Check if file already exists
+            if (file_exists($target_file)) {
+                echo "Sorry, file already exists.";
+                $uploadOk = 0;
+            }
+            // Check file size
+            if ($url["size"] > 500000) {
+                echo "Sorry, your file is too large.";
+                $uploadOk = 0;
+            }
+            // Check if $uploadOk is set to 0 by an error
+            if ($uploadOk == 0) {
+                echo "Sorry, your file was not uploaded.";
+            // if everything is ok, try to upload file
+            } else {
+                if (move_uploaded_file($url["tmp_name"], $target_file)) {
+                    echo "The file ". basename($url["name"]). " has been uploaded.";
+                } else {
+                    echo "Sorry, there was an error uploading your file.";
+                }
             }
         }
 

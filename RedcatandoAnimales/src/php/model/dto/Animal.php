@@ -1,5 +1,5 @@
 <?php
-include_once "Dueño.php";
+include_once "User.php";
 include_once "Organizacion.php";
 include_once "Raza.php";
 class Animal
@@ -25,7 +25,7 @@ class Animal
         $this->id = is_null($id)?$this->id:$id;
         $this->organizacion = is_null($organizacion)?new Organizacion(NULL,NULL,NULL):$organizacion;
         $this->nombre = is_null($nombre)?$this->nombre:$nombre;
-        $this->user = is_null($user)?$this->nombre:$nombre;
+        $this->user = is_null($user)?new User(NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL):$user;
         $this->url = is_null($url)?$this->url:$url;
         $this->fechaNacimiento = is_null($fechaNacimiento)?$this->fechaNacimiento:$fechaNacimiento;
         $this->raza = is_null($raza)?new Raza(NULL,NULL,NULL):$raza;
@@ -76,7 +76,10 @@ class Animal
     {
         return $this->user;
     }
-
+    public function getUserID()
+    {
+        return $this->user->getID();
+    }
     public function setUser($user)
     {
         $this->user = $user;

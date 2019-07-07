@@ -25,7 +25,7 @@ try {
         $oDao = new OrganizacionDao();
         $org = $oDao->buscarOrganizacionUsuario($usuario->getID());
         $_SESSION["org"] = $org;
-    
+        $_SESSION["usuarioID"] = $usuario->getID();
         header("Location: ../view/history-animal.php?codOrg=".$org);
     }else {
         header("Location: ../view/index.php");
