@@ -153,19 +153,21 @@ class AnimalDao
     {
         $con = new Conexion();
         $conn = $con->Conectar();
-        $sql = "UPDATE animal SET nombre=?, edad=?, fechaIngreso=?, patron=?, sexo=?, observacion=?, chip=? WHERE cod=?";
+        $sql = "UPDATE animal SET CHIP=?, NOMBRE=?, PATRON=?, FECHA_NACIMIENTO=?, SEXO=?,OBSERVACION=?, ESTERILIZADO=?, ESTADO=?, UPDATED_AT=? WHERE ID=?;";
         $statement = $conn->prepare($sql);
 
-        $cod = $animal->getCodigo();
+        $id = $animal->getID();
         $nombre = $animal->getNombre();
-        $edad = $animal->getEdad();
-        $fechaIngreso = $animal->getFechaIngreso();
+        $fechaNacimiento = $animal->getFechaNacimiento();
         $patron = $animal->getPatron();
         $sexo = $animal->getSexo();
         $obs = $animal->getObservacion();
         $chip =$animal->getChip();
+        $esterilizado = $animal->isEsterilizado();
+        $estado = $animal->getEstado();
+        $fechaActualizado = $animal->getFechaActualizado();
 
-        $statement->bind_param('sissssis',$nombre,$edad,$fechaIngreso,$patron,$sexo,$obs,$chip,$cod);
+        $statement->bind_param('issssssssi',$chip,$nombre,$patron,$fechaNacimiento,$sexo,$obs,$esterilizado,$estado,$fechaActualizado,$id);
         $statement->execute();
         $con->Desconectar();
     }

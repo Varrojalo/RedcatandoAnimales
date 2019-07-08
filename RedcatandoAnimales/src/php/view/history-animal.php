@@ -32,19 +32,19 @@ session_start();
                         <span class="nav-link active">Animales</span>
                     </li>
                     <li class="navbar-text">
-                        <a href="/src/html/history-campaign.html" class="nav-link">Campañas</a>
+                        <a href="#" class="nav-link">Campañas</a>
                     </li>
                     <li class="navbar-text">
-                        <a href="/src/html/history-adoptant.html" class="nav-link">Adoptantes</a>
+                        <a href="#" class="nav-link">Adoptantes</a>
                     </li>
                     <li class="navbar-text">
-                        <a href="/src/html/history-volunteer" class="nav-link">Voluntarios</a>
+                        <a href="#" class="nav-link">Voluntarios</a>
                     </li>
                     <li class="navbar-text">
-                        <a href="/src/html/downloads.html" class="nav-link">Documentos</a>
+                        <a href="#" class="nav-link">Documentos</a>
                     </li>
                     <li class="navbar-text">
-                        <a href="" class="nav-link">
+                        <a href="../controller/logout.php" class="nav-link">
                             <i class="nav-link fas fa-sign-out-alt "></i>
                         </a>
                     </li>

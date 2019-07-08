@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,25 +87,15 @@
                         <div class="form-group">
                             <label for="listaAdoptantes">Adoptantes registrados:</label>
                             <select name="listaAdoptantes" id="listaAdoptantes" class="form-control">
-                            
                             <?php
                                 include "../controller/procesarIngresoAnimal.php";
                                 llenarListaAdoptantes();
                             ?>
-
                             </select>
                         </div>
-                        <h5>Socio</h5>
-                        <div class='dropdown-divider'></div>
-                        <div class="form-group">
+                        <div class="form-group d-none">
                             <label for="listaUsuarios">Socios registrados:</label>
-                            <select name="listaUsuarios" id="listaUsuarios" class="form-control">
-                            
-                            <?php
-                                llenarListaUsuarios($_GET["codOrg"]);
-                            ?>
-
-                            </select>
+                            <input type="text" readonly name="usuario" id="usuario" class="form-control" value="<?php echo $_SESSION["usuarioID"];?>">
                         </div>
                         
                         <div class="d-none">

@@ -85,22 +85,25 @@ $loader = require '../../../vendor/autoload.php';
             $aDao = new AnimalDao();
             $animal = $aDao->buscarAnimal($_POST["codigo"]);
             $animal->setNombre($_POST["nombre"]);
-            $animal->setEdad($_POST["edad"]);
+            $animal->setFechaNacimiento($_POST["fechaNacimiento"]);
             $animal->setPatron($_POST["listaPatrones"]);
             $animal->setSexo($_POST["radioSexo"]);
             $animal->setChip($_POST["chip"]);
+            $animal->setEstado($_POST["fallecido"]);
+            $animal->setEsterilizado($_POST["esterilizado"]);
             $animal->setObservacion($_POST["observacion"]);
-
+            $fechaActualizado = date('Y-m-d H:i:s');
+            $animal->setFechaActualizado($fechaActualizado);
 
             $aDao->actualizarAnimal($animal);
-            header("Location: ../view/history-animal.php?codOrg=".$_POST["organizacion"]."");
+            header("Location: ../view/history-animal.php");
         }
 
         function adoptarAnimal()
         {
             $aDao = new AdopcionDao();
-            $aDao->adoptarAnimal($_POST["codigo"],$_POST["listaAdoptantes"],$_POST["listaUsuarios"]);
-            header("Location: ../view/history-animal.php?codOrg=".$_POST["organizacion"]."");
+            $aDao->adoptarAnimal($_POST["codigo"],$_POST["listaAdoptantes"],$_POST["usuario"]);
+            header("Location: ../view/history-animal.php");
         }
         function EliminarAnimalesSelec()
         {
@@ -145,15 +148,15 @@ $loader = require '../../../vendor/autoload.php';
                 {
                     echo "<tr class='table-info'><td class='d-none'>".$a->getEstado()."</td>";
                 }
-                echo "<th scope='row'><input type='checkbox' name='animSelec' id='animSelec' value='".$a->getID()."'></th>";
-                echo "<td><a class='btn btn-link' href='view-animal.php?cod=".$a->getID()."&codOrg=".$a->getCodigoOrganizacion()."'>" . $a->getNombre(). "</a></td>";
-                echo "<td><span class='d-none'>Edad:".obtenerEdad($a->getFechaNacimiento())."</span>".obtenerEdad($a->getFechaNacimiento()). "</td>";
-                echo "<td>" . $rDao->buscarRazaId($razaID)->getNombre(). "</td>";
-                echo "<td>" . $sexo. "</td>";
-                echo "<td><span class='d-none'>AÑO:".date("Y",strtotime($a->getFechaIngreso()))."</span><span class='d-none'>MES:".date("m",strtotime($a->getFechaIngreso()))."</span><span class='d-none'>DIA:".date("d",strtotime($a->getFechaIngreso()))."</span>". date("Y-m-d",strtotime($a->getFechaIngreso())). "</td>";
-                echo "<td>" . $a->getChip(). "</td>";
-                echo "<td>" . $a->getObservacion(). "</td>";
-                echo "<td><a href='../controller/procesarIngresoAnimal.php?btnEliminarAnimal=btnEliminarAnimal&cod=".$a->getID()."' name='btnEliminarAnimal' class='btn btn-link text-danger fas fa-times-circle'></a>|<a href='update-animal.php?cod=".$a->getID()."&codOrg=".$a->getCodigoOrganizacion()."' class='btn btn-link text-info fas fa-edit'></a></td>";
+                echo "<th scope='row' class='align-middle'><input type='checkbox' name='animSelec' id='animSelec' value='".$a->getID()."'></th>";
+                echo "<td class='align-middle'><a class='btn btn-link' href='view-animal.php?cod=".$a->getID()."&codOrg=".$a->getCodigoOrganizacion()."'>" . $a->getNombre(). "</a></td>";
+                echo "<td class='align-middle'><span class='d-none'>Edad:".obtenerEdad($a->getFechaNacimiento())."</span>".obtenerEdad($a->getFechaNacimiento()). "</td>";
+                echo "<td class='align-middle'>" . $rDao->buscarRazaId($razaID)->getNombre(). "</td>";
+                echo "<td class='align-middle'>" . $sexo. "</td>";
+                echo "<td class='align-middle'><span class='d-none'>AÑO:".date("Y",strtotime($a->getFechaIngreso()))."</span><span class='d-none'>MES:".date("m",strtotime($a->getFechaIngreso()))."</span><span class='d-none'>DIA:".date("d",strtotime($a->getFechaIngreso()))."</span>". date("Y-m-d",strtotime($a->getFechaIngreso())). "</td>";
+                echo "<td class='align-middle'>" . $a->getChip(). "</td>";
+                echo "<td class='align-middle'>" . $a->getObservacion(). "</td>";
+                echo "<td class='align-middle'><a href='../controller/procesarIngresoAnimal.php?btnEliminarAnimal=btnEliminarAnimal&cod=".$a->getID()."' name='btnEliminarAnimal' class='btn btn-link text-danger fas fa-times-circle'></a>|<a href='update-animal.php?cod=".$a->getID()."&codOrg=".$a->getCodigoOrganizacion()."' class='btn btn-link text-info fas fa-edit'></a></td>";
                 echo "</tr>";
             }
         }

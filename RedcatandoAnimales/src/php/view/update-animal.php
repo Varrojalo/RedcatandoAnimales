@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +32,7 @@
                     </div>
                     <div class="form-group d-none">
                         <?php
-                            echo "<input type='text' value=".$_GET["codOrg"]." name='organizacion' class='form-control' readonly>";
+                            echo "<input type='text' value=".$_SESSION["organizacion"]." name='organizacion' class='form-control' readonly>";
                         ?>
                     </div>
                     <div class="form-group d-none">
@@ -43,13 +44,21 @@
                         <label for="">CHIP: </label>
                         <input type="number" name="chip" value="<?php echo $animal->getChip();?>" class="form-control" min="1">
                     </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-3">
-                        <label for="">Edad: </label>
-                        <input type="number" name="edad" value="<?php echo $animal->getEdad();?>" class="form-control" min="1" max="30" value="10">
+                    <div class="col-md-2 mb-3">
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" name="esterilizado" id="esterilizado" value=1>
+                            <label class="custom-control-label" for="esterilizado">¿Esterelizado?</label>
+                        </div>
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" name="fallecido" id="fallecido" value="muerto">
+                            <label class="custom-control-label" for="fallecido">¿Fallecido?</label>
+                        </div>
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-4">
+                        <label for="">Fecha de Nacimiento: </label>
+                        <input type="date" name="fechaNacimiento" value="<?php echo $animal->getFechaNacimiento();?>" class="form-control" min="1" max="30" value="10">
+                    </div>
+                    <div class="form-group col-md-2">
                         <label for="">Sexo: </label>
                         <div class="custom-control custom-radio">
                             <input type="radio" class="custom-control-input" id="radioMacho" value="m" name="radioSexo">
@@ -60,7 +69,7 @@
                             <label class="custom-control-label" for="radioHembra">Hembra</label>
                         </div>
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                         <label for="listaPatrones">Patron: </label>
                         <select name="listaPatrones" id="listaPatrones" class="form-control">
                             <option value="RAYAS_ATIGRADO">RAYAS/ATIGRADO</option>
@@ -68,13 +77,12 @@
                             <option value="PUNTAS_DE_OTRO_COLOR">PUNTAS DE OTRO COLOR</option>
                             <option value="BANDAS_FRANJAS">BANDAS O FRANJAS</option>
                             <option value="JASPEADO">JASPEADO</option>
-                            <option value="SOMBREADO_LEONADO">SOMBREADO/LEONADO</option>
+                            <option value="SOMBdanger"READO_LEONADO">SOMBREADO/LEONADO</option>
                             <option value="NINGUNO">NINGUNO</option>
                             <option value="NO_SE_SEÑALA">NO SE SEÑALA</option>
                         </select>
                     </div>
                 </div>
-
                 <div class="form-group">
                     <label for="">Observacion: </label>
                     <textarea name="observacion" id="" placeholder="<?php echo $animal->getObservacion();?>" rows="9" class="form-control"></textarea>
