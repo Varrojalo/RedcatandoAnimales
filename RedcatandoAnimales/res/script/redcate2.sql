@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-06-2019 a las 00:29:07
+-- Tiempo de generación: 08-07-2019 a las 02:21:01
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 7.1.11
 
@@ -37,6 +37,14 @@ CREATE TABLE `adopcion` (
   `CANCELADA` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `adopcion`
+--
+
+INSERT INTO `adopcion` (`ID`, `ANIMAL_ID`, `ADOPTANTE_ID`, `USER_ID`, `FECHA_ADOPCION`, `CANCELADA`) VALUES
+(1, 1, 1, 4, '2019-06-28', NULL),
+(13, 3, 4, 4, '2019-07-06', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -61,36 +69,36 @@ CREATE TABLE `adoptante` (
 --
 
 INSERT INTO `adoptante` (`ID`, `COMUNA_ID`, `USER_ID`, `RUT`, `PRIMER_NOMBRE`, `SEGUNDO_NOMBRE`, `APELLIDO_PATERNO`, `APELLIDO_MATERNO`, `PUNTUACION`, `DIRECCION`) VALUES
-(1, 16, 1, '24033337-6', 'Luis', NULL, 'Sanchez', 'Huerta', 5, 'pje. ecuador interior 1642'),
-(2, 16, 1, '12211706-5', 'Evelyn', NULL, 'Alegre', 'Reyes', 5, 'pocor 771'),
-(3, 16, 1, '18825344-k', 'Italo', NULL, 'Cancino', 'Gomez', 5, 'pje. volcan lejia'),
-(4, 16, 1, '18183513-3', 'Charity', NULL, 'Larrondo', 'Duran', 5, 'pje. vitacura 2895'),
-(5, 16, 1, '15014611-9', 'Nury', NULL, 'Ferrer', 'Nieves', 5, 'pje. petrohué norte 3764'),
-(6, 16, 1, '18233644-0', 'Nicole', NULL, 'Salas', 'Tapia', 5, 'pje tawar tiqum 2882 *'),
-(7, 16, 1, '17370784-3', 'Rosa', NULL, 'Silva', 'Marquez', 5, 'pje. las canteras 971'),
-(8, 16, 1, '15011111-0', 'Alexander', NULL, 'Argomedo', 'Godoy', 5, 'calle guillermo cavour 2935'),
-(9, 16, 1, '14588967-7', 'Vitalia', NULL, 'Avendaño', 'Vazquez', 5, 'gabriela mistral 951'),
-(10, 16, 1, '12549939-2', 'Lorena', NULL, 'Rubio', 'Ruiz', 5, 'arturo prat 2183'),
-(11, 16, 1, '14585274-9', 'Juan', NULL, 'Colque', 'Marin', 5, 'pedro de valdivia 2271 *'),
-(12, 16, 1, '16258502-9', 'Jessica', NULL, 'Jaime', 'Plaza', 5, 'eleuterio ramirez 3052'),
-(13, 16, 1, '17530382-0', 'Daleska', NULL, 'Valdes', 'Amaya', 5, 'pje frutillar 3325'),
-(14, 16, 1, '10105579-5', 'Nelson', NULL, 'Guerra', '', 5, 'federico errazuriz 3413'),
-(15, 16, 1, '8618635-7', 'Rosa', NULL, 'Silva', 'Castro', 5, 'vasco de gama 3431'),
-(16, 16, 1, '24345821-8', 'Rosario', NULL, 'Coro', 'Machicado', 5, 'tocopilla 2394'),
-(17, 16, 1, '15981946-9', 'Angelica', NULL, 'Cortes', 'Cortes', 5, 'pje kara pampa 3222 *'),
-(18, 16, 1, '19295581-4', 'Sebastian', NULL, 'Guerrero', 'Galleguillos', 5, 'conde duque 1753'),
-(19, 16, 1, '13529697-k', 'Lilian', NULL, 'Diaz', 'Gonzalez', 5, 'cabana 1981'),
-(20, 16, 1, '11605230-k', 'Alex', NULL, 'Herrera', 'Castillo', 5, 'pje blanco 2236'),
-(21, 16, 1, '18826138-8', 'Paulina', NULL, 'Neira', 'Castillo', 5, 'piedra grande 2048'),
-(22, 16, 1, '15969677-4', 'Carolina', NULL, 'Ayala', 'Pinto', 5, 'aldunate 420'),
-(23, 16, 1, '20347261-7', 'Luis', NULL, 'Galleguillos', 'Zaraza', 5, 'frei bonn poniente 3406'),
-(24, 16, 1, '19825412-6', 'Gissel', NULL, 'Castillo', '', 5, 'pedro de valdivia 360'),
-(25, 16, 1, '13216626-9', 'Cesar', NULL, 'Bugueño', 'Segovia', 5, 'quetena oriente 2881'),
-(26, 16, 1, '13744203-5', 'Domenica', NULL, 'Alvarez', 'Alvarez', 5, 'federico errazuriz 3826'),
-(27, 16, 1, '24881259-1', 'Andrea', NULL, 'Rivera', '', 5, 'pje awana 2816'),
-(28, 16, 1, '16259438-9', 'Veronica', NULL, 'Castro', 'Schalper', 5, 'balmaceda 1504 dpto M05'),
-(29, 16, 1, '15768967-3', 'Paulina', NULL, 'Rojas', '', 5, 'pje frutillar 3039'),
-(30, 16, 1, '5140880-2', 'Urbelinda', NULL, 'Gaete', '', 5, 'balmaceda 4482');
+(1, 16, NULL, '24033337-6', 'Luis', NULL, 'Sanchez', 'Huerta', 5, 'pje. ecuador interior 1642'),
+(2, 16, NULL, '12211706-5', 'Evelyn', NULL, 'Alegre', 'Reyes', 5, 'pocor 771'),
+(3, 16, NULL, '18825344-k', 'Italo', NULL, 'Cancino', 'Gomez', 5, 'pje. volcan lejia'),
+(4, 16, NULL, '18183513-3', 'Charity', NULL, 'Larrondo', 'Duran', 5, 'pje. vitacura 2895'),
+(5, 16, NULL, '15014611-9', 'Nury', NULL, 'Ferrer', 'Nieves', 5, 'pje. petrohué norte 3764'),
+(6, 16, NULL, '18233644-0', 'Nicole', NULL, 'Salas', 'Tapia', 5, 'pje tawar tiqum 2882 *'),
+(7, 16, NULL, '17370784-3', 'Rosa', NULL, 'Silva', 'Marquez', 5, 'pje. las canteras 971'),
+(8, 16, NULL, '15011111-0', 'Alexander', NULL, 'Argomedo', 'Godoy', 5, 'calle guillermo cavour 2935'),
+(9, 16, NULL, '14588967-7', 'Vitalia', NULL, 'Avendaño', 'Vazquez', 5, 'gabriela mistral 951'),
+(10, 16, NULL, '12549939-2', 'Lorena', NULL, 'Rubio', 'Ruiz', 5, 'arturo prat 2183'),
+(11, 16, NULL, '14585274-9', 'Juan', NULL, 'Colque', 'Marin', 5, 'pedro de valdivia 2271 *'),
+(12, 16, NULL, '16258502-9', 'Jessica', NULL, 'Jaime', 'Plaza', 5, 'eleuterio ramirez 3052'),
+(13, 16, NULL, '17530382-0', 'Daleska', NULL, 'Valdes', 'Amaya', 5, 'pje frutillar 3325'),
+(14, 16, NULL, '10105579-5', 'Nelson', NULL, 'Guerra', '', 5, 'federico errazuriz 3413'),
+(15, 16, NULL, '8618635-7', 'Rosa', NULL, 'Silva', 'Castro', 5, 'vasco de gama 3431'),
+(16, 16, NULL, '24345821-8', 'Rosario', NULL, 'Coro', 'Machicado', 5, 'tocopilla 2394'),
+(17, 16, NULL, '15981946-9', 'Angelica', NULL, 'Cortes', 'Cortes', 5, 'pje kara pampa 3222 *'),
+(18, 16, NULL, '19295581-4', 'Sebastian', NULL, 'Guerrero', 'Galleguillos', 5, 'conde duque 1753'),
+(19, 16, NULL, '13529697-k', 'Lilian', NULL, 'Diaz', 'Gonzalez', 5, 'cabana 1981'),
+(20, 16, NULL, '11605230-k', 'Alex', NULL, 'Herrera', 'Castillo', 5, 'pje blanco 2236'),
+(21, 16, NULL, '18826138-8', 'Paulina', NULL, 'Neira', 'Castillo', 5, 'piedra grande 2048'),
+(22, 16, NULL, '15969677-4', 'Carolina', NULL, 'Ayala', 'Pinto', 5, 'aldunate 420'),
+(23, 16, NULL, '20347261-7', 'Luis', NULL, 'Galleguillos', 'Zaraza', 5, 'frei bonn poniente 3406'),
+(24, 16, NULL, '19825412-6', 'Gissel', NULL, 'Castillo', '', 5, 'pedro de valdivia 360'),
+(25, 16, NULL, '13216626-9', 'Cesar', NULL, 'Bugueño', 'Segovia', 5, 'quetena oriente 2881'),
+(26, 16, NULL, '13744203-5', 'Domenica', NULL, 'Alvarez', 'Alvarez', 5, 'federico errazuriz 3826'),
+(27, 16, NULL, '24881259-1', 'Andrea', NULL, 'Rivera', '', 5, 'pje awana 2816'),
+(28, 16, NULL, '16259438-9', 'Veronica', NULL, 'Castro', 'Schalper', 5, 'balmaceda 1504 dpto M05'),
+(29, 16, NULL, '15768967-3', 'Paulina', NULL, 'Rojas', '', 5, 'pje frutillar 3039'),
+(30, 16, NULL, '5140880-2', 'Urbelinda', NULL, 'Gaete', '', 5, 'balmaceda 4482');
 
 -- --------------------------------------------------------
 
@@ -105,6 +113,14 @@ CREATE TABLE `afecta` (
   `FECHA_DIAGNOSTICO` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `afecta`
+--
+
+INSERT INTO `afecta` (`ID`, `ANIMAL_ID`, `DIAGNOSTICO_ID`, `FECHA_DIAGNOSTICO`) VALUES
+(1, 13, 2, '2018-02-10 00:00:00'),
+(2, 13, 1, '2018-02-10 00:00:00');
+
 -- --------------------------------------------------------
 
 --
@@ -116,6 +132,7 @@ CREATE TABLE `animal` (
   `RAZA_ID` int(11) NOT NULL,
   `ORGANIZACION_ID` int(11) NOT NULL,
   `USER_ID` int(11) NOT NULL,
+  `URL` varchar(100) DEFAULT '/res/imgs/default_animal.jpg',
   `CHIP` bigint(20) DEFAULT NULL,
   `NOMBRE` varchar(32) NOT NULL,
   `PATRON` varchar(32) NOT NULL,
@@ -132,22 +149,22 @@ CREATE TABLE `animal` (
 -- Volcado de datos para la tabla `animal`
 --
 
-INSERT INTO `animal` (`ID`, `RAZA_ID`, `ORGANIZACION_ID`, `USER_ID`, `CHIP`, `NOMBRE`, `PATRON`, `FECHA_NACIMIENTO`, `SEXO`, `OBSERVACION`, `ESTERILIZADO`, `ESTADO`, `CREATED_AT`, `UPDATED_AT`) VALUES
-(1, 85, 2, 4, 0, 'Max', 'MANCHAS', '2017-08-06', 'm', '', 1, 'adoptado', '2017-07-05 00:00:00', NULL),
-(2, 124, 2, 4, 0, 'Tom', 'RAYAS', '2017-08-07', 'm', '', 1, '', '2017-07-06 00:00:00', NULL),
-(3, 129, 2, 4, 0, 'Duque', 'LEONADO', '2017-03-08', 'm', '', 1, 'adoptado', '2017-07-07 00:00:00', NULL),
-(4, 139, 2, 4, 0, 'Enzo', 'MANCHAS', '2017-07-09', 'm', '', 1, 'adoptado', '2017-07-08 00:00:00', NULL),
-(5, 85, 2, 4, 0, 'Harry', 'RAYAS', '2017-08-10', 'm', '', 1, '', '2017-07-09 00:00:00', NULL),
-(6, 124, 2, 4, 0, 'Emma', 'LEONADO', '2017-08-11', 'h', 'Vacunado', 0, '', '2017-06-28 00:00:00', NULL),
-(7, 130, 2, 4, 0, 'Luna', 'MANCHAS', '2017-09-12', 'h', 'Vacunado', 0, 'adoptado', '2017-08-01 00:00:00', NULL),
-(8, 92, 2, 4, 0, 'Garfield', 'RAYAS', '2017-09-13', 'm', 'Vacunado', 1, 'adoptado', '2017-08-02 00:00:00', NULL),
-(9, 85, 2, 4, 0, 'Negrito', 'LEONADO', '2017-09-14', 'm', 'Vacunado', 0, '', '2017-08-03 00:00:00', NULL),
-(10, 124, 2, 4, 0, 'Noa', 'RAYAS', '2017-09-15', 'h', 'Vacunado', 1, 'adoptado', '2017-08-04 00:00:00', NULL),
-(11, 129, 2, 4, 0, 'Orion', 'LEONADO', '2017-09-16', 'm', 'Vacunado', 0, 'adoptado', '2017-08-05 00:00:00', NULL),
-(12, 85, 2, 4, 0, 'Tina', 'MANCHAS', '2017-09-17', 'h', '', 1, '', '2017-08-06 00:00:00', NULL),
-(13, 124, 2, 4, 0, 'Quique', 'RAYAS', '2017-09-18', 'm', '', 1, 'adoptado', '2017-08-07 00:00:00', NULL),
-(14, 129, 2, 4, 0, 'Tomas', 'LEONADO', '2017-10-19', 'm', '', 1, '', '2017-08-08 00:00:00', NULL),
-(15, 92, 2, 4, 0, 'Canela', 'RAYAS', '2017-07-20', 'h', '', 1, 'adoptado', '2017-08-09 00:00:00', NULL);
+INSERT INTO `animal` (`ID`, `RAZA_ID`, `ORGANIZACION_ID`, `USER_ID`, `URL`, `CHIP`, `NOMBRE`, `PATRON`, `FECHA_NACIMIENTO`, `SEXO`, `OBSERVACION`, `ESTERILIZADO`, `ESTADO`, `CREATED_AT`, `UPDATED_AT`) VALUES
+(1, 85, 2, 4, '/res/imgs/orgs/2/animals/default-animal.jpg', 0, 'Max', 'MANCHAS', '2017-08-06', 'm', '', 1, 'adoptado', '2017-07-05 00:00:00', NULL),
+(2, 124, 2, 4, '/res/imgs/orgs/2/animals/default-animal.jpg', 0, 'Tom', 'RAYAS', '2017-08-07', 'm', '', 1, '', '2017-07-06 00:00:00', NULL),
+(3, 129, 2, 4, '/res/imgs/orgs/2/animals/default-animal.jpg', 0, 'Duque', 'LEONADO', '2017-03-08', 'm', '', 1, 'adoptado', '2017-07-07 00:00:00', NULL),
+(4, 139, 2, 4, '/res/imgs/orgs/2/animals/default-animal.jpg', 0, 'Enzo', 'MANCHAS', '2017-07-09', 'm', '', 1, '', '2017-07-08 00:00:00', NULL),
+(6, 124, 2, 4, '/res/imgs/orgs/2/animals/default-animal.jpg', 0, 'Emma', 'LEONADO', '2017-08-11', 'h', 'Vacunado', 0, '', '2017-06-28 00:00:00', NULL),
+(7, 130, 2, 4, '/res/imgs/orgs/2/animals/default-animal.jpg', 0, 'Luna', 'MANCHAS', '2017-09-12', 'h', 'Vacunado', 0, '', '2017-08-01 00:00:00', NULL),
+(8, 92, 2, 4, '/res/imgs/orgs/2/animals/default-animal.jpg', 0, 'Garfield', 'RAYAS', '2017-09-13', 'm', 'Vacunado', 1, '', '2017-08-02 00:00:00', NULL),
+(9, 85, 2, 4, '/res/imgs/orgs/2/animals/default-animal.jpg', 0, 'Negrito', 'LEONADO', '2017-09-14', 'm', 'Vacunado', 0, '', '2017-08-03 00:00:00', NULL),
+(10, 124, 2, 4, '/res/imgs/orgs/2/animals/default-animal.jpg', 0, 'Noa', 'RAYAS', '2017-09-15', 'h', 'Vacunado', 1, '', '2017-08-04 00:00:00', NULL),
+(11, 129, 2, 4, '/res/imgs/orgs/2/animals/11/profile.jpg', 0, 'Orion', 'LEONADO', '2017-09-16', 'm', 'Vacunado', 0, 'muerto', '2017-08-05 00:00:00', NULL),
+(12, 85, 2, 4, '/res/imgs/orgs/2/animals/default-animal.jpg', 0, 'Tina', 'MANCHAS', '2017-09-17', 'h', '', 1, '', '2017-08-06 00:00:00', NULL),
+(13, 124, 2, 4, '/res/imgs/orgs/2/animals/default-animal.jpg', 0, 'Quique', 'RAYAS', '2017-09-18', 'm', '', 1, 'diagnostico pendiente', '2017-08-07 00:00:00', NULL),
+(14, 129, 2, 4, '/res/imgs/orgs/2/animals/default-animal.jpg', 0, 'Tomas', 'LEONADO', '2017-10-19', 'm', '', 1, '', '2017-08-08 00:00:00', NULL),
+(15, 92, 2, 4, '/res/imgs/orgs/2/animals/default-animal.jpg', 0, 'Canela', 'RAYAS', '2017-07-20', 'h', '', 1, '', '2017-08-09 00:00:00', NULL),
+(41, 92, 2, 1, '/res/imgs/orgs/2/animals/test-gato-bengala.jpg', 10, 'TEST', 'MANCHAS', '2016-05-18', 'm', 'AGREGAR', NULL, '', '2019-07-07 00:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -557,6 +574,14 @@ CREATE TABLE `diagnostico` (
   `DESCRIPCION` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `diagnostico`
+--
+
+INSERT INTO `diagnostico` (`ID`, `ORGANIZACION_ID`, `NOMBRE`, `DESCRIPCION`) VALUES
+(1, 2, 'Fractura Multiple', 'El animal sufre de multiples fracturas en sus extremidades.'),
+(2, 2, 'Dermatofitosis (Tiña)', 'La tiña es una infección causada por un hongo que crece en las capas muertas superficiales de la pie');
+
 -- --------------------------------------------------------
 
 --
@@ -585,9 +610,16 @@ INSERT INTO `especie` (`ID`, `NOMBRE`) VALUES
 CREATE TABLE `evidencia` (
   `ID` int(11) NOT NULL,
   `AFECTA_ID` int(11) NOT NULL,
-  `URL` varchar(32) NOT NULL,
+  `URL` varchar(100) NOT NULL,
   `DESCRIPCION` varchar(144) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `evidencia`
+--
+
+INSERT INTO `evidencia` (`ID`, `AFECTA_ID`, `URL`, `DESCRIPCION`) VALUES
+(1, 1, '/res/imgs/evidencias/13/e1.jpg', 'Fractura del femur de la pata izquierda trasera del animal');
 
 -- --------------------------------------------------------
 
@@ -850,6 +882,7 @@ CREATE TABLE `servicio` (
 
 CREATE TABLE `user` (
   `ID` int(11) NOT NULL,
+  `URL` varchar(100) DEFAULT '/res/imgs/default_user.jpg',
   `RUT` varchar(10) NOT NULL,
   `PRIMER_NOMBRE` varchar(50) NOT NULL,
   `SEGUNDO_NOMBRE` varchar(50) DEFAULT NULL,
@@ -864,11 +897,11 @@ CREATE TABLE `user` (
 -- Volcado de datos para la tabla `user`
 --
 
-INSERT INTO `user` (`ID`, `RUT`, `PRIMER_NOMBRE`, `SEGUNDO_NOMBRE`, `APELLIDO_PATERNO`, `APELLIDO_MATERNO`, `CARGO`, `PASSWORD`, `REMEMBER_TOKEN`) VALUES
-(1, '12582440-4', 'Jessica', 'Yesenia', 'Gonzalez', 'Lopez', 'Admin', 'AdoqzbSQUc', ''),
-(2, '13133984-4', 'Bernarda', 'Alejandra', 'Ferreira', 'Puebla', 'Socio', 'XWZdrUovBE', ''),
-(3, '15981935-3', 'Juana', 'Edilia', 'Olguin', 'Platero', 'Socio', 'LzBZxLZzBP', ''),
-(4, '24829898-7', 'Lorena', 'Elizabeth', 'Morales', 'Peralta', 'Admin', 'DMwKcbRjkI', '');
+INSERT INTO `user` (`ID`, `URL`, `RUT`, `PRIMER_NOMBRE`, `SEGUNDO_NOMBRE`, `APELLIDO_PATERNO`, `APELLIDO_MATERNO`, `CARGO`, `PASSWORD`, `REMEMBER_TOKEN`) VALUES
+(1, '/res/imgs/default_user.jpg', '12582440-4', 'Jessica', 'Yesenia', 'Gonzalez', 'Lopez', 'Admin', 'AdoqzbSQUc', ''),
+(2, '/res/imgs/default_user.jpg', '13133984-4', 'Bernarda', 'Alejandra', 'Ferreira', 'Puebla', 'Socio', 'XWZdrUovBE', ''),
+(3, '/res/imgs/default_user.jpg', '15981935-3', 'Juana', 'Edilia', 'Olguin', 'Platero', 'Socio', 'LzBZxLZzBP', ''),
+(4, '/res/imgs/default_user.jpg', '24829898-7', 'Lorena', 'Elizabeth', 'Morales', 'Peralta', 'Admin', 'DMwKcbRjkI', '');
 
 --
 -- Índices para tablas volcadas
@@ -996,7 +1029,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `adopcion`
 --
 ALTER TABLE `adopcion`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `adoptante`
@@ -1008,13 +1041,13 @@ ALTER TABLE `adoptante`
 -- AUTO_INCREMENT de la tabla `afecta`
 --
 ALTER TABLE `afecta`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `animal`
 --
 ALTER TABLE `animal`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT de la tabla `campana`
@@ -1038,7 +1071,7 @@ ALTER TABLE `contacto`
 -- AUTO_INCREMENT de la tabla `diagnostico`
 --
 ALTER TABLE `diagnostico`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `especie`
@@ -1050,7 +1083,7 @@ ALTER TABLE `especie`
 -- AUTO_INCREMENT de la tabla `evidencia`
 --
 ALTER TABLE `evidencia`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `organizacion`
