@@ -23,11 +23,11 @@
                     <form action="../controller/procesarLogin.php">
                         <div class="form-group">
                             <label>RUT:</label>
-                            <input placeholder="Ej: 1234567-8" id="rut" name="rut" type="text" class="form-control">
+                            <input placeholder="Ingrese su RUT (Ej: 1234567-8)" id="rut" name="rut" type="text" required class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Contraseña:</label>
-                            <input id="contraseña" name="pa" type="password" class="form-control">
+                            <input placeholder="Ingrese su contraseña" id="contraseña" name="pa" type="password" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary btn-lg btn-block">INICIAR SESION</button>
@@ -40,5 +40,4 @@
     </main>
 </body>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="LoginControl.js"></script>
 </html>
