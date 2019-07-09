@@ -25,7 +25,7 @@ class EvidenciaDao
                     $fila["EVIDENCIA_ID"],
                     new Afecta(
                         $fila["AFECTA_ID"],
-                        new Animal($fila["ANIMAL_ID"],NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+                        new Animal($fila["ANIMAL_ID"],NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
                         new Diagnostico($fila["DIAGNOSTICO_ID"],new Organizacion(NULL,NULL,NULL),NULL,NULL),
                         $fila["FECHA_DIAGNOSTICO"]
                     ),

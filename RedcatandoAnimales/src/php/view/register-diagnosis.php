@@ -64,7 +64,7 @@
                         <h3>Evidencias</h3>
                         <div class="dropdown-divider"></div>
                         <div class="form-inline">
-                            <button type="button" class="btn btn-primary rounded-circle btn-lg"><i class="fas fa-camera fa-2 text-white"></i></button>                            
+                            <button type="button" class="btn btn-primary rounded-circle btn-lg" data-toggle="modal" data-target="#modalCam"><i class="fas fa-camera fa-2 text-white"></i></button>                            
                             <div class="input-group ml-3">
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="inputGroupFile02">
@@ -79,23 +79,23 @@
                         <div class="form-group">
                         
                         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <?php
-                                foreach ($imagenes as $i) {
-                                    echo "<div class='carousel-item active'>";
-                                    echo "<img src="."/RedcatandoAnimales/RedcatandoAnimales".$i->getURL()." class='d-block w-100' alt='".$i->getDescripcion()."'>";
-                                    echo "</div>";
-                                }
-                            ?>
-                        </div>
-                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
+                            <div class="carousel-inner">
+                                <?php
+                                    foreach ($imagenes as $i) {
+                                        echo "<div class='carousel-item active'>";
+                                        echo "<img src="."/RedcatandoAnimales/RedcatandoAnimales".$i->getURL()." class='d-block w-100' alt='".$i->getDescripcion()."'>";
+                                        echo "</div>";
+                                    }
+                                ?>
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
                         </div>
                         
                         </div>
@@ -108,16 +108,52 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <button class="btn btn-primary" type="submit">REGISTRAR</button>
-                            <a href="history-animal.php?codOrg=<?php echo $_GET["codOrg"]?>" class="btn btn-link">CANCELAR</a>
+                            <a href="history-animal.php" class="btn btn-link">CANCELAR</a>
                         </div>
                     </div>
                 </div>            
                 </form>
             </div>
-            <div class="d-none">
-                <video autoplay></video>
-                <img src="">
-                <canvas style="display:none;"></canvas>
+            <!-- Modal Camara -->
+            <div class="modal fade" id="modalCam" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Camara</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                        <video id="player" controls autoplay></video>
+                        <canvas class="bg-dark" id="snapshot" width=320 height=240></canvas>
+                        <script>
+                            var player = document.getElementById('player');
+                            var snapshotCanvas = document.getElementById('snapshot');
+                            var captureButton = document.getElementById('capture');
+
+                            var handleSuccess = function(stream) {
+                                // Attach the video stream to the video element and autoplay.
+                                player.srcObject = stream;
+                            };
+
+                            captureButton.addEventListener('click', function() {
+                                var context = snapshot.getContext('2d');
+                                // Draw the video frame to the canvas.
+                                context.drawImage(player, 0, 0, snapshotCanvas.width, snapshotCanvas.height);
+                                var foto = snapshot.toDataURL("image/png");
+                                var animalUrl = document.getElementById("animalURL");  
+                                animalUrl.src = foto;    
+                            });
+
+                            navigator.mediaDevices.getUserMedia({video: true}).then(handleSuccess);
+                        </script>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-danger btn-block" type="button" id="capture">CAPTURAR FOTO</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
