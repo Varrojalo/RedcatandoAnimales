@@ -39,6 +39,30 @@
                         <div class="custom-file">
                             <input type="file" accept=".jpg,.png,.jpeg,.gif" class="custom-file-input" name="animalURL" id="animalURL">
                             <label class="custom-file-label" for="animalURL" aria-describedby="inputGroupFileAddon02">Escoja un archivo o arrastrelo acá.<span id="fotoActual"></span></label>
+                            <video id="player" controls autoplay></video>
+                            <button id="capture">Capturar</button>
+                            <canvas id="snapshot" width=320 height=240></canvas>
+                            <script>
+                            var player = document.getElementById('player');
+                            var snapshotCanvas = document.getElementById('snapshot');
+                            var captureButton = document.getElementById('capture');
+
+                            var handleSuccess = function(stream) {
+                                // Attach the video stream to the video element and autoplay.
+                                player.srcObject = stream;
+                            };
+
+                            captureButton.addEventListener('click', function() {
+                                var context = snapshot.getContext('2d');
+                                // Draw the video frame to the canvas.
+                                context.drawImage(player, 0, 0, snapshotCanvas.width, snapshotCanvas.height);
+                                var foto = snapshot.toDataURL("image/png");
+                                var animalUrl = document.getElementById("animalURL");  
+                                animalUrl.src = foto;    
+                            });
+
+                            navigator.mediaDevices.getUserMedia({video: true}).then(handleSuccess);
+                            </script>
                         </div>
                     </div>
                 </div>
