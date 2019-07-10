@@ -32,16 +32,16 @@ session_start();
                         <span class="nav-link active">Animales</span>
                     </li>
                     <li class="navbar-text">
-                        <a href="#" class="nav-link">Campañas</a>
+                        <a href="error.php" class="nav-link">Campañas</a>
                     </li>
                     <li class="navbar-text">
-                        <a href="#" class="nav-link">Adoptantes</a>
+                        <a href="error.php" class="nav-link">Adoptantes</a>
                     </li>
                     <li class="navbar-text">
-                        <a href="#" class="nav-link">Voluntarios</a>
+                        <a href="error.php" class="nav-link">Voluntarios</a>
                     </li>
                     <li class="navbar-text">
-                        <a href="#" class="nav-link">Documentos</a>
+                        <a href="error.php" class="nav-link">Documentos</a>
                     </li>
                     <li class="navbar-text">
                         <a href="../controller/logout.php" class="nav-link">
@@ -78,7 +78,7 @@ session_start();
                             <th scope="col" data-breakpoints="xs">Sexo</th>
                             <th scope="col" data-breakpoints="xs">Fecha de Ingreso</th>
                             <th scope="col" data-breakpoints="sm">N° Chip</th>
-                            <th scope="col" data-breakpoints="sm">Observacion</th>
+                            <th scope="col" data-breakpoints="sm">Observación</th>
                             <th scope="col" data-breakpoints="xs">Acciones</th>
                         </tr>
                     </thead>
@@ -143,7 +143,7 @@ session_start();
         $('[data-toggle="popover"]').popover({
             trigger: 'hover',
             title: '<h5> Leyendas de estados</h5>',
-            content: '<p><i class="fas fa-square fa-lg text-success"></i> = ADOPTADO.</p><p><i class="fas fa-square fa-lg text-danger"></i> = FALLECIDO.</p><p><i class="fas fa-square fa-lg text-info"></i> = DIAGNOSTICO PENDIENTE.</p>',
+            content: '<p><i class="fas fa-square fa-lg text-success"></i> = ADOPTADO.</p><p><i class="fas fa-square fa-lg text-danger"></i> = FALLECIDO.</p><p><i class="fas fa-square fa-lg text-info"></i> = DIAGNÓSTICO PENDIENTE.</p>',
             html: true
     });
     });

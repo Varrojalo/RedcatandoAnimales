@@ -183,7 +183,7 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="">Observacion: </label>
+                    <label for="">Observación: </label>
                     <textarea name="observacion" id="" cols="30" rows="9" class="form-control"></textarea>
                 </div>
                 <div class="row">

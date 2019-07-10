@@ -85,7 +85,7 @@
                 }
                 echo "<p><strong>Raza: </strong> ".$raza->getNombre()."</p>";
                 echo "<p><strong>Fecha de Nacimiento: </strong> ".$animal->getFechaNacimiento()."</p>";
-                echo "<p><strong>Patron: </strong> ".$animal->getPatron()."</p>";
+                echo "<p><strong>Patrón: </strong> ".$animal->getPatron()."</p>";
                 if($animal->isEsterilizado()==1)
                 {
                     echo "<p><strong>Esterilizado: </strong> <span class='fas fa-check-circle fa-2x text-success'></span></p>";
@@ -113,14 +113,14 @@
                     if(is_null($adoptanteID))
                     {
                         echo "<div class='col-md-12'>";
-                        echo "<strong>Observacion: </strong>";
+                        echo "<strong>Observación: </strong>";
                         echo "<p>".$animal->getObservacion()."</p>";
                         echo "</div>";
                     }
                     else
                     {
                         echo "<div class='col-md-6'>";
-                        echo "<strong>Observacion: </strong>";
+                        echo "<strong>Observación: </strong>";
                         echo "<p>".$animal->getObservacion()."</p>";
                         echo "</div>";
                         echo "<div class='col-md-6'>";
@@ -136,7 +136,7 @@
                 echo "<div class='dropdown-divider'></div>";
                 echo "</div>";                
                 echo "<div class='col-md-9'>";
-                echo "<h3>Diagnosticos</h3>";
+                echo "<h3>Diagnósticos</h3>";
                 echo "</div>";
                 echo "<div class='col-md-3'>";
                 echo "<a href='register-diagnosis.php?cod=".$_GET["cod"]."&codOrg=".$_GET["codOrg"]."' class='btn btn-primary btn-block text-white'>NUEVO DIAGNOSTICO</a>";
@@ -165,13 +165,13 @@
                 }
                 else
                 {
-                    echo "<p>NO HAY DIAGNOSTICOS DISPONIBLES</p>";
+                    echo "<p>NO HAY DIAGNÓSTICOS DISPONIBLES</p>";
                 }
                 echo "</div>";
                 echo "</div>";
             ?>
             
-            <a href="history-animal.php" class="btn btn-link">ATRAS</a>
+            <a href="history-animal.php" class="btn btn-link">ATRÁS</a>
         </div>
     </div>
 </body>

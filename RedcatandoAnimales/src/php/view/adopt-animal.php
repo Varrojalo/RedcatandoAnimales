@@ -74,7 +74,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="patron" class="col-sm-4 col-form-label font-weight-bold">Patron:</label>
+                            <label for="patron" class="col-sm-4 col-form-label font-weight-bold">Patrón:</label>
                             <div class="col-sm-8">
                                 <input type="text" readonly class="form-control-plaintext" id="patron" name="patron" value="<?php echo $animal->getPatron();?>">
                             </div>

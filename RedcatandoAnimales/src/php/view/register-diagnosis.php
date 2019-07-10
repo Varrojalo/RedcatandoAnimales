@@ -32,7 +32,7 @@
         <div class="my-3 shadow p-3 bg-white rounded">
             <div class="row">
                 <div class="col-md-12">
-                    <h2>Registrar Diagnostico</h2>
+                    <h2>Registrar Diagnóstico</h2>
                 </div>
             </div>
             <div class="row">
@@ -48,16 +48,16 @@
                             <input type="text" name="animal" id="animal" class="d-none form-control-plaintext" value="<?php echo $animal->getID();?>">
                         </div>
                         <div class="form-group">
-                            <label for="organizacion">ORGANIZACION: <span><?php echo $organizacion->getNombre();?></span></label>
+                            <label for="organizacion">ORGANIZACIÓN: <span><?php echo $organizacion->getNombre();?></span></label>
                             <input type="text" name="organizacion" id="organizacion" class="d-none form-control-plaintext" value="<?php echo $organizacion->getID(); ?>">
                         </div>
                         <div class="form-group">
                             <label for="nombre">NOMBRE:</label>
-                            <input type="text" name="nombre" id="nombre" placeholder="Ingrese el nombre del Diagnostico" class="form-control">
+                            <input type="text" name="nombre" id="nombre" placeholder="Ingrese el nombre del Diagnóstico" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="descripcion">DESCRIPCION:</label>
-                            <textarea name="descripcion" id="descripcion" class="form-control" placeholder="Ingrese la descripcion" cols="30" rows="10"></textarea>
+                            <label for="descripcion">DESCRIPCIÓN:</label>
+                            <textarea name="descripcion" id="descripcion" class="form-control" placeholder="Ingrese la descripción" cols="30" rows="10"></textarea>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -73,8 +73,8 @@
                             </div>
                         </div>
                         <div class="form-group mt-3">
-                            <label for="descEvidencia">DESCRIPCION: </label>
-                            <textarea name="descEvidencia" id="descEvidencia" class="form-control" cols="30" rows="5" placeholder="Ingrese descripcion"></textarea>
+                            <label for="descEvidencia">DESCRIPCIÓN: </label>
+                            <textarea name="descEvidencia" id="descEvidencia" class="form-control" cols="30" rows="5" placeholder="Ingrese descripción"></textarea>
                         </div>
                         <div class="form-group">
                         
@@ -119,7 +119,7 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalCenterTitle">Camara</h5>
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Cámara</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>

@@ -70,21 +70,21 @@
                         </div>
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="listaPatrones">Patron: </label>
+                        <label for="listaPatrones">Patrón: </label>
                         <select name="listaPatrones" id="listaPatrones" class="form-control">
                             <option value="RAYAS_ATIGRADO">RAYAS/ATIGRADO</option>
                             <option value="MANCHAS_PARCHES">MANCHAS/PARCHES</option>
                             <option value="PUNTAS_DE_OTRO_COLOR">PUNTAS DE OTRO COLOR</option>
                             <option value="BANDAS_FRANJAS">BANDAS O FRANJAS</option>
                             <option value="JASPEADO">JASPEADO</option>
-                            <option value="SOMBdanger"READO_LEONADO">SOMBREADO/LEONADO</option>
+                            <option value="SOMBREADO_LEONADO">SOMBREADO/LEONADO</option>
                             <option value="NINGUNO">NINGUNO</option>
                             <option value="NO_SE_SEÑALA">NO SE SEÑALA</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="">Observacion: </label>
+                    <label for="">Observación: </label>
                     <textarea name="observacion" id="" placeholder="<?php echo $animal->getObservacion();?>" rows="9" class="form-control"></textarea>
                 </div>
                 <div class="form-group">

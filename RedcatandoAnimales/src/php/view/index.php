@@ -17,7 +17,7 @@
             <div class="my-5 align-self-middle shadow p-3 bg-white rounded">
                 <div class="header-logo mx-5 text-center">
                     <img src="/RedcatandoAnimales/RedcatandoAnimales/res/imgs/logo_dark_1024x512.png" width="512" height="256" class="img-fluid my-3">
-                    <h1>Iniciar Sesion</h1>
+                    <h1>Iniciar Sesión</h1>
                 </div>
                 <div class="content">
                     <form action="../controller/procesarLogin.php">
@@ -30,7 +30,7 @@
                             <input placeholder="Ingrese su contraseña" id="contraseña" name="pa" type="password" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-primary btn-lg btn-block">INICIAR SESION</button>
+                            <button class="btn btn-primary btn-lg btn-block">INICIAR SESIÓN</button>
                             <button class="btn btn-link btn-lg btn-block">REGISTRARSE</button>
                         </div>
                     </form>
