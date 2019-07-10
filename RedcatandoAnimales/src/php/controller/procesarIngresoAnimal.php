@@ -55,21 +55,69 @@ $loader = require '../../../vendor/autoload.php';
         function ingresarAnimal()
         {
             date_default_timezone_set('mst');
-            //SubirArchivo($_FILES["animalURL"],$_POST["organizacion"]);
-            $fechaActual = date("Y-m-j");
-            $organizacion = new Organizacion($_POST["organizacion"],NULL,NULL);
-            $user = new User($_POST["usuario"],NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
-            $nombre = $_POST["nombre"];
-            $fechaNacimiento = $_POST["fechaNacimiento"];
-            $raza = $_POST["listaRazas"];
-            $patron = $_POST["listaPatrones"];
-            $sexo = $_POST["radioSexo"];
-            $obs = $_POST["observacion"];
-            $url = "/res/imgs/orgs/".$organizacion->getID()."/animals/".$_POST["animalURL"];
-            $chip = $_POST["chip"];
-            $animal = new Animal(0,$raza,$organizacion,$user,$url,$chip,$nombre,$patron,$fechaNacimiento,$sexo,$obs,false,"",date("Y-m-d"),NULL);
-            $aDao = new AnimalDao();
-            $aDao->agregarAnimal($animal);
+            $file = $_FILES["animalURL"];
+            
+            if(isset($_POST["btnAgregarAnimal"]))
+            {
+                $target_dir = "/res/imgs/orgs/".$_POST["organizacion"]."/animals/";
+
+                $fileName = $file["name"];
+                $fileTmpName = $file["tmp_name"];
+                $fileSize = $file["size"];
+                $fileError = $file["error"];
+                $fileType = $file["type"];
+
+                $fileExt = explode('.',$fileName);
+                $fileActualExt = strtolower(end($fileExt));
+
+                $allowedExt = array("jpg","jpeg","png","gif");
+
+                //Verifica si la extension es la correcta
+                if(is_array($fileActualExt,$allowedExt))
+                {
+                    //Verificar si hubo un error al subir el archivo
+                    if ($fileError === 0) 
+                    {
+                        //Verifica el tamaño del archivo a subir
+                        if ($fileSize < 5000) 
+                        {
+                            $newName = uniqid('',true).".".$fileActualExt;
+                            $fileDestination = $target_dir.$newName;
+                            move_uploaded_file($fileTmpName, $fileDestination);
+                            
+                        }
+                        else 
+                        {
+                            echo "ERROR: El archivo que intento subir pesa más de 5 MB";
+                            
+                        }
+                    }
+                    else 
+                    {
+                        echo "Hubo un error al subir el archivo, porfavor intentelo de nuevo.";    
+                        
+                    }
+                }
+                else
+                {
+                    echo "ERROR: Este tipo de archivos no pueden subirse. Aceptados: (jpg, jpeg, png, gif).";
+                    
+                }
+                $fechaActual = date("Y-m-j");
+                $organizacion = new Organizacion($_POST["organizacion"],NULL,NULL);
+                $user = new User($_POST["usuario"],NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+                $nombre = $_POST["nombre"];
+                $fechaNacimiento = is_null($_POST["fechaNacimiento"])?$_POST["fechaNacimiento"]:'2012-12-12';
+                $raza = $_POST["listaRazas"];
+                $patron = $_POST["listaPatrones"];
+                $sexo = $_POST["radioSexo"];
+                $obs = $_POST["observacion"];
+                $url = is_null($fileDestination)?"/res/imgs/orgs/".$_POST["organizacion"]."/animals/default-animal.jpg":$fileDestination;
+                $chip = $_POST["chip"];
+                $animal = new Animal(0,$raza,$organizacion,$user,$url,$chip,$nombre,$patron,$fechaNacimiento,$sexo,$obs,false,"",date("Y-m-d"),NULL);
+                $aDao = new AnimalDao();
+                $aDao->agregarAnimal($animal);
+            }
         }
 
         function eliminarAnimal()
@@ -161,57 +209,9 @@ $loader = require '../../../vendor/autoload.php';
             }
         }
 
-        function SubirArchivo($url,$organizacion)
+        function SubirFotoAnimal($url,$organizacion)
         {
-
-            if(isset($_POST["btnEvidencia"]))
-            {
-                $target_dir = "/res/imgs/orgs/".$organizacion."/animals/evidencias/";
-            }
-            else if($_POST["btnAgregarAnimal"])
-            {
-                $target_dir = "/res/imgs/orgs/".$organizacion."/animals/";
-            }
-            else
-            {
-                $target_dir = "/res/imgs/orgs/".$organizacion."/";
-            }
             
-            $target_file = $target_dir . basename($url["name"]);
-            $uploadOk = 1;
-            $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-            // Check if image file is a actual image or fake image
-            if(isset($_POST["submit"])) {
-                $check = getimagesize($url["tmp_name"]);
-                if($check !== false) {
-                    echo "File is an image - " . $check["mime"] . ".";
-                    $uploadOk = 1;
-                } else {
-                    echo "File is not an image.";
-                    $uploadOk = 0;
-                }
-            }
-            // Check if file already exists
-            if (file_exists($target_file)) {
-                echo "Sorry, file already exists.";
-                $uploadOk = 0;
-            }
-            // Check file size
-            if ($url["size"] > 500000) {
-                echo "Sorry, your file is too large.";
-                $uploadOk = 0;
-            }
-            // Check if $uploadOk is set to 0 by an error
-            if ($uploadOk == 0) {
-                echo "Sorry, your file was not uploaded.";
-            // if everything is ok, try to upload file
-            } else {
-                if (move_uploaded_file($url["tmp_name"], $target_file)) {
-                    echo "The file ". basename($url["name"]). " has been uploaded.";
-                } else {
-                    echo "Sorry, there was an error uploading your file.";
-                }
-            }
         }
 
         function llenarListaUsuarios($codOrg)

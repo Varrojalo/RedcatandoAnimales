@@ -23,7 +23,7 @@
                     <div class="dropdown-divider"></div>
                 </div>
             </div>
-            <form action="../controller/procesarIngresoAnimal.php" method="POST">
+            <form action="../controller/procesarIngresoAnimal.php" method="POST" enctype="multipart/form-data">
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label>Nombre:</label>
@@ -40,8 +40,8 @@
                             <button type="button" class="btn btn-primary rounded-circle btn-lg" data-toggle="modal" data-target="#modalCam"><i class="fas fa-camera fa-2 text-white"></i></button>                            
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" name="animalURL" id="animalURL">
-                                    <label class="custom-file-label" for="animalURL" aria-describedby="inputGroupFileAddon02">Escoger Archivo</label>
+                                    <input type="file" class="custom-file-input" accept=".jpg,.jpeg,.png,.gif" name="animalURL" id="animalURL">
+                                    <label class="custom-file-label" for="animalURL">Escoger Archivo</label>
                                 </div>
                             </div>
                         </div>
